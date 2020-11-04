@@ -3,7 +3,7 @@ export enum ROUTES {
     LENDER = '/lender',
     BORROWER = '/borrower',
 
-    BORROWER_AUCTIONS = 'borrower/auctions',
+    BORROWER_AUCTIONS = '/borrower/auctions',
     BORROWER_COMMITMENTS = '/borrower/commitments',
     BORROWER_ACCOUNT = '/borrower/account',
 
