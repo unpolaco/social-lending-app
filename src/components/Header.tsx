@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useStyles} from './Header.styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,13 +10,12 @@ import Menu from '@material-ui/core/Menu';
 
 export const Header = () => {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
 
-    const handleMenu = (event: any) => {
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleClose = () => {
         setAnchorEl(null);
     };

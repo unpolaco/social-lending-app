@@ -1,10 +1,12 @@
 import React from 'react';
-import {Paper, Typography} from '@material-ui/core/';
+import {Typography} from '@material-ui/core/';
+import {AuctionCard} from './AuctionCard';
 
 export const BorrowerAuctions = () => {
     return (
-        <Paper>
-            <Typography>BORROWER Auctions Page</Typography>
-        </Paper>
+        <>
+            <Typography>List of all actual auctions:</Typography>
+            <AuctionCard />
+        </>
     );
 };

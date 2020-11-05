@@ -11,11 +11,11 @@ export const Borrower = () => {
         <>
             <Container>
                 <ButtonGroup fullWidth variant="text" color="primary" aria-label="text primary button group">
-                    <Button component={NavLink} to={ROUTES.BORROWER_COMMITMENTS}>
-                        Loans & My auctions
-                    </Button>
                     <Button component={NavLink} to={ROUTES.BORROWER_AUCTIONS}>
                         All Auctions
+                    </Button>
+                    <Button component={NavLink} to={ROUTES.BORROWER_COMMITMENTS}>
+                        Loans & My auctions
                     </Button>
                     <Button component={NavLink} to={ROUTES.BORROWER_ACCOUNT}>
                         My account
