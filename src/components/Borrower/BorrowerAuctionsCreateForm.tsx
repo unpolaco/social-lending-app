@@ -1,23 +1,24 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
-import {Button, TextField, InputAdornment} from '@material-ui/core';
+import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {CreateAuctionCardWrapper} from './BorrowerAuctionsCreateForm.styles';
+import {initialValues, marks} from './BorrowerAuctionsCreateForm.constants';
+import {AuctionCreateFormValues} from './BorrowerAuctionsCreateForm.types';
 
 export const BorrowerAuctionsCreateForm = () => {
-    function handleSubmit(values: any) {
+    function handleSubmit(values: AuctionCreateFormValues) {
         console.log(values);
     }
-
     return (
         <CreateAuctionCardWrapper>
-            <Formik initialValues={{amount: '', rate: '', startDate: ''}} onSubmit={handleSubmit}>
-                {({handleSubmit, values, handleChange, handleBlur, errors, touched}) => (
+            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
                     <Form onSubmit={handleSubmit}>
                         <TextField
                             autoFocus
-                            label={'Enter amount *'}
-                            name={'amount'}
+                            name="amount"
                             type="number"
+                            label={'Enter amount *'}
                             value={values.amount}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -25,10 +26,10 @@ export const BorrowerAuctionsCreateForm = () => {
                             helperText={touched.amount && errors.amount}
                         />
                         <TextField
+                            name="rate"
+                            type="number"
                             label={'Enter expected rate *'}
                             InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
-                            name={'rate'}
-                            type="number"
                             value={values.rate}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -36,7 +37,7 @@ export const BorrowerAuctionsCreateForm = () => {
                             helperText={touched.rate && errors.rate}
                         />
                         <TextField
-                            name={'startDate'}
+                            name="startDate"
                             type="date"
                             label="Start loan date"
                             InputLabelProps={{shrink: true}}
@@ -44,6 +45,17 @@ export const BorrowerAuctionsCreateForm = () => {
                             onBlur={handleBlur}
                             error={Boolean(touched.startDate && errors.startDate)}
                             helperText={touched.startDate && errors.startDate}
+                        />
+                        <Typography>Duration of a loan in months</Typography>
+                        <Slider
+                            name="loanDuration"
+                            valueLabelDisplay="auto"
+                            step={1}
+                            min={0}
+                            max={36}
+                            marks={marks}
+                            value={values.loanDuration}
+                            onChange={(e, value) => setFieldValue('loanDuration', value)}
                         />
                         <Button type="submit">Create auction</Button>
                     </Form>
