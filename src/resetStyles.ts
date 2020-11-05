@@ -27,10 +27,10 @@ html, body, #root {
 	height: 90vh;
 }
 body {
-    line-height: 1;
-    background: #fff;
-    color: #000;
-	font-family: Roboto;
+  line-height: 1;
+  background: #dcdde1;
+  color: #000;
+	font-family: 'Poppins', sans-serif;
 	min-height: 100vh;
 }
 ol, ul {
