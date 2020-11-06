@@ -2,9 +2,9 @@ import React from 'react';
 import {Container, ButtonGroup, Button} from '@material-ui/core/';
 import {ROUTES} from '../../helpers/routes';
 import {NavLink, Route, Switch} from 'react-router-dom';
-import {LenderAccount} from './LenderAccount';
-import {LenderPortfolio} from './LenderPortfolio';
-import {LenderInvest} from './LenderInvest';
+import {LenderAccount} from './LenderAccount/LenderAccount';
+import {LenderPortfolio} from './LenderPortfolio/LenderPortfolio';
+import {LenderInvest} from './LenderInvest/LenderInvest';
 
 export const Lender: React.FC = () => {
     return (

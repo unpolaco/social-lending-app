@@ -2,9 +2,9 @@ import React from 'react';
 import {Container, ButtonGroup, Button} from '@material-ui/core/';
 import {ROUTES} from '../../helpers/routes';
 import {NavLink, Route, Switch} from 'react-router-dom';
-import {BorrowerCommitments} from './BorrowerCommitments';
-import {BorrowerAuctions} from './BorrowerAuctions';
-import {BorrowerAccount} from './BorrowerAccount';
+import {BorrowerCommitments} from './BorrowerCommitments/BorrowerCommitments';
+import {BorrowerAuctions} from './BorrowerAuctions/BorrowerAuctions';
+import {BorrowerAccount} from './BorrowerAccount/BorrowerAccount';
 
 export const Borrower: React.FC = () => {
     return (

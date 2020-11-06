@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Typography} from '@material-ui/core/';
 import {AuctionCard} from './AuctionCard';
-import {BorrowerAuctionsCreateForm} from './BorrowerAuctionsCreateForm';
+import {BorrowerAuctionsCreateForm} from './BorrowerAuctionsCreateForm/BorrowerAuctionsCreateForm';
 export const BorrowerAuctions = () => {
     return (
         <Container>
