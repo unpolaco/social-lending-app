@@ -5,6 +5,6 @@ import React from 'react';
 describe('<App/>', () => {
     test('renders welcome dummy text', () => {
         render(<App />);
-        expect(screen.getByRole('heading')).toHaveTextContent('Social Lending Platform');
+        expect(screen.getByRole('heading')).toHaveTextContent('SOLID Lending Platform');
     });
 });
