@@ -1,13 +1,13 @@
 import React from 'react';
-import {BrowserRouter, NavLink, Route, Switch} from 'react-router-dom';
-import {Container, Button} from '@material-ui/core';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {getBaseName} from './App.helpers';
 import {Header} from './Header';
 import {ROUTES} from '../helpers/routes';
 import {Lender} from './Lender/Lender';
 import {Borrower} from './Borrower/Borrower';
+import {MainPage} from './MainPage/MainPage';
 
-export const App = () => {
+export const App: React.FC = () => {
     const basename = getBaseName();
 
     return (
@@ -15,14 +15,7 @@ export const App = () => {
             <Header />
             <Switch>
                 <Route path={'/'} exact>
-                    <Container maxWidth="sm">
-                        <Button component={NavLink} to={ROUTES.BORROWER} variant="outlined">
-                            Enter as Borrower
-                        </Button>
-                        <Button component={NavLink} to={ROUTES.LENDER} variant="outlined">
-                            Enter as Lender
-                        </Button>
-                    </Container>
+                    <MainPage />
                 </Route>
                 <Route path={ROUTES.LENDER}>
                     <Lender />
