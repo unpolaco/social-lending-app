@@ -8,7 +8,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
-export const Header = () => {
+export const Header: React.FC = () => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -25,7 +25,7 @@ export const Header = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        Social Lending Platform
+                        SOLID Lending Platform
                     </Typography>
 
                     <div>

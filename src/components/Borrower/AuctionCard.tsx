@@ -4,11 +4,11 @@ import {AvatarGroup} from '@material-ui/lab';
 import {BoxFlexRow, BoxNarrow, AuctionCardWrapper} from './AuctionCard.styles';
 export const AuctionCard = () => {
     return (
-        <AuctionCardWrapper elevation={3}>
+        <AuctionCardWrapper>
             <Grid container alignItems="center" justify="space-between">
                 <BoxFlexRow>
                     <Avatar sizes="60">MB</Avatar>
-                    <Typography>Michał Borowski</Typography>
+                    <Typography variant="h6">Michał Borowski</Typography>
                 </BoxFlexRow>
                 <BoxNarrow>
                     <Typography variant="body2">auction amount</Typography>

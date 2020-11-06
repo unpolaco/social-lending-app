@@ -6,7 +6,7 @@ import {BorrowerCommitments} from './BorrowerCommitments';
 import {BorrowerAuctions} from './BorrowerAuctions';
 import {BorrowerAccount} from './BorrowerAccount';
 
-export const Borrower = () => {
+export const Borrower: React.FC = () => {
     return (
         <>
             <Container>

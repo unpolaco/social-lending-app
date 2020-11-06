@@ -6,7 +6,7 @@ import {LenderAccount} from './LenderAccount';
 import {LenderPortfolio} from './LenderPortfolio';
 import {LenderInvest} from './LenderInvest';
 
-export const Lender = () => {
+export const Lender: React.FC = () => {
     return (
         <>
             <Container>

@@ -4,12 +4,16 @@ import {Box, Card} from '@material-ui/core/';
 export const AuctionCardWrapper = styled(Card)`
     width: 90%;
     padding: 0 15px;
+    transition: 0.3s;
+    &:hover {
+        background-color: orange;
+    }
 `;
 export const BoxFlexRow = styled(Box)`
     display: flex;
-    flex: 2;
+    flex: 3;
     padding: 8px;
-    height: 100px;
+    height: 90px;
     align-items: center;
     justify-content: space-between;
 `;
