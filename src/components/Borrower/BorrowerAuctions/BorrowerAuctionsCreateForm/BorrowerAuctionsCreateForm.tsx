@@ -6,10 +6,11 @@ import {initialValues, marks} from './BorrowerAuctionsCreateForm.constants';
 import {AuctionCreateFormValues} from './BorrowerAuctionsCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
 
-export const BorrowerAuctionsCreateForm = () => {
+export const BorrowerAuctionsCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
     function handleSubmit(values: AuctionCreateFormValues) {
-        console.log(values);
+        handleSaveNewAuction(values);
     }
+
     return (
         <StyledAccordion>
             <AccordionSummary expandIcon={<AddIcon />}>
@@ -72,6 +73,3 @@ export const BorrowerAuctionsCreateForm = () => {
         </StyledAccordion>
     );
 };
-
-//     );
-// };
