@@ -1,4 +1,3 @@
-import {useStyles} from './AuctionTable.styles';
 export interface AuctionData {
     id: number;
     borrower: string;
@@ -7,6 +6,7 @@ export interface AuctionData {
     auctionDuration: string;
     auctionStartDate: string;
     borrowerRating: number;
+    offers: any;
 }
 export interface HeadCell {
     id: keyof AuctionData;
@@ -14,9 +14,7 @@ export interface HeadCell {
 }
 export type Order = 'asc' | 'desc';
 export interface EnhancedTableProps {
-    classes: ReturnType<typeof useStyles>;
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof AuctionData) => void;
     order: Order;
     orderBy: string;
-    rowCount: number;
 }

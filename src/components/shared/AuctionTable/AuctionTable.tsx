@@ -1,14 +1,12 @@
 import React from 'react';
-import {TextBold, StyledTableRow, HiddenSpan} from './AuctionTable.styles';
+import {TextBold, StyledTableRow} from './AuctionTable.styles';
 import {
     Table,
     TableBody,
     TableCell,
     TableContainer,
-    TableHead,
     TablePagination,
     TableRow,
-    TableSortLabel,
     Paper,
     Avatar,
     Typography,
@@ -20,44 +18,9 @@ import {
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
-import {AuctionData, HeadCell, EnhancedTableProps, Order} from './AuctionTable.types';
+import {AuctionData, Order} from './AuctionTable.types';
 import {getComparator, stableSort} from './AuctionTable.helpers';
-
-const headCells: HeadCell[] = [
-    {id: 'borrower', label: 'borrower name'},
-    {id: 'borrowerRating', label: 'borrower rating'},
-    {id: 'amount', label: 'amount'},
-    {id: 'rate', label: 'desired rate'},
-    {id: 'auctionDuration', label: 'auction duration'},
-    {id: 'auctionStartDate', label: 'auction start date'},
-];
-
-function EnhancedTableHead(props: EnhancedTableProps) {
-    const {order, orderBy, onRequestSort} = props;
-    const createSortHandler = (property: keyof AuctionData) => (event: React.MouseEvent<unknown>) => {
-        onRequestSort(event, property);
-    };
-    return (
-        <TableHead>
-            <TableRow>
-                {headCells.map(headCell => (
-                    <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
-                        >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <HiddenSpan>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</HiddenSpan>
-                            ) : null}
-                        </TableSortLabel>
-                    </TableCell>
-                ))}
-            </TableRow>
-        </TableHead>
-    );
-}
+import {AuctionTableHead} from '../AuctionTableHead/AuctionTableHead';
 
 export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions}) => {
     const rows = auctionsList;
@@ -67,29 +30,25 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
     const [page, setPage] = React.useState(0);
     const [clickedCollapsed, setClickedCollapsed] = React.useState<any>(null);
 
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof AuctionData) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
 
-    const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage);
-    };
+    const handleChangePage = (event: unknown, newPage: number) => setPage(newPage);
+
     const handleClickCollapsed = (id: number | string) => {
-        if (clickedCollapsed === id) {
-            setClickedCollapsed(null);
-        } else {
-            setClickedCollapsed(id);
-        }
+        if (clickedCollapsed === id) setClickedCollapsed(null);
+        else setClickedCollapsed(id);
     };
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
         <Paper>
             <TableContainer>
                 <Table>
-                    <EnhancedTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} rowCount={rows.length} />
+                    <AuctionTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
                     <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
