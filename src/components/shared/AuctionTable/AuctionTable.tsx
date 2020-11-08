@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStyles, TextBold, StyledTableRow} from './AuctionTable.styles';
+import {TextBold, StyledTableRow, HiddenSpan} from './AuctionTable.styles';
 import {
     Table,
     TableBody,
@@ -11,12 +11,14 @@ import {
     TableSortLabel,
     Paper,
     Avatar,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
     Typography,
+    Button,
+    Box,
+    Collapse,
+    IconButton,
 } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
 import {AuctionData, HeadCell, EnhancedTableProps, Order} from './AuctionTable.types';
 import {getComparator, stableSort} from './AuctionTable.helpers';
@@ -31,7 +33,7 @@ const headCells: HeadCell[] = [
 ];
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-    const {classes, order, orderBy, onRequestSort} = props;
+    const {order, orderBy, onRequestSort} = props;
     const createSortHandler = (property: keyof AuctionData) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };
@@ -47,9 +49,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                         >
                             {headCell.label}
                             {orderBy === headCell.id ? (
-                                <span className={classes.visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                </span>
+                                <HiddenSpan>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</HiddenSpan>
                             ) : null}
                         </TableSortLabel>
                     </TableCell>
@@ -62,10 +62,10 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions}) => {
     const rows = auctionsList;
     const rowsPerPage = 5;
-    const classes = useStyles();
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof AuctionData>('borrower');
     const [page, setPage] = React.useState(0);
+    const [clickedCollapsed, setClickedCollapsed] = React.useState<any>(null);
 
     const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof AuctionData) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -76,72 +76,95 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
     };
-
+    const handleClickCollapsed = (id: number | string) => {
+        if (clickedCollapsed === id) {
+            setClickedCollapsed(null);
+        } else {
+            setClickedCollapsed(id);
+        }
+    };
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
     return (
-        <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <TableContainer>
-                    <Table className={classes.table} aria-labelledby="tableTitle" size="medium" aria-label="enhanced table">
-                        <EnhancedTableHead
-                            classes={classes}
-                            order={order}
-                            orderBy={orderBy}
-                            onRequestSort={handleRequestSort}
-                            rowCount={rows.length}
-                        />
-                        <TableBody>
-                            {stableSort(rows, getComparator(order, orderBy))
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((row, index) => {
-                                    return (
-                                        <StyledTableRow role="checkbox" tabIndex={-1} key={row.id}>
-                                            <Accordion>
-                                                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                                                    <TableCell>
-                                                        <Avatar sizes="60">MB</Avatar>
-                                                    </TableCell>
-                                                    <TableCell component="th" scope="row">
-                                                        <TextBold>{row.borrower}</TextBold>
-                                                        <Rating size="small" value={+row.borrowerRating} readOnly />
-                                                    </TableCell>
-                                                    <TableCell align="right">
-                                                        <TextBold>{row.amount} zł</TextBold>
-                                                    </TableCell>
-                                                    <TableCell align="right">{row.rate}%</TableCell>
-                                                    <TableCell align="right">{row.auctionDuration} months</TableCell>
-                                                    <TableCell align="right">{row.auctionStartDate}</TableCell>
-                                                </AccordionSummary>
-                                                {lender && (
-                                                    <AccordionDetails>
-                                                        <Typography>Create an offer for this auction</Typography>
-                                                    </AccordionDetails>
-                                                )}
-                                                {borrowerAllAuctions && (
-                                                    <AccordionDetails>
+        <Paper>
+            <TableContainer>
+                <Table>
+                    <EnhancedTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} rowCount={rows.length} />
+                    <TableBody>
+                        {stableSort(rows, getComparator(order, orderBy))
+                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            .map((row, index) => (
+                                <>
+                                    <StyledTableRow role="checkbox" tabIndex={-1} key={row.id} onClick={() => handleClickCollapsed(row.id)}>
+                                        <TableCell>
+                                            <IconButton aria-label="expand row" size="small">
+                                                {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Avatar sizes="60">MB</Avatar>
+                                        </TableCell>
+                                        <TableCell scope="row">
+                                            <TextBold>{row.borrower}</TextBold>
+                                            <Rating size="small" value={+row.borrowerRating} readOnly />
+                                        </TableCell>
+                                        <TableCell align="right">
+                                            <TextBold>{row.amount} zł</TextBold>
+                                        </TableCell>
+                                        <TableCell align="right">{row.rate}%</TableCell>
+                                        <TableCell align="right">{row.auctionDuration} months</TableCell>
+                                        <TableCell align="right">{row.auctionStartDate}</TableCell>
+                                    </StyledTableRow>
+                                    {lender && (
+                                        <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
+                                            <Box>
+                                                <Typography>Create an offer for this auction</Typography>
+                                                <Button variant="outlined">Create offer</Button>
+                                            </Box>
+                                        </Collapse>
+                                    )}
+                                    {borrowerAllAuctions && (
+                                        <TableRow>
+                                            <TableCell>
+                                                <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
+                                                    <Box>
                                                         <Typography>Auction details</Typography>
-                                                    </AccordionDetails>
-                                                )}
-                                                {borrowerUserAuctions && (
-                                                    <AccordionDetails>
-                                                        <Typography>Edit or delete your auction</Typography>
-                                                    </AccordionDetails>
-                                                )}
-                                            </Accordion>
-                                        </StyledTableRow>
-                                    );
-                                })}
-                            {emptyRows > 0 && (
-                                <TableRow style={{height: 53 * emptyRows}}>
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination count={rows.length} rowsPerPage={rowsPerPage} page={page} onChangePage={handleChangePage} />
-            </Paper>
-        </div>
+                                                        {[row.offers].map((offer: any) => (
+                                                            <Box key={offer.offerId}>
+                                                                <Avatar>{offer.lenderUserName}</Avatar>
+                                                                <Typography>{offer.amount} zł</Typography>
+                                                                <Typography>{offer.rate} %</Typography>
+                                                            </Box>
+                                                        ))}
+                                                    </Box>
+                                                </Collapse>
+                                            </TableCell>
+                                        </TableRow>
+                                    )}
+                                    {borrowerUserAuctions && (
+                                        <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
+                                            <Box>
+                                                <Typography>Edit or delete your auction</Typography>
+                                                <Button variant="outlined" disabled>
+                                                    Edit
+                                                </Button>
+                                                <Button variant="outlined" disabled>
+                                                    Delete
+                                                </Button>
+                                            </Box>
+                                        </Collapse>
+                                    )}
+                                </>
+                            ))}
+                        {emptyRows > 0 && (
+                            <TableRow style={{height: 53 * emptyRows}}>
+                                <TableCell colSpan={6} />
+                            </TableRow>
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination count={rows.length} rowsPerPage={rowsPerPage} page={page} onChangePage={handleChangePage} />
+        </Paper>
     );
 };
