@@ -1,5 +1,5 @@
 import React from 'react';
-import {useStyles} from './AuctionTable.styles';
+import {useStyles, TextBold, StyledTableRow} from './AuctionTable.styles';
 import {
     Table,
     TableBody,
@@ -18,10 +18,10 @@ import {getComparator, stableSort} from './AuctionTable.helpers';
 
 const headCells: HeadCell[] = [
     {id: 'borrower', label: 'borrower name'},
+    {id: 'borrowerRating', label: 'borrower rating'},
     {id: 'amount', label: 'amount'},
     {id: 'auctionDuration', label: 'auction duration'},
     {id: 'auctionStartDate', label: 'auction start date'},
-    {id: 'borrowerRating', label: 'borrower rating'},
 ];
 
 function EnhancedTableHead(props: EnhancedTableProps) {
@@ -90,21 +90,21 @@ export const AuctionTable: React.FC<any> = ({auctionsList}) => {
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                        <StyledTableRow role="checkbox" tabIndex={-1} key={row.id}>
                                             <TableCell>
                                                 <Avatar sizes="60">MB</Avatar>
                                             </TableCell>
                                             <TableCell component="th" scope="row">
-                                                {row.borrower}
+                                                <TextBold>{row.borrower}</TextBold>
+                                                <Rating size="small" value={+row.borrowerRating} readOnly />
                                             </TableCell>
-                                            <TableCell align="right">{row.amount}</TableCell>
-                                            <TableCell align="right">{row.auctionDuration}</TableCell>
-                                            <TableCell align="right">{row.auctionStartDate}</TableCell>
                                             <TableCell align="right">
-                                                {row.borrowerRating}
-                                                <Rating value={+row.borrowerRating} readOnly />
+                                                {' '}
+                                                <TextBold>{row.amount} zł</TextBold>
                                             </TableCell>
-                                        </TableRow>
+                                            <TableCell align="right">{row.auctionDuration} months</TableCell>
+                                            <TableCell align="right">{row.auctionStartDate}</TableCell>
+                                        </StyledTableRow>
                                     );
                                 })}
                             {emptyRows > 0 && (
