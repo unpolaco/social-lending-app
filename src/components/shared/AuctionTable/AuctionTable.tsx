@@ -9,9 +9,6 @@ import {
     TableRow,
     Paper,
     Avatar,
-    Typography,
-    Button,
-    Box,
     Collapse,
     IconButton,
 } from '@material-ui/core';
@@ -21,6 +18,9 @@ import {Rating} from '@material-ui/lab';
 import {AuctionData, Order} from './AuctionTable.types';
 import {getComparator, stableSort} from './AuctionTable.helpers';
 import {AuctionTableHead} from '../AuctionTableHead/AuctionTableHead';
+import {CollapseBoxLender} from '../AuctionTableCollapseBox/CollapseBoxLender';
+import {CollapseBoxBorrowerAllAuctions} from '../AuctionTableCollapseBox/CollapseBoxBorrowerAllAuctions';
+import {CollapseBoxBorrowerUserAuctions} from '../AuctionTableCollapseBox/CollapseBoxBorrowerUserAuctions';
 
 export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions}) => {
     const rows = auctionsList;
@@ -74,45 +74,15 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                         <TableCell align="right">{row.auctionDuration} months</TableCell>
                                         <TableCell align="right">{row.auctionStartDate}</TableCell>
                                     </StyledTableRow>
-                                    {lender && (
-                                        <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
-                                            <Box>
-                                                <Typography>Create an offer for this auction</Typography>
-                                                <Button variant="outlined">Create offer</Button>
-                                            </Box>
-                                        </Collapse>
-                                    )}
-                                    {borrowerAllAuctions && (
-                                        <TableRow>
-                                            <TableCell>
-                                                <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
-                                                    <Box>
-                                                        <Typography>Auction details</Typography>
-                                                        {[row.offers].map((offer: any) => (
-                                                            <Box key={offer.offerId}>
-                                                                <Avatar>{offer.lenderUserName}</Avatar>
-                                                                <Typography>{offer.amount} zł</Typography>
-                                                                <Typography>{offer.rate} %</Typography>
-                                                            </Box>
-                                                        ))}
-                                                    </Box>
-                                                </Collapse>
-                                            </TableCell>
-                                        </TableRow>
-                                    )}
-                                    {borrowerUserAuctions && (
-                                        <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
-                                            <Box>
-                                                <Typography>Edit or delete your auction</Typography>
-                                                <Button variant="outlined" disabled>
-                                                    Edit
-                                                </Button>
-                                                <Button variant="outlined" disabled>
-                                                    Delete
-                                                </Button>
-                                            </Box>
-                                        </Collapse>
-                                    )}
+                                    <TableRow>
+                                        <TableCell>
+                                            <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
+                                                {lender && <CollapseBoxLender />}
+                                                {borrowerAllAuctions && <CollapseBoxBorrowerAllAuctions row={row} />}
+                                                {borrowerUserAuctions && <CollapseBoxBorrowerUserAuctions />}
+                                            </Collapse>
+                                        </TableCell>
+                                    </TableRow>
                                 </>
                             ))}
                         {emptyRows > 0 && (
