@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Container, Typography, CircularProgress} from '@material-ui/core/';
-import {AuctionTable} from './AuctionTable';
+import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
 import {BorrowerAuctionsCreateForm} from './BorrowerAuctionsCreateForm/BorrowerAuctionsCreateForm';
 import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
 import {useSaveNewAuction} from '../../../hooks/useSaveNewAuction';

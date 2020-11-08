@@ -20,6 +20,7 @@ const headCells: HeadCell[] = [
     {id: 'borrower', label: 'borrower name'},
     {id: 'borrowerRating', label: 'borrower rating'},
     {id: 'amount', label: 'amount'},
+    {id: 'rate', label: 'desired rate'},
     {id: 'auctionDuration', label: 'auction duration'},
     {id: 'auctionStartDate', label: 'auction start date'},
 ];
@@ -99,9 +100,9 @@ export const AuctionTable: React.FC<any> = ({auctionsList}) => {
                                                 <Rating size="small" value={+row.borrowerRating} readOnly />
                                             </TableCell>
                                             <TableCell align="right">
-                                                {' '}
                                                 <TextBold>{row.amount} zł</TextBold>
                                             </TableCell>
+                                            <TableCell align="right">{row.rate}%</TableCell>
                                             <TableCell align="right">{row.auctionDuration} months</TableCell>
                                             <TableCell align="right">{row.auctionStartDate}</TableCell>
                                         </StyledTableRow>

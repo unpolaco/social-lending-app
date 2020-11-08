@@ -3,6 +3,7 @@ export interface AuctionData {
     id: number;
     borrower: string;
     amount: number;
+    rate: number;
     auctionDuration: string;
     auctionStartDate: string;
     borrowerRating: number;

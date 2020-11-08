@@ -1,8 +1,7 @@
 import React, {useEffect} from 'react';
 import {Paper, Typography, Tabs, Tab, CircularProgress} from '@material-ui/core/';
 import {useGetUserAuctions} from '../../../hooks/useGetUserAuctions';
-import {AuctionCard} from '../BorrowerAuctions/AuctionCard';
-import {AuctionProps} from '../BorrowerAuctions/BorrowerAuctions.types';
+import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
 
 export const BorrowerCommitments = () => {
     const [value, setValue] = React.useState(0);
@@ -37,9 +36,7 @@ export const BorrowerCommitments = () => {
                 <Tab label="My auctions" />
                 <Tab label="My loans" />
             </Tabs>
-            {userAuctionsList?.map((auction: AuctionProps) => (
-                <AuctionCard key={auction.id} auction={auction} />
-            ))}
+            {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} />}
         </>
     );
 };
