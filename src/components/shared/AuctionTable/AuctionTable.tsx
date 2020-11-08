@@ -11,7 +11,12 @@ import {
     TableSortLabel,
     Paper,
     Avatar,
+    Accordion,
+    AccordionSummary,
+    AccordionDetails,
+    Typography,
 } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Rating} from '@material-ui/lab';
 import {AuctionData, HeadCell, EnhancedTableProps, Order} from './AuctionTable.types';
 import {getComparator, stableSort} from './AuctionTable.helpers';
@@ -54,7 +59,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     );
 }
 
-export const AuctionTable: React.FC<any> = ({auctionsList}) => {
+export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions}) => {
     const rows = auctionsList;
     const rowsPerPage = 5;
     const classes = useStyles();
@@ -92,19 +97,38 @@ export const AuctionTable: React.FC<any> = ({auctionsList}) => {
                                 .map((row, index) => {
                                     return (
                                         <StyledTableRow role="checkbox" tabIndex={-1} key={row.id}>
-                                            <TableCell>
-                                                <Avatar sizes="60">MB</Avatar>
-                                            </TableCell>
-                                            <TableCell component="th" scope="row">
-                                                <TextBold>{row.borrower}</TextBold>
-                                                <Rating size="small" value={+row.borrowerRating} readOnly />
-                                            </TableCell>
-                                            <TableCell align="right">
-                                                <TextBold>{row.amount} zł</TextBold>
-                                            </TableCell>
-                                            <TableCell align="right">{row.rate}%</TableCell>
-                                            <TableCell align="right">{row.auctionDuration} months</TableCell>
-                                            <TableCell align="right">{row.auctionStartDate}</TableCell>
+                                            <Accordion>
+                                                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                                                    <TableCell>
+                                                        <Avatar sizes="60">MB</Avatar>
+                                                    </TableCell>
+                                                    <TableCell component="th" scope="row">
+                                                        <TextBold>{row.borrower}</TextBold>
+                                                        <Rating size="small" value={+row.borrowerRating} readOnly />
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        <TextBold>{row.amount} zł</TextBold>
+                                                    </TableCell>
+                                                    <TableCell align="right">{row.rate}%</TableCell>
+                                                    <TableCell align="right">{row.auctionDuration} months</TableCell>
+                                                    <TableCell align="right">{row.auctionStartDate}</TableCell>
+                                                </AccordionSummary>
+                                                {lender && (
+                                                    <AccordionDetails>
+                                                        <Typography>Create an offer for this auction</Typography>
+                                                    </AccordionDetails>
+                                                )}
+                                                {borrowerAllAuctions && (
+                                                    <AccordionDetails>
+                                                        <Typography>Auction details</Typography>
+                                                    </AccordionDetails>
+                                                )}
+                                                {borrowerUserAuctions && (
+                                                    <AccordionDetails>
+                                                        <Typography>Edit or delete your auction</Typography>
+                                                    </AccordionDetails>
+                                                )}
+                                            </Accordion>
                                         </StyledTableRow>
                                     );
                                 })}

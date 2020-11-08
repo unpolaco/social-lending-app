@@ -36,7 +36,7 @@ export const BorrowerCommitments = () => {
                 <Tab label="My auctions" />
                 <Tab label="My loans" />
             </Tabs>
-            {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} />}
+            {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} borrowerUserAuctions />}
         </>
     );
 };

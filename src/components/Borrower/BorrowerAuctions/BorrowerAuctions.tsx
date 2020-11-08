@@ -30,7 +30,7 @@ export const BorrowerAuctions = () => {
         <Container>
             <Typography>List of all actual auctions:</Typography>
             <BorrowerAuctionsCreateForm handleSaveNewAuction={handleSaveNewAuction} />
-            {auctionsList && <AuctionTable auctionsList={auctionsList} />}
+            {auctionsList && <AuctionTable auctionsList={auctionsList} borrowerAllAuctions />}
         </Container>
     );
 };
