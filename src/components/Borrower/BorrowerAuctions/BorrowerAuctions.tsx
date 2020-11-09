@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import {Container, Typography, CircularProgress} from '@material-ui/core/';
-import {AuctionCard} from './AuctionCard';
+import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
 import {BorrowerAuctionsCreateForm} from './BorrowerAuctionsCreateForm/BorrowerAuctionsCreateForm';
 import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
 import {useSaveNewAuction} from '../../../hooks/useSaveNewAuction';
-import {AuctionProps} from './BorrowerAuctions.types';
 
 export const BorrowerAuctions = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -31,9 +30,7 @@ export const BorrowerAuctions = () => {
         <Container>
             <Typography>List of all actual auctions:</Typography>
             <BorrowerAuctionsCreateForm handleSaveNewAuction={handleSaveNewAuction} />
-            {auctionsList?.map((auction: AuctionProps) => (
-                <AuctionCard key={auction.id} auction={auction} />
-            ))}
+            {auctionsList && <AuctionTable auctionsList={auctionsList} borrowerAllAuctions />}
         </Container>
     );
 };

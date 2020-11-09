@@ -23,7 +23,7 @@ spec:
                   imagePullPolicy: Always
                   env:
                       - name: API_BASE_PATH
-                        value: placeholder
+                        value: https://solid-lendig-platform.kale-team.fintechchallenge.pl
                   ports:
                       - name: web
                         containerPort: 8080
@@ -81,6 +81,7 @@ metadata:
 data:
     users: |
         ZXhhbXBsZTokYXByMSROOG1OUFFKTiRJWTVyZnBTenJEZkszTmN1bkhTbWQvCgo=
+
 
 #encryped username: example, with password: example
 
