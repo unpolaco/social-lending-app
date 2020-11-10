@@ -1,10 +1,10 @@
 import {render, screen} from '@testing-library/react';
-import {App} from '../../src/components/App/App';
+import {Header} from '../../../src/components/Header/Header';
 import React from 'react';
 
-describe('<App/>', () => {
+describe('<Header/>', () => {
     test('renders welcome dummy text', () => {
-        render(<App />);
+        render(<Header />);
         expect(screen.getByRole('heading')).toHaveTextContent('SOLID Lending Platform');
     });
 });

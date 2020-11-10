@@ -1,16 +1,17 @@
 import React from 'react';
-import {Container, ButtonGroup, Button} from '@material-ui/core/';
+import {ButtonGroup, Button} from '@material-ui/core/';
 import {ROUTES} from '../../helpers/routes';
 import {NavLink, Route, Switch} from 'react-router-dom';
 import {LenderAccount} from './LenderAccount/LenderAccount';
 import {LenderPortfolio} from './LenderPortfolio/LenderPortfolio';
 import {LenderInvest} from './LenderInvest/LenderInvest';
+import {StyledBackgroundPaper, NavigationBox} from './Lender.styles';
 
 export const Lender: React.FC = () => {
     return (
         <>
-            <Container>
-                <ButtonGroup fullWidth variant="text" color="primary" aria-label="text primary button group">
+            <NavigationBox>
+                <ButtonGroup fullWidth variant="text" color="inherit">
                     <Button component={NavLink} to={ROUTES.LENDER_INVEST}>
                         Invest
                     </Button>
@@ -21,19 +22,20 @@ export const Lender: React.FC = () => {
                         My account
                     </Button>
                 </ButtonGroup>
-            </Container>
-
-            <Switch>
-                <Route path={ROUTES.LENDER_ACCOUNT}>
-                    <LenderAccount />
-                </Route>
-                <Route path={ROUTES.LENDER_PORTFOLIO}>
-                    <LenderPortfolio />
-                </Route>
-                <Route path={ROUTES.LENDER_INVEST}>
-                    <LenderInvest />
-                </Route>
-            </Switch>
+            </NavigationBox>
+            <StyledBackgroundPaper>
+                <Switch>
+                    <Route path={ROUTES.LENDER_ACCOUNT}>
+                        <LenderAccount />
+                    </Route>
+                    <Route path={ROUTES.LENDER_PORTFOLIO}>
+                        <LenderPortfolio />
+                    </Route>
+                    <Route path={ROUTES.LENDER_INVEST}>
+                        <LenderInvest />
+                    </Route>
+                </Switch>
+            </StyledBackgroundPaper>
         </>
     );
 };

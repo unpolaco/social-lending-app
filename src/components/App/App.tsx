@@ -6,7 +6,7 @@ import {ROUTES} from '../../helpers/routes';
 import {Lender} from '../Lender/Lender';
 import {Borrower} from '../Borrower/Borrower';
 import {MainPage} from '../MainPage/MainPage';
-
+import {StyledBox} from './App.styles';
 export const App: React.FC = () => {
     const basename = getBaseName();
 
@@ -14,15 +14,17 @@ export const App: React.FC = () => {
         <BrowserRouter basename={basename}>
             <Header />
             <Switch>
-                <Route path={'/'} exact>
-                    <MainPage />
-                </Route>
-                <Route path={ROUTES.LENDER}>
-                    <Lender />
-                </Route>
-                <Route path={ROUTES.BORROWER}>
-                    <Borrower />
-                </Route>
+                <StyledBox>
+                    <Route path={'/'} exact>
+                        <MainPage />
+                    </Route>
+                    <Route path={ROUTES.LENDER}>
+                        <Lender />
+                    </Route>
+                    <Route path={ROUTES.BORROWER}>
+                        <Borrower />
+                    </Route>
+                </StyledBox>
             </Switch>
         </BrowserRouter>
     );

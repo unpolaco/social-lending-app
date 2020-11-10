@@ -1,16 +1,17 @@
 import React from 'react';
-import {Container, ButtonGroup, Button} from '@material-ui/core/';
+import {ButtonGroup, Button} from '@material-ui/core/';
 import {ROUTES} from '../../helpers/routes';
 import {NavLink, Route, Switch} from 'react-router-dom';
 import {BorrowerCommitments} from './BorrowerCommitments/BorrowerCommitments';
 import {BorrowerAuctions} from './BorrowerAuctions/BorrowerAuctions';
 import {BorrowerAccount} from './BorrowerAccount/BorrowerAccount';
+import {StyledBackgroundPaper, NavigationBox} from './Borrower.styles';
 
 export const Borrower: React.FC = () => {
     return (
         <>
-            <Container>
-                <ButtonGroup fullWidth variant="text" color="primary" aria-label="text primary button group">
+            <NavigationBox>
+                <ButtonGroup fullWidth variant="text" color="inherit">
                     <Button component={NavLink} to={ROUTES.BORROWER_AUCTIONS}>
                         All Auctions
                     </Button>
@@ -21,19 +22,20 @@ export const Borrower: React.FC = () => {
                         My account
                     </Button>
                 </ButtonGroup>
-            </Container>
-
-            <Switch>
-                <Route path={ROUTES.BORROWER_AUCTIONS}>
-                    <BorrowerAuctions />
-                </Route>
-                <Route path={ROUTES.BORROWER_COMMITMENTS}>
-                    <BorrowerCommitments />
-                </Route>
-                <Route path={ROUTES.BORROWER_ACCOUNT}>
-                    <BorrowerAccount />
-                </Route>
-            </Switch>
+            </NavigationBox>
+            <StyledBackgroundPaper>
+                <Switch>
+                    <Route path={ROUTES.BORROWER_AUCTIONS}>
+                        <BorrowerAuctions />
+                    </Route>
+                    <Route path={ROUTES.BORROWER_COMMITMENTS}>
+                        <BorrowerCommitments />
+                    </Route>
+                    <Route path={ROUTES.BORROWER_ACCOUNT}>
+                        <BorrowerAccount />
+                    </Route>
+                </Switch>
+            </StyledBackgroundPaper>
         </>
     );
 };
