@@ -18,7 +18,7 @@ export const BorrowerCommitments = () => {
         alert('Error');
     }
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    const handleChange = (newValue: number) => {
         setValue(newValue);
     };
 
