@@ -24,7 +24,7 @@ import {CollapseBoxBorrowerUserAuctions} from '../AuctionTableCollapseBox/Collap
 
 export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions}) => {
     const rows = auctionsList;
-    const rowsPerPage = 5;
+    const rowsPerPage = 10;
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof AuctionData>('borrower');
     const [page, setPage] = React.useState(0);
@@ -75,7 +75,7 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                         <TableCell align="right">{row.auctionStartDate}</TableCell>
                                     </StyledTableRow>
                                     <TableRow>
-                                        <TableCell>
+                                        <TableCell colSpan={7}>
                                             <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
                                                 {lender && <CollapseBoxLender />}
                                                 {borrowerAllAuctions && <CollapseBoxBorrowerAllAuctions row={row} />}

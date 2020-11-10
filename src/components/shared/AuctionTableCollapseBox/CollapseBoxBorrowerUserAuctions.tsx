@@ -11,6 +11,9 @@ export const CollapseBoxBorrowerUserAuctions: React.FC = () => {
             <Button variant="outlined" disabled>
                 Delete
             </Button>
+            <Button variant="outlined" disabled>
+                Make loan
+            </Button>
         </Box>
     );
 };
