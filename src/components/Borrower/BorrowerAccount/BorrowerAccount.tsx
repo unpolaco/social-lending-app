@@ -1,10 +1,6 @@
 import React from 'react';
-import {Paper, Typography} from '@material-ui/core/';
+import {Typography} from '@material-ui/core/';
 
 export const BorrowerAccount = () => {
-    return (
-        <Paper>
-            <Typography>BORROWER ACCOUNT Page</Typography>
-        </Paper>
-    );
+    return <Typography>BORROWER ACCOUNT Page</Typography>;
 };

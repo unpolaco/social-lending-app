@@ -24,14 +24,16 @@ footer, header, hgroup, menu, nav, section {
 }
  
 html, body, #root {
-	height: 90vh;
+	box-sizing: border-box;
 }
+*, *:before, *:after {
+	box-sizing: border-box;
+ }
 body {
   line-height: 1;
   background: #dcdde1;
-  color: #000;
+  color: #353b48;
 	font-family: 'Poppins', sans-serif;
-	min-height: 100vh;
 }
 ol, ul {
 	list-style: none;

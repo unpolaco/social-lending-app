@@ -1,12 +1,8 @@
-import {makeStyles} from '@material-ui/core/styles';
+import styled from '@emotion/styled';
+import {Box} from '@material-ui/core/';
 
-export const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    },
-}));
+export const StyledBox = styled(Box)`
+    margin: 0 auto;
+    width: 100%;
+    height: calc(100% - 80px);
+`;

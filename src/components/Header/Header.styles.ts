@@ -1,13 +1,11 @@
-import {makeStyles} from '@material-ui/core/styles';
+import styled from '@emotion/styled';
 
-export const useStyles = makeStyles(theme => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
+export const HeaderContainer = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    background-color: #487eb0;
+    color: white;
+    padding: 0 30px;
+`;
