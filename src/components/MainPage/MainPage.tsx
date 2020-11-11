@@ -12,10 +12,10 @@ export const MainPage: React.FC = () => {
                     <Typography variant="h6">Welcome to our SOLID Lending Page</Typography>
                 </WelcomeBox>
                 <WelcomeBox>
-                    <Button component={NavLink} to={ROUTES.BORROWER} variant="outlined" color="inherit">
+                    <Button component={NavLink} to={ROUTES.BORROWER} variant="outlined">
                         Enter as Borrower
                     </Button>
-                    <Button component={NavLink} to={ROUTES.LENDER} variant="outlined" color="inherit">
+                    <Button component={NavLink} to={ROUTES.LENDER} variant="outlined">
                         Enter as Lender
                     </Button>
                 </WelcomeBox>

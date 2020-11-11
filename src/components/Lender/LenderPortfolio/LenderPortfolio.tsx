@@ -16,7 +16,7 @@ export const LenderPortfolio = () => {
             <Typography align="center" variant="subtitle2">
                 Here you can find list of your offers and investments and manage them
             </Typography>
-            <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" centered>
+            <Tabs value={value} onChange={handleChange} centered>
                 <Tab label="My offers" />
                 <Tab label="My investments" />
             </Tabs>

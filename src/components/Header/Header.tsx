@@ -6,9 +6,7 @@ export const Header: React.FC = () => {
     return (
         <HeaderContainer>
             <Typography variant="h6">SOLID Lending Platform</Typography>
-            <Button color="inherit" variant="outlined">
-                Log out
-            </Button>
+            <Button variant="outlined">Log out</Button>
         </HeaderContainer>
     );
 };
