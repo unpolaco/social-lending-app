@@ -1,2 +1,2 @@
-export const apiAuctions = '/auctions';
-export const apiOffers = '/offers';
+export const apiAuctions = '/api/auctions';
+export const apiOffers = '/api/offers';

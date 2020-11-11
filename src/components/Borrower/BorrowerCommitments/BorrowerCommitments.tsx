@@ -8,7 +8,7 @@ export const BorrowerCommitments = () => {
     const {isFetchingGet, isErrorGet, fetchUserAuctions, userAuctionsList} = useGetUserAuctions();
 
     useEffect(() => {
-        fetchUserAuctions('testBorrower');
+        fetchUserAuctions('testBorrower1');
     }, [fetchUserAuctions]);
 
     if (isFetchingGet) {
@@ -32,7 +32,7 @@ export const BorrowerCommitments = () => {
                     Here you can find list of your auctions and loans and manage them
                 </Typography>
             </Paper>
-            <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" centered>
+            <Tabs value={value} onChange={handleChange} centered>
                 <Tab label="My auctions" />
                 <Tab label="My loans" />
             </Tabs>
