@@ -1,21 +1,11 @@
 import React from 'react';
-import {Typography, Box} from '@material-ui/core/';
-import {StyledBox, OffersWrapper} from './CollapseBoxBorrowerAllAuctions.styles';
+import {Box} from '@material-ui/core/';
+import {AuctionTableBoxOffer} from '../AuctionTableBoxOffer/AuctionTableBoxOffer';
 
 export const CollapseBoxBorrowerAllAuctions: React.FC<any> = ({row}) => {
     return (
         <Box>
-            <Typography>Auction offers</Typography>
-            <OffersWrapper>
-                {row.offers.length > 0 &&
-                    row.offers.map((offer: any) => (
-                        <StyledBox key={offer.offerId}>
-                            <Typography>{offer.lenderUserName}</Typography>
-                            <Typography>{offer.amount} zł</Typography>
-                            <Typography>{offer.rate} %</Typography>
-                        </StyledBox>
-                    ))}
-            </OffersWrapper>
+            <AuctionTableBoxOffer row={row} />
         </Box>
     );
 };

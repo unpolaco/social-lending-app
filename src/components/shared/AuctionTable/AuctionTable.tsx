@@ -72,7 +72,7 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                         </NarrowCell>
                                     </StyledTableRow>
                                     <TableRow>
-                                        <CollapsedCell colSpan={6}>
+                                        <CollapsedCell colSpan={7}>
                                             <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
                                                 {lender && (
                                                     <CollapseBoxLender
@@ -83,7 +83,7 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                                     />
                                                 )}
                                                 {borrowerAllAuctions && <CollapseBoxBorrowerAllAuctions row={row} />}
-                                                {borrowerUserAuctions && <CollapseBoxBorrowerUserAuctions />}
+                                                {borrowerUserAuctions && <CollapseBoxBorrowerUserAuctions row={row} />}
                                             </Collapse>
                                         </CollapsedCell>
                                     </TableRow>
