@@ -7,6 +7,7 @@ import {
     TableContainer,
     TablePagination,
     TableRow,
+    Typography,
     Paper,
     Avatar,
     Collapse,
@@ -24,7 +25,7 @@ import {CollapseBoxBorrowerUserAuctions} from '../AuctionTableCollapseBox/Collap
 
 export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions, handleSaveNewOffer}) => {
     const rows = auctionsList;
-    const rowsPerPage = 5;
+    const rowsPerPage = 10;
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof AuctionData>('borrower');
     const [page, setPage] = React.useState(0);
@@ -64,7 +65,15 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                         </NarrowCell>
                                         <NarrowCell align="right">{row.rate}%</NarrowCell>
                                         <NarrowCell align="right">{row.auctionDuration} months</NarrowCell>
-                                        <NarrowCell align="right">{row.auctionStartDate}</NarrowCell>
+                                        <NarrowCell align="right">
+                                            <Typography>Auction start date:</Typography>
+                                            <TextBold>{row.auctionStartDate}</TextBold>
+                                        </NarrowCell>
+                                        <NarrowCell align="right">
+                                            <Typography>Loan start date:</Typography>
+                                            <TextBold>{row.loanStartDate}</TextBold>
+                                        </NarrowCell>
+                                        <NarrowCell align="right">{row.status}</NarrowCell>
                                         <NarrowCell>
                                             <IconButton aria-label="expand row" size="small">
                                                 {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

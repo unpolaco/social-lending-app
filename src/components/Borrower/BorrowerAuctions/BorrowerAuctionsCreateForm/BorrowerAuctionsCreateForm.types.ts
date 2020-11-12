@@ -2,5 +2,6 @@ export interface AuctionCreateFormValues {
     amount: number | string;
     rate: number | string;
     loanDuration: number;
-    startDate: string;
+    auctionStartDate: string;
+    loanStartDate: string;
 }

@@ -5,8 +5,10 @@ export interface AuctionData {
     rate: number;
     auctionDuration: string;
     auctionStartDate: string;
+    loanStartDate: string;
     borrowerRating: number;
     offers: any;
+    status: string;
 }
 export interface HeadCell {
     id: keyof AuctionData;

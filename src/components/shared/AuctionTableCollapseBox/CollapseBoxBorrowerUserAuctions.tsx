@@ -1,20 +1,25 @@
 import React from 'react';
 import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
 import {AuctionTableBoxOffer} from '../AuctionTableBoxOffer/AuctionTableBoxOffer';
-import {useSaveCreateLoan} from '../../../hooks/useSaveCreateLoan';
+import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
+import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
 
 export const CollapseBoxBorrowerUserAuctions: React.FC<any> = ({row}) => {
-    const {isFetchingSave, isErrorSave, fetchCreateLoan} = useSaveCreateLoan();
+    const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
+    const {isFetchingConfirmCreateLoan, isErrorConfirmCreateLoan, fetchConfirmCreateLoan} = useGetConfirmCreateLoan();
 
-    if (isFetchingSave) {
+    if (isFetchingCreateLoan || isFetchingConfirmCreateLoan) {
         return <CircularProgress />;
     }
-    if (isErrorSave) {
+    if (isErrorCreateLoan || isErrorConfirmCreateLoan) {
         alert('Error');
     }
     const auctionId: number = row.id;
     function handleCreateLoan() {
         fetchCreateLoan(auctionId);
+    }
+    function handleConfirmCreateLoan() {
+        fetchConfirmCreateLoan(loanDetails.id);
     }
 
     return (
@@ -30,6 +35,16 @@ export const CollapseBoxBorrowerUserAuctions: React.FC<any> = ({row}) => {
             <Button variant="outlined" onClick={handleCreateLoan}>
                 Make loan
             </Button>
+            {loanDetails && (
+                <>
+                    <div>You are creating a loan with parameters above:</div>
+                    <div>Amount {loanDetails.amount} zł</div>
+                    <div>Duration {loanDetails.duration} months</div>
+                    <div>Rate {loanDetails.rate} %</div>
+                    <div>Start at {loanDetails.startDate}</div>
+                    <Button onClick={handleConfirmCreateLoan}>CONFIRM</Button>
+                </>
+            )}
         </Box>
     );
 };

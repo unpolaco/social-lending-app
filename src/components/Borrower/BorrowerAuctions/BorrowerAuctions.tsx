@@ -8,6 +8,7 @@ import {useSaveNewAuction} from '../../../hooks/useSaveNewAuction';
 export const BorrowerAuctions = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
     const {isFetchingSave, isErrorSave, fetchNewAuction} = useSaveNewAuction();
+    const startAuctionDate: string = new Date().toISOString().slice(0, 10);
 
     useEffect(() => {
         fetchAllAuctions();
@@ -22,6 +23,7 @@ export const BorrowerAuctions = () => {
 
     function handleSaveNewAuction(newAuctionData: any) {
         newAuctionData.borrower = 'testBorrower1';
+        newAuctionData.startAuctionDate = startAuctionDate;
         fetchNewAuction(newAuctionData);
         fetchAllAuctions();
     }
