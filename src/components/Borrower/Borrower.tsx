@@ -1,7 +1,7 @@
 import React from 'react';
 import {ButtonGroup, Button} from '@material-ui/core/';
 import {ROUTES} from '../../helpers/routes';
-import {NavLink, Route, Switch} from 'react-router-dom';
+import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
 import {BorrowerCommitments} from './BorrowerCommitments/BorrowerCommitments';
 import {BorrowerAuctions} from './BorrowerAuctions/BorrowerAuctions';
 import {BorrowerAccount} from './BorrowerAccount/BorrowerAccount';
@@ -25,6 +25,9 @@ export const Borrower: React.FC = () => {
             </NavigationBox>
             <StyledBackgroundPaper>
                 <Switch>
+                    <Route path={ROUTES.BORROWER} exact>
+                        <Redirect to={ROUTES.BORROWER_COMMITMENTS} />
+                    </Route>
                     <Route path={ROUTES.BORROWER_AUCTIONS}>
                         <BorrowerAuctions />
                     </Route>

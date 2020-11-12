@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {Paper, Typography, Tabs, Tab, CircularProgress} from '@material-ui/core/';
 import {useGetUserAuctions} from '../../../hooks/useGetUserAuctions';
 import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
+import {ROUTES} from '../../../helpers/routes';
+import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
 
 export const BorrowerCommitments = () => {
     const [value, setValue] = React.useState(0);
@@ -33,10 +35,20 @@ export const BorrowerCommitments = () => {
                 </Typography>
             </Paper>
             <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="My auctions" />
-                <Tab label="My loans" />
+                <Tab label="My auctions" to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} component={NavLink} />
+                <Tab label="My loans" to={ROUTES.BORROWER_COMMITMENTS_LOANS} component={NavLink} />
             </Tabs>
-            {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} borrowerUserAuctions />}
+            <Switch>
+                <Route path={ROUTES.BORROWER_COMMITMENTS} exact>
+                    <Redirect to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} />
+                </Route>
+                <Route path={ROUTES.BORROWER_COMMITMENTS_AUCTIONS}>
+                    {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} borrowerUserAuctions />}
+                </Route>
+                <Route path={ROUTES.BORROWER_COMMITMENTS_LOANS}>
+                    <div>My Loans</div>
+                </Route>
+            </Switch>
         </>
     );
 };
