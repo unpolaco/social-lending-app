@@ -1,6 +1,6 @@
 import React from 'react';
 import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
-import {AuctionTableBoxOffer} from '../AuctionTableBoxOffer/AuctionTableBoxOffer';
+import {AuctionTableBoxOffer} from '../TableBoxOffer/AuctionTableBoxOffer';
 import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
 

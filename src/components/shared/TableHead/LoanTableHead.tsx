@@ -1,7 +1,7 @@
 import React from 'react';
 import {HiddenSpan} from './TableHead.styles';
 import {TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core';
-import {LoanData, LoanTableProps} from '../AuctionTable/Table.types';
+import {LoanData, LoanTableProps} from '../Table/Table.types';
 import {headCellsLoans} from './TableHead.constants';
 
 export const LoanTableHead: React.FC<LoanTableProps> = ({order, orderBy, onRequestSort}) => {

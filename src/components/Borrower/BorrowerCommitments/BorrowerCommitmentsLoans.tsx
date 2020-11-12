@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useGetUserLoans} from '../../../hooks/useGetUserLoans';
-import {LoansTable} from '../../shared/AuctionTable/LoansTable';
+import {LoansTable} from '../../shared/Table/LoansTable';
 import {CircularProgress} from '@material-ui/core/';
 
 export const BorrowerCommitmentsLoans: React.FC = () => {

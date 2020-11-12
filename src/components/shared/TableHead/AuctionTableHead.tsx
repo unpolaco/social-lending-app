@@ -1,7 +1,7 @@
 import React from 'react';
 import {HiddenSpan} from './TableHead.styles';
 import {TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core';
-import {AuctionData, AuctionTableProps} from '../AuctionTable/Table.types';
+import {AuctionData, AuctionTableProps} from '../Table/Table.types';
 import {headCellsAuctions} from './TableHead.constants';
 
 export const AuctionTableHead: React.FC<AuctionTableProps> = ({order, orderBy, onRequestSort}) => {

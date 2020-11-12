@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useGetUserAuctions} from '../../../hooks/useGetUserAuctions';
-import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
+import {AuctionTable} from '../../shared/Table/AuctionTable';
 import {CircularProgress} from '@material-ui/core/';
 
 export const BorrowerCommitmentsAuctions: React.FC = () => {

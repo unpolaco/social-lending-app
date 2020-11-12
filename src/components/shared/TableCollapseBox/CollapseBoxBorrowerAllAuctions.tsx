@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box} from '@material-ui/core/';
-import {AuctionTableBoxOffer} from '../AuctionTableBoxOffer/AuctionTableBoxOffer';
+import {AuctionTableBoxOffer} from '../TableBoxOffer/AuctionTableBoxOffer';
 
 export const CollapseBoxBorrowerAllAuctions: React.FC<any> = ({row}) => {
     return (

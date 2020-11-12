@@ -3,7 +3,7 @@ import {TextBold, StyledTableRow, NarrowCell} from './Table.styles';
 import {Table, TableBody, TableCell, TableContainer, TablePagination, TableRow, Typography, Paper} from '@material-ui/core';
 import {LoanData, Order} from './Table.types';
 import {getComparator, stableSort} from './Table.helpers';
-import {LoanTableHead} from '../AuctionTableHead/LoanTableHead';
+import {LoanTableHead} from '../TableHead/LoanTableHead';
 
 export const LoansTable: React.FC<any> = ({userLoansList}) => {
     const rows = userLoansList;

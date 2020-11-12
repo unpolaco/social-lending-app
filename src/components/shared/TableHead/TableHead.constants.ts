@@ -1,4 +1,4 @@
-import {HeadCellsAuctions, HeadCellsLoans} from '../AuctionTable/Table.types';
+import {HeadCellsAuctions, HeadCellsLoans} from '../Table/Table.types';
 
 export const headCellsAuctions: HeadCellsAuctions[] = [
     {id: 'borrower', label: 'borrower name'},

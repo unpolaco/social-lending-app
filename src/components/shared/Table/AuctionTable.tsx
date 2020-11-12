@@ -9,7 +9,6 @@ import {
     TableRow,
     Typography,
     Paper,
-    Avatar,
     Collapse,
     IconButton,
 } from '@material-ui/core';
@@ -18,10 +17,10 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
 import {AuctionData, Order} from './Table.types';
 import {getComparator, stableSort} from './Table.helpers';
-import {AuctionTableHead} from '../AuctionTableHead/AuctionTableHead';
-import {CollapseBoxLender} from '../AuctionTableCollapseBox/CollapseBoxLender';
-import {CollapseBoxBorrowerAllAuctions} from '../AuctionTableCollapseBox/CollapseBoxBorrowerAllAuctions';
-import {CollapseBoxBorrowerUserAuctions} from '../AuctionTableCollapseBox/CollapseBoxBorrowerUserAuctions';
+import {AuctionTableHead} from '../TableHead/AuctionTableHead';
+import {CollapseBoxLender} from '../TableCollapseBox/CollapseBoxLender';
+import {CollapseBoxBorrowerAllAuctions} from '../TableCollapseBox/CollapseBoxBorrowerAllAuctions';
+import {CollapseBoxBorrowerUserAuctions} from '../TableCollapseBox/CollapseBoxBorrowerUserAuctions';
 
 export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAuctions, borrowerUserAuctions, handleSaveNewOffer}) => {
     const rows = auctionsList;
@@ -54,7 +53,6 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                 <>
                                     <StyledTableRow role="checkbox" tabIndex={-1} key={row.id} onClick={() => handleClickCollapsed(row.id)}>
                                         <WideCell>
-                                            {/* <Avatar sizes="60">MB</Avatar> */}
                                             <StyledBox>
                                                 <TextBold>{row.borrower}</TextBold>
                                                 <Rating size="small" value={+row.borrowerRating} readOnly />
