@@ -1,17 +1,17 @@
 import React from 'react';
 import {HiddenSpan} from './TableHead.styles';
 import {TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core';
-import {AuctionData, AuctionTableProps} from '../AuctionTable/Table.types';
-import {headCellsAuctions} from './TableHead.constants';
+import {LoanData, LoanTableProps} from '../AuctionTable/Table.types';
+import {headCellsLoans} from './TableHead.constants';
 
-export const AuctionTableHead: React.FC<AuctionTableProps> = ({order, orderBy, onRequestSort}) => {
-    const createSortHandler = (property: keyof AuctionData) => (event: React.MouseEvent<unknown>) => {
+export const LoanTableHead: React.FC<LoanTableProps> = ({order, orderBy, onRequestSort}) => {
+    const createSortHandler = (property: keyof LoanData) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };
     return (
         <TableHead>
             <TableRow>
-                {headCellsAuctions.map(headCell => (
+                {headCellsLoans.map(headCell => (
                     <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
                         <TableSortLabel
                             active={orderBy === headCell.id}

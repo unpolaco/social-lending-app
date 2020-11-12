@@ -1,29 +1,15 @@
-import React, {useEffect} from 'react';
-import {Paper, Typography, Tabs, Tab, CircularProgress} from '@material-ui/core/';
-import {useGetUserAuctions} from '../../../hooks/useGetUserAuctions';
-import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
+import React, {useState} from 'react';
+import {Paper, Typography, Tabs, Tab} from '@material-ui/core/';
 import {ROUTES} from '../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
+import {BorrowerCommitmentsAuctions} from './BorrowerCommitmentsAuctions';
+import {BorrowerCommitmentsLoans} from './BorrowerCommitmentsLoans';
 
 export const BorrowerCommitments = () => {
-    const [value, setValue] = React.useState(0);
-    const {isFetchingGet, isErrorGet, fetchUserAuctions, userAuctionsList} = useGetUserAuctions();
-
-    useEffect(() => {
-        fetchUserAuctions('testBorrower1');
-    }, [fetchUserAuctions]);
-
-    if (isFetchingGet) {
-        return <CircularProgress />;
-    }
-    if (isErrorGet) {
-        alert('Error');
-    }
-
+    const [value, setValue] = useState(0);
     const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
         setValue(newValue);
     };
-
     return (
         <>
             <Paper elevation={3}>
@@ -43,10 +29,10 @@ export const BorrowerCommitments = () => {
                     <Redirect to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} />
                 </Route>
                 <Route path={ROUTES.BORROWER_COMMITMENTS_AUCTIONS}>
-                    {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} borrowerUserAuctions />}
+                    <BorrowerCommitmentsAuctions />
                 </Route>
                 <Route path={ROUTES.BORROWER_COMMITMENTS_LOANS}>
-                    <div>My Loans</div>
+                    <BorrowerCommitmentsLoans />
                 </Route>
             </Switch>
         </>

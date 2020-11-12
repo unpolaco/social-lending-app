@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextBold, StyledTableRow, WideCell, NarrowCell, StyledBox, CollapsedCell} from './AuctionTable.styles';
+import {TextBold, StyledTableRow, WideCell, NarrowCell, StyledBox, CollapsedCell} from './Table.styles';
 import {
     Table,
     TableBody,
@@ -16,8 +16,8 @@ import {
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
-import {AuctionData, Order} from './AuctionTable.types';
-import {getComparator, stableSort} from './AuctionTable.helpers';
+import {AuctionData, Order} from './Table.types';
+import {getComparator, stableSort} from './Table.helpers';
 import {AuctionTableHead} from '../AuctionTableHead/AuctionTableHead';
 import {CollapseBoxLender} from '../AuctionTableCollapseBox/CollapseBoxLender';
 import {CollapseBoxBorrowerAllAuctions} from '../AuctionTableCollapseBox/CollapseBoxBorrowerAllAuctions';
@@ -54,7 +54,7 @@ export const AuctionTable: React.FC<any> = ({auctionsList, lender, borrowerAllAu
                                 <>
                                     <StyledTableRow role="checkbox" tabIndex={-1} key={row.id} onClick={() => handleClickCollapsed(row.id)}>
                                         <WideCell>
-                                            <Avatar sizes="60">MB</Avatar>
+                                            {/* <Avatar sizes="60">MB</Avatar> */}
                                             <StyledBox>
                                                 <TextBold>{row.borrower}</TextBold>
                                                 <Rating size="small" value={+row.borrowerRating} readOnly />
