@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {Card, Accordion, TextField} from '@material-ui/core/';
+import {Card, Accordion} from '@material-ui/core/';
 
 export const CreateAuctionCardWrapper = styled(Card)`
     display: flex;
