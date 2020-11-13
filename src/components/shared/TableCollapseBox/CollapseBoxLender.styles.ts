@@ -13,9 +13,14 @@ export const CreateOfferWrapper = styled.div`
     text-align: center;
 `;
 export const FormikWrapper = styled.div`
-    border-radius: 5px;
+    padding: 20px;
+    border: 1px solid white;
     display: flex;
-    flex: 1;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-between;
+    border-radius: 5px;
+    width: 300px;
 `;
 export const FieldWrapper = styled.div`
     flex: 1;
