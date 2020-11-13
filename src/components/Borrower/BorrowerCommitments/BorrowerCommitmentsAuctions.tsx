@@ -7,7 +7,7 @@ export const BorrowerCommitmentsAuctions: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserAuctions, userAuctionsList} = useGetUserAuctions();
 
     useEffect(() => {
-        fetchUserAuctions('testBorrower1');
+        fetchUserAuctions('Bilbo_Baggins');
     }, [fetchUserAuctions]);
 
     if (isFetchingGet) {

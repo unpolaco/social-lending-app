@@ -22,7 +22,7 @@ export const BorrowerAuctions = () => {
     }
 
     function handleSaveNewAuction(newAuctionData: any) {
-        newAuctionData.borrower = 'testBorrower1';
+        newAuctionData.borrower = 'Bilbo_Baggins';
         newAuctionData.startAuctionDate = startAuctionDate;
         fetchNewAuction(newAuctionData);
         fetchAllAuctions();

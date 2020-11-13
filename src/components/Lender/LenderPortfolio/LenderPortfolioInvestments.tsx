@@ -7,7 +7,7 @@ export const LenderPortfolioInvestments: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserInvestments, userInvestmentsList} = useGetUserInvestments();
 
     useEffect(() => {
-        fetchUserInvestments('testLender');
+        fetchUserInvestments('Samwise_Gamgee');
     }, [fetchUserInvestments]);
 
     if (isFetchingGet) {

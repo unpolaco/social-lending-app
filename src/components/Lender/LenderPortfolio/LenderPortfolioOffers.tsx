@@ -7,7 +7,7 @@ export const LenderPortfolioOffers: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserOffers, userOffersList} = useGetUserOffers();
 
     useEffect(() => {
-        fetchUserOffers('testLender');
+        fetchUserOffers('Samwise_Gamgee');
     }, [fetchUserOffers]);
 
     if (isFetchingGet) {

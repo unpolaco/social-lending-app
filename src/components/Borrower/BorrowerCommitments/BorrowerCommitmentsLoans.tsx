@@ -7,7 +7,7 @@ export const BorrowerCommitmentsLoans: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserLoans, userLoansList} = useGetUserLoans();
 
     useEffect(() => {
-        fetchUserLoans('testBorrower1');
+        fetchUserLoans('Bilbo_Baggins');
     }, [fetchUserLoans]);
 
     if (isFetchingGet) {

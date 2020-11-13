@@ -20,7 +20,7 @@ export const LenderInvest = () => {
     }
 
     function handleSaveNewOffer(newOfferData: any) {
-        newOfferData.lenderUserName = 'testLender';
+        newOfferData.lenderUserName = 'Samwise_Gamgee';
         fetchNewOffer(newOfferData);
         fetchAllAuctions();
     }
