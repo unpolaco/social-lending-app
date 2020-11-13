@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useGetUserLoans} from '../../../hooks/useGetUserLoans';
-import {LoansTable} from '../../shared/Table/LoansTable';
+import {Table} from '../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 
 export const BorrowerCommitmentsLoans: React.FC = () => {
@@ -20,7 +20,7 @@ export const BorrowerCommitmentsLoans: React.FC = () => {
     return (
         <>
             <div>Your Loans</div>
-            {userLoansList && <LoansTable userLoansList={userLoansList} />}
+            {userLoansList && <Table rows={userLoansList} currentPage="borrowerUserLoans" />}
         </>
     );
 };

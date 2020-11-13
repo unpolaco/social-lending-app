@@ -4,7 +4,7 @@ import {TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core'
 import {AuctionData, AuctionTableProps} from '../Table/Table.types';
 import {headCellsAuctions} from './TableHead.constants';
 
-export const AuctionTableHead: React.FC<AuctionTableProps> = ({order, orderBy, onRequestSort}) => {
+export const AuctionsTableHead: React.FC<AuctionTableProps> = ({order, orderBy, onRequestSort}) => {
     const createSortHandler = (property: keyof AuctionData) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };

@@ -7,7 +7,7 @@ export const TextBold = styled(Typography)`
 `;
 export const StyledTableRow = styled(TableRow)`
     padding: 0 15px;
-    width: 100%;
+    width: 80%;
     margin: 15px;
     transition: 0.3s;
     &:hover {

@@ -11,7 +11,7 @@ export const Lender: React.FC = () => {
     return (
         <>
             <NavigationBox>
-                <ButtonGroup fullWidth variant="text">
+                <ButtonGroup fullWidth variant="text" color="secondary">
                     <Button component={NavLink} to={ROUTES.LENDER_INVEST}>
                         Invest
                     </Button>

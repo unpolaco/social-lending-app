@@ -11,7 +11,7 @@ export const Borrower: React.FC = () => {
     return (
         <>
             <NavigationBox>
-                <ButtonGroup fullWidth variant="text" color="primary">
+                <ButtonGroup fullWidth variant="text" color="secondary">
                     <Button component={NavLink} to={ROUTES.BORROWER_AUCTIONS}>
                         All Auctions
                     </Button>

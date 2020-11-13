@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useGetUserAuctions} from '../../../hooks/useGetUserAuctions';
-import {AuctionTable} from '../../shared/Table/AuctionTable';
+import {Table} from '../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 
 export const BorrowerCommitmentsAuctions: React.FC = () => {
@@ -20,7 +20,7 @@ export const BorrowerCommitmentsAuctions: React.FC = () => {
     return (
         <>
             <div>Your Auctions</div>
-            {userAuctionsList && <AuctionTable auctionsList={userAuctionsList} borrowerUserAuctions />}
+            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" />}
         </>
     );
 };

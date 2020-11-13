@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Container, Typography, CircularProgress} from '@material-ui/core/';
-import {AuctionTable} from '../../shared/Table/AuctionTable';
+import {Table} from '../../shared/Table/Table';
 import {BorrowerAuctionsCreateForm} from './BorrowerAuctionsCreateForm/BorrowerAuctionsCreateForm';
 import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
 import {useSaveNewAuction} from '../../../hooks/useSaveNewAuction';
@@ -32,7 +32,7 @@ export const BorrowerAuctions = () => {
         <Container>
             <Typography>List of all actual auctions:</Typography>
             <BorrowerAuctionsCreateForm handleSaveNewAuction={handleSaveNewAuction} />
-            {auctionsList && <AuctionTable auctionsList={auctionsList} borrowerAllAuctions />}
+            {auctionsList && <Table rows={auctionsList} currentPage="borrowerAllAuctions" />}
         </Container>
     );
 };
