@@ -2,6 +2,8 @@ import React from 'react';
 import {Typography, Tabs, Tab} from '@material-ui/core/';
 import {ROUTES} from '../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
+import {LenderPortfolioOffers} from './LenderPortfolioOffers';
+import {LenderPortfolioInvestments} from './LenderPortfolioInvestments';
 
 export const LenderPortfolio = () => {
     const [value, setValue] = React.useState(0);
@@ -28,10 +30,10 @@ export const LenderPortfolio = () => {
                     <Redirect to={ROUTES.LENDER_PORTFOLIO_USEROFFERS} />
                 </Route>
                 <Route path={ROUTES.LENDER_PORTFOLIO_USEROFFERS}>
-                    <div>My Offers</div>
+                    <LenderPortfolioOffers />
                 </Route>
                 <Route path={ROUTES.LENDER_PORTFOLIO_USERINVESTMENTS}>
-                    <div>My Investments</div>
+                    <LenderPortfolioInvestments />
                 </Route>
             </Switch>
         </>
