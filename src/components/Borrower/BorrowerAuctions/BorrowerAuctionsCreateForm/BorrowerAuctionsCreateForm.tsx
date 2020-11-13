@@ -44,14 +44,14 @@ export const BorrowerAuctionsCreateForm: React.FC<any> = ({handleSaveNewAuction}
                                     helperText={touched.rate && errors.rate}
                                 />
                                 <TextField
-                                    name="startDate"
+                                    name="loanStartDate"
                                     type="date"
                                     label="Start loan date"
                                     InputLabelProps={{shrink: true}}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    error={Boolean(touched.startDate && errors.startDate)}
-                                    helperText={touched.startDate && errors.startDate}
+                                    error={Boolean(touched.loanStartDate && errors.loanStartDate)}
+                                    helperText={touched.loanStartDate && errors.loanStartDate}
                                 />
                                 <Typography>Duration of a loan in months</Typography>
                                 <Slider

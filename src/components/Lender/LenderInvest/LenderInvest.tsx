@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Typography, CircularProgress} from '@material-ui/core/';
 import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
 import {useSaveNewOffer} from '../../../hooks/useSaveNewOffer';
-import {AuctionTable} from '../../shared/AuctionTable/AuctionTable';
+import {Table} from '../../shared/Table/Table';
 
 export const LenderInvest = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -28,7 +28,7 @@ export const LenderInvest = () => {
     return (
         <>
             <Typography>List of all actual auctions:</Typography>
-            {auctionsList && <AuctionTable auctionsList={auctionsList} lender handleSaveNewOffer={handleSaveNewOffer} />}
+            {auctionsList && <Table rows={auctionsList} currentPage="lenderAllAuctions" handleSaveNewOffer={handleSaveNewOffer} />}
         </>
     );
 };

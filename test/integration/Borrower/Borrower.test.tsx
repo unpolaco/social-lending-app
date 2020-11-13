@@ -22,7 +22,7 @@ describe('Borrower', () => {
         const {history} = renderWithRouter(<Borrower />);
         userEvent.click(screen.getByRole('button', {name: /Loans & My auctions/i}));
         expect(history.entries).toHaveLength(2);
-        expect(history.location.pathname).toEqual('/borrower/commitments');
+        expect(history.location.pathname).toEqual('/borrower/commitments/auctions');
     });
     it('sets /borrower/account url on click on My account button', () => {
         const {history} = renderWithRouter(<Borrower />);
