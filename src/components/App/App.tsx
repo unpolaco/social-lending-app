@@ -18,7 +18,7 @@ export const App: React.FC = () => {
                 <Header />
                 <Switch>
                     <StyledBox>
-                        <Route path={'/'} exact>
+                        <Route path={ROUTES.HOME} exact>
                             <MainPage />
                         </Route>
                         <Route path={ROUTES.LENDER}>
