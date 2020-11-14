@@ -33,22 +33,20 @@ export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOff
         <Paper>
             <TableContainer>
                 <MaterialTable>
-                    {(currentPage === 'borrowerAllAuctions' || currentPage === 'lenderAllAuctions') && (
-                        <TableHeadAllAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
-                    )}
-                    {currentPage === 'borrowerUserAuctions' && (
-                        <TableHeadUserAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
-                    )}
-                    {currentPage === 'borrowerUserInvestments' && (
-                        <TableHeadUserInvestments order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
-                    )}
-                    {currentPage === 'lenderUserOffers' && (
-                        <TableHeadUserOffers order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
-                    )}
-                    {currentPage === 'borrowerUserLoans' && (
-                        <TableHeadUserLoans order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />
-                    )}
-
+                    {(() => {
+                        switch (currentPage) {
+                            case 'borrowerAllAuctions' || 'lenderAllAuctions':
+                                return <TableHeadAllAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
+                            case 'borrowerUserAuctions':
+                                return <TableHeadUserAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
+                            case 'borrowerUserLoans':
+                                return <TableHeadUserLoans order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
+                            case 'lenderUserInvestments':
+                                return <TableHeadUserInvestments order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
+                            case 'lenderUserOffers':
+                                return <TableHeadUserOffers order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
+                        }
+                    })()}
                     <TableBody>
                         {stableSort(rows, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
