@@ -1,11 +1,17 @@
 import React from 'react';
-import {TextBold, WideCell, NarrowCell, StyledBox} from './TableBody.styles';
+import {TextBold, WideCell, NarrowCell, StyledBox} from './TableRows.styles';
 import {Typography, IconButton} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
+import {AuctionData} from '../Table/Table.types';
 
-export const TableBodyBorrowerAllAuctions: React.FC<any> = ({row, clickedCollapsed}) => {
+interface TableRowsBorrowerAllAuctionsProps {
+    row: AuctionData;
+    clickedCollapsed: number | null;
+}
+
+export const TableRowsBorrowerAllAuctions: React.FC<TableRowsBorrowerAllAuctionsProps> = ({row, clickedCollapsed}) => {
     return (
         <>
             <WideCell>

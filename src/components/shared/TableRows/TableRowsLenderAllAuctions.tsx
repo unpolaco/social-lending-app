@@ -1,12 +1,24 @@
 import React from 'react';
-import {TextBold, NarrowCell} from './TableBody.styles';
+import {TextBold, WideCell, NarrowCell, StyledBox} from './TableRows.styles';
 import {Typography, IconButton} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import {Rating} from '@material-ui/lab';
+import {AuctionData} from '../Table/Table.types';
 
-export const TableBodyBorrowerUserAuctions: React.FC<any> = ({row, clickedCollapsed}) => {
+interface TableRowsLenderAllAuctionsProps {
+    row: AuctionData;
+    clickedCollapsed: number | null;
+}
+export const TableRowsLenderAllAuctions: React.FC<TableRowsLenderAllAuctionsProps> = ({row, clickedCollapsed}) => {
     return (
         <>
+            <WideCell>
+                <StyledBox>
+                    <TextBold>{row.borrower}</TextBold>
+                    <Rating size="small" value={+row.borrowerRating} readOnly />
+                </StyledBox>
+            </WideCell>
             <NarrowCell align="right">
                 <TextBold>{row.amount} zł</TextBold>
             </NarrowCell>

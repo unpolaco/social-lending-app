@@ -1,23 +1,30 @@
 import React from 'react';
-import {StyledBox, CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBoxLender.styles';
+import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBox.styles';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
+import {OfferData} from '../Table/Table.types';
 
-export const CollapseBoxLender: React.FC<any> = ({borrowerAmount, borrowerRate, handleSaveNewOffer, auctionId}) => {
+interface CollapseBoxCreateOfferProps {
+    row: OfferData;
+    handleSaveNewOffer: any;
+}
+
+export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({row, handleSaveNewOffer}) => {
+    const {amount, id, rate} = row;
     const marks = [
         {value: 0, label: '0 zł'},
-        {value: borrowerAmount, label: `${borrowerAmount} zł`},
+        {value: amount, label: `${amount} zł`},
     ];
     function handleSubmit(values: any) {
-        values.auctionId = auctionId;
+        values.auctionId = id;
         handleSaveNewOffer(values);
     }
 
     return (
-        <StyledBox>
+        <>
             <CreateOfferWrapper>
                 <Typography>Create an offer for this auction</Typography>
-                <Formik initialValues={{amount: borrowerAmount, rate: borrowerRate}} onSubmit={handleSubmit}>
+                <Formik initialValues={{amount: amount, rate: rate}} onSubmit={handleSubmit}>
                     {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
                         <Form onSubmit={handleSubmit}>
                             <FormikWrapper>
@@ -41,7 +48,7 @@ export const CollapseBoxLender: React.FC<any> = ({borrowerAmount, borrowerRate, 
                                         name="amount"
                                         valueLabelDisplay="auto"
                                         min={0}
-                                        max={borrowerAmount}
+                                        max={amount}
                                         marks={marks}
                                         value={values.amount}
                                         onChange={(e, value) => setFieldValue('amount', value)}
@@ -55,6 +62,6 @@ export const CollapseBoxLender: React.FC<any> = ({borrowerAmount, borrowerRate, 
                     )}
                 </Formik>
             </CreateOfferWrapper>
-        </StyledBox>
+        </>
     );
 };

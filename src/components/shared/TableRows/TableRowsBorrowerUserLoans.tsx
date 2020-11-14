@@ -1,8 +1,13 @@
 import React from 'react';
-import {TextBold, NarrowCell} from './TableBody.styles';
+import {TextBold, NarrowCell} from './TableRows.styles';
 import {Typography} from '@material-ui/core';
+import {LoanData} from '../Table/Table.types';
 
-export const TableBodyBorrowerUserLoans: React.FC<any> = ({row}) => {
+interface TableRowsBorrowerUserLoansProps {
+    row: LoanData;
+}
+
+export const TableRowsBorrowerUserLoans: React.FC<TableRowsBorrowerUserLoansProps> = ({row}) => {
     return (
         <>
             <NarrowCell align="right">

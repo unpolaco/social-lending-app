@@ -1,7 +1,12 @@
 import React from 'react';
-import {TextBold, NarrowCell} from './TableBody.styles';
+import {TextBold, NarrowCell} from './TableRows.styles';
+import {OfferData} from '../Table/Table.types';
 
-export const TableBodyLenderUserOffers: React.FC<any> = ({row}) => {
+interface TableRowsLenderUserOffersProps {
+    row: OfferData;
+}
+
+export const TableRowsLenderUserOffers: React.FC<TableRowsLenderUserOffersProps> = ({row}) => {
     return (
         <>
             <NarrowCell align="right">

@@ -1,11 +1,15 @@
 import React from 'react';
 import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
-import {AuctionTableBoxOffer} from '../TableBoxOffer/AuctionTableBoxOffer';
 import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
-import {FormikWrapper} from './CollapseBoxLender.styles';
+import {FormikWrapper} from './CollapseBox.styles';
+import {AuctionData} from '../Table/Table.types';
 
-export const CollapseBoxBorrowerUserAuctions: React.FC<any> = ({row}) => {
+interface CollapseBoxCreateLoanProps {
+    row: AuctionData;
+}
+
+export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row}) => {
     const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
     const {isFetchingConfirmCreateLoan, isErrorConfirmCreateLoan, fetchConfirmCreateLoan} = useGetConfirmCreateLoan();
 
@@ -25,7 +29,6 @@ export const CollapseBoxBorrowerUserAuctions: React.FC<any> = ({row}) => {
 
     return (
         <Box>
-            <AuctionTableBoxOffer row={row} />
             <Typography>Edit or delete your auction</Typography>
             <Button variant="outlined" disabled>
                 Edit

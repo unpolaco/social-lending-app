@@ -1,10 +1,15 @@
 import React from 'react';
-import {Typography} from '@material-ui/core/';
-import {OffersWrapper, StyledBox} from './AuctionTableBoxOffer.styles';
+import {AuctionData} from '../Table/Table.types';
+import {Typography, Box} from '@material-ui/core/';
+import {OffersWrapper, StyledBox} from './CollapseBox.styles';
 
-export const AuctionTableBoxOffer: React.FC<any> = ({row}) => {
+interface CollapseBoxAuctionOffersProps {
+    row: AuctionData;
+}
+
+export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> = ({row}) => {
     return (
-        <>
+        <Box>
             <Typography>Auction offers</Typography>
             <OffersWrapper>
                 {row.offers.length > 0 &&
@@ -16,6 +21,6 @@ export const AuctionTableBoxOffer: React.FC<any> = ({row}) => {
                         </StyledBox>
                     ))}
             </OffersWrapper>
-        </>
+        </Box>
     );
 };
