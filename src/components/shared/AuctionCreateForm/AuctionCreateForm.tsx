@@ -1,12 +1,12 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, AccordionSummary, AccordionDetails} from '@material-ui/core';
-import {CreateAuctionCardWrapper, FormWrapper, StyledAccordion} from './BorrowerAuctionsCreateForm.styles';
-import {initialValues, marks} from './BorrowerAuctionsCreateForm.constants';
-import {AuctionCreateFormValues} from './BorrowerAuctionsCreateForm.types';
+import {CreateAuctionCardWrapper, FormWrapper, StyledAccordion} from './AuctionCreateForm.styles';
+import {initialValues, marks} from './AuctionCreateForm.constants';
+import {AuctionCreateFormValues} from './AuctionCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
 
-export const BorrowerAuctionsCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
+export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
     function handleSubmit(values: AuctionCreateFormValues) {
         handleSaveNewAuction(values);
     }

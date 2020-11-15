@@ -1,37 +1,25 @@
 import React, {useEffect} from 'react';
 import {Container, Typography, CircularProgress} from '@material-ui/core/';
 import {Table} from '../../shared/Table/Table';
-import {BorrowerAuctionsCreateForm} from './BorrowerAuctionsCreateForm/BorrowerAuctionsCreateForm';
 import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
-import {useSaveNewAuction} from '../../../hooks/useSaveNewAuction';
 
 export const BorrowerAuctions = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
-    const {isFetchingSave, isErrorSave, fetchNewAuction} = useSaveNewAuction();
-    const startAuctionDate: string = new Date().toISOString().slice(0, 10);
 
     useEffect(() => {
         fetchAllAuctions();
     }, [fetchAllAuctions]);
 
-    if (isFetchingGet || isFetchingSave) {
+    if (isFetchingGet) {
         return <CircularProgress />;
     }
-    if (isErrorGet || isErrorSave) {
+    if (isErrorGet) {
         alert('Error');
-    }
-
-    function handleSaveNewAuction(newAuctionData: any) {
-        newAuctionData.borrower = 'Bilbo_Baggins';
-        newAuctionData.startAuctionDate = startAuctionDate;
-        fetchNewAuction(newAuctionData);
-        fetchAllAuctions();
     }
 
     return (
         <Container>
             <Typography>List of all actual auctions:</Typography>
-            <BorrowerAuctionsCreateForm handleSaveNewAuction={handleSaveNewAuction} />
             {auctionsList && <Table rows={auctionsList} currentPage="borrowerAllAuctions" />}
         </Container>
     );

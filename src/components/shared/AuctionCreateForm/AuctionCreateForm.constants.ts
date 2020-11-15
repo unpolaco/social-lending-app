@@ -1,4 +1,4 @@
-import {AuctionCreateFormValues} from './BorrowerAuctionsCreateForm.types';
+import {AuctionCreateFormValues} from './AuctionCreateForm.types';
 
 export const initialValues: AuctionCreateFormValues = {amount: '', rate: '', loanDuration: 0, auctionStartDate: '', loanStartDate: ''};
 export const marks = [
