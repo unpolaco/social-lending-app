@@ -1,7 +1,7 @@
 import React from 'react';
 import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBox.styles';
 import {Formik, Form} from 'formik';
-import {Button, Typography, TextField, Slider, InputAdornment, Switch} from '@material-ui/core';
+import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {OfferData} from '../Table/Table.types';
 
 interface CollapseBoxCreateOfferProps {
