@@ -28,6 +28,12 @@ export interface OfferData {
     rate: number;
     status: string;
 }
+export interface InvestmentsData {
+    amount: number;
+    id: number;
+    rate: number;
+    status: string;
+}
 
 export interface HeadCellsAuctions {
     id: keyof AuctionData;
@@ -41,6 +47,11 @@ export interface HeadCellsOffers {
     id: keyof OfferData;
     label: string;
 }
+export interface HeadCellsInvestments {
+    id: keyof InvestmentsData;
+    label: string;
+}
+
 export interface AuctionTableProps {
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof AuctionData) => void;
     order: Order;
@@ -53,6 +64,11 @@ export interface LoanTableProps {
 }
 export interface OfferTableProps {
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof OfferData) => void;
+    order: Order;
+    orderBy: string;
+}
+export interface InvestmentsTableProps {
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof InvestmentsData) => void;
     order: Order;
     orderBy: string;
 }

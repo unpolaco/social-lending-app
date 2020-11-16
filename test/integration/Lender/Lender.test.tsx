@@ -1,5 +1,5 @@
 import {screen} from '@testing-library/react';
-import {Lender} from '../../../src/components/Lender/Lender';
+import {Lender} from '../../../src/components/Pages/LenderPage/Lender';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import {renderWithRouter} from '../../helpers/renderWithRouter';
