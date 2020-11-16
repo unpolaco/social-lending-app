@@ -24,7 +24,16 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
         <>
             <CreateOfferWrapper>
                 <Typography>Create an offer for this auction</Typography>
-                <Formik initialValues={{amount: amount, rate: rate, allowDivision: true}} onSubmit={handleSubmit}>
+                <Formik
+                    initialValues={{
+                        amount: amount,
+                        rate: rate,
+
+                        // temporary hide - waiting for server update
+                        // allowDivision: true
+                    }}
+                    onSubmit={handleSubmit}
+                >
                     {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
                         <Form onSubmit={handleSubmit}>
                             <FormikWrapper>
@@ -53,8 +62,11 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                         value={values.amount}
                                         onChange={(e, value) => setFieldValue('amount', value)}
                                     />
-                                    <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
-                                    <Switch color="primary" checked={values.allowDivision} onChange={handleChange} name="allowDivision" />
+
+                                    {/* temporary hide button - waiting for server update */}
+
+                                    {/* <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
+                                    <Switch color="primary" checked={values.allowDivision} onChange={handleChange} name="allowDivision" /> */}
                                 </FieldWrapper>
                                 <Button type="submit" variant="outlined">
                                     Create offer
