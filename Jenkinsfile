@@ -65,7 +65,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry("https://kale-team-docker-registry.fintechchallenge.pl/v2/", 'docker-push-user') {
-                        def build = docker.build("kale-team/social-lending-platform-frontend", '-f ./docker/Dockerfile .')
+                        def build = docker.build("kale-team/social-lending", '-f ./docker/Dockerfile .')
                         def commitHash = sh(
                             script: 'git rev-parse HEAD',
                             returnStdout: true
@@ -88,8 +88,8 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'kubeconfig-sit', variable: 'KUBECONFIG')]) {
                         sh "kubectl apply -f ./kubernetes-sit.yaml"
-                        sh "kubectl rollout restart deployment social-lending-platform-frontend"
-                        sh "kubectl rollout status deployment social-lending-platform-frontend --timeout=1m"
+                        sh "kubectl rollout restart deployment social-lending"
+                        sh "kubectl rollout status deployment social-lending --timeout=1m"
                     }
                 }
             }
@@ -106,8 +106,8 @@ pipeline {
                 script {
                     withCredentials([file(credentialsId: 'kubeconfig-uat', variable: 'KUBECONFIG')]) {
                         sh "kubectl apply -f ./kubernetes-uat.yaml"
-                        sh "kubectl rollout restart deployment social-lending-platform-frontend"
-                        sh "kubectl rollout status deployment social-lending-platform-frontend --timeout=1m"
+                        sh "kubectl rollout restart deployment social-lending"
+                        sh "kubectl rollout status deployment social-lending --timeout=1m"
                     }
                 }
             }

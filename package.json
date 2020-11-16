@@ -1,5 +1,5 @@
 {
-    "name": "social-lending-platform-frontend",
+    "name": "social-lending",
     "version": "0.1.0",
     "proxy": "https://solid-lendig-platform.kale-team.sit.fintechchallenge.pl/",
     "private": true,

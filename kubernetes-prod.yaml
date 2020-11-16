@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: social-lending-platform-frontend
+    name: social-lending
     namespace: fintech-prod-kale-team
     labels:
-        app: social-lending-platform-frontend
+        app: social-lending
 spec:
     replicas: 1
     selector:
         matchLabels:
-            app: social-lending-platform-frontend
+            app: social-lending
     template:
         metadata:
             labels:
-                app: social-lending-platform-frontend
+                app: social-lending
         spec:
             imagePullSecrets:
                 - name: fintech-docker-secret
             containers:
-                - name: social-lending-platform-frontend
-                  image: kale-team-docker-registry.fintechchallenge.pl/kale-team/social-lending-platform-frontend:image_version_placeholder
+                - name: social-lending
+                  image: kale-team-docker-registry.fintechchallenge.pl/kale-team/social-lending:image_version_placeholder
                   imagePullPolicy: Always
                   env:
                       - name: API_BASE_PATH
@@ -52,10 +52,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: social-lending-platform-frontend
+    name: social-lending
     namespace: fintech-prod-kale-team
     labels:
-        app: social-lending-platform-frontend
+        app: social-lending
         visualize: 'true'
 spec:
     ports:
@@ -64,7 +64,7 @@ spec:
           protocol: TCP
           targetPort: web
     selector:
-        app: social-lending-platform-frontend
+        app: social-lending
 ---
 
 ---
@@ -98,20 +98,20 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-    name: social-lending-platform-frontend
+    name: social-lending
     namespace: fintech-prod-kale-team
 spec:
     entryPoints:
         - websecure
     routes:
         - kind: Rule
-          match: Host(`social-lending-platform-frontend.kale-team.fintechchallenge.pl`)
+          match: Host(`social-lending.kale-team.fintechchallenge.pl`)
           middlewares:
               - name: fintech-prod-kale-team-basic-auth-middleware
                 namespace: fintech-prod-kale-team
           services:
               - kind: Service
-                name: social-lending-platform-frontend
+                name: social-lending
                 namespace: fintech-prod-kale-team
                 passHostHeader: true
                 port: 8080
@@ -121,4 +121,4 @@ spec:
             namespace: fintech-prod-kale-team
         certResolver: hltech
         domains:
-            - main: social-lending-platform-frontend.kale-team.fintechchallenge.pl
+            - main: social-lending.kale-team.fintechchallenge.pl
