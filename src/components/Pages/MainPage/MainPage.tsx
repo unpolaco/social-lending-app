@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {Button, Typography} from '@material-ui/core';
-import {ROUTES} from '../../helpers/routes';
+import {ROUTES} from '../../../helpers/routes';
 import {StyledMainBox, WelcomeBox, StyledBox} from './MainPage.styles';
 
 export const MainPage: React.FC = () => {

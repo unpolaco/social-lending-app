@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {Container, Typography, CircularProgress} from '@material-ui/core/';
-import {Table} from '../../shared/Table/Table';
-import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
+import {Table} from '../../../shared/Table/Table';
+import {useGetAllAuctions} from '../../../../hooks/useGetAllAuctions';
 
-export const BorrowerAuctions = () => {
+export const Auctions: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
 
     useEffect(() => {

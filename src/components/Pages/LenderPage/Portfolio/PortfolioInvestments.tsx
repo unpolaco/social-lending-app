@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {useGetUserInvestments} from '../../../hooks/useGetUserInvestments';
-import {Table} from '../../shared/Table/Table';
+import {useGetUserInvestments} from '../../../../hooks/useGetUserInvestments';
+import {Table} from '../../../shared/Table/Table';
 import {CircularProgress, Container} from '@material-ui/core/';
 
-export const LenderPortfolioInvestments: React.FC = () => {
+export const PortfolioInvestments: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserInvestments, userInvestmentsList} = useGetUserInvestments();
 
     useEffect(() => {

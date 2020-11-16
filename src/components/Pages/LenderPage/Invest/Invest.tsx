@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {Typography, CircularProgress} from '@material-ui/core/';
-import {useGetAllAuctions} from '../../../hooks/useGetAllAuctions';
-import {useSaveNewOffer} from '../../../hooks/useSaveNewOffer';
-import {Table} from '../../shared/Table/Table';
+import {useGetAllAuctions} from '../../../../hooks/useGetAllAuctions';
+import {useSaveNewOffer} from '../../../../hooks/useSaveNewOffer';
+import {Table} from '../../../shared/Table/Table';
 
-export const LenderInvest = () => {
+export const Invest: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
     const {isFetchingSave, isErrorSave, fetchNewOffer} = useSaveNewOffer();
 

@@ -16,11 +16,11 @@ export const FormikWrapper = styled.div`
     border: 1px solid white;
     display: flex;
     flex-direction: column;
-    height: 300px;
     justify-content: space-between;
     border-radius: 5px;
     width: 300px;
 `;
+
 export const FieldWrapper = styled.div`
     flex: 1;
     padding: 0 15px;

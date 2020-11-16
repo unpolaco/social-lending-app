@@ -17,9 +17,12 @@ export const StyledTableRow = styled(TableRow)`
 export const WideCell = styled(TableCell)`
     display: flex;
     justify-content: flex-end;
+    flex: 1;
+    cursor: pointer;
 `;
 export const NarrowCell = styled(TableCell)`
-    width: 10%;
+    cursor: pointer;
+    flex: 1;
 `;
 export const CollapsedCell = styled(TableCell)`
     padding: 0;

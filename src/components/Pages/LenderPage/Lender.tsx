@@ -1,10 +1,10 @@
 import React from 'react';
 import {ButtonGroup, Button} from '@material-ui/core/';
-import {ROUTES} from '../../helpers/routes';
+import {ROUTES} from '../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
-import {LenderAccount} from './LenderAccount/LenderAccount';
-import {LenderPortfolio} from './LenderPortfolio/LenderPortfolio';
-import {LenderInvest} from './LenderInvest/LenderInvest';
+import {Account} from './Account/Account';
+import {Portfolio} from './Portfolio/Portfolio';
+import {Invest} from './Invest/Invest';
 import {StyledBackgroundPaper, NavigationBox} from './Lender.styles';
 
 export const Lender: React.FC = () => {
@@ -29,13 +29,13 @@ export const Lender: React.FC = () => {
                         <Redirect to={ROUTES.LENDER_INVEST} />
                     </Route>
                     <Route path={ROUTES.LENDER_INVEST}>
-                        <LenderInvest />
+                        <Invest />
                     </Route>
                     <Route path={ROUTES.LENDER_PORTFOLIO}>
-                        <LenderPortfolio />
+                        <Portfolio />
                     </Route>
                     <Route path={ROUTES.LENDER_ACCOUNT}>
-                        <LenderAccount />
+                        <Account />
                     </Route>
                 </Switch>
             </StyledBackgroundPaper>

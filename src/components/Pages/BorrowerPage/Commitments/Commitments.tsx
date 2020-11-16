@@ -1,25 +1,23 @@
 import React, {useState} from 'react';
-import {Paper, Typography, Tabs, Tab} from '@material-ui/core/';
-import {ROUTES} from '../../../helpers/routes';
+import {Typography, Tabs, Tab} from '@material-ui/core/';
+import {ROUTES} from '../../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
-import {BorrowerCommitmentsAuctions} from './BorrowerCommitmentsAuctions';
-import {BorrowerCommitmentsLoans} from './BorrowerCommitmentsLoans';
+import {CommitmentsAuctions} from './CommitmentsAuctions';
+import {CommitmentsLoans} from './CommitmentsLoans';
 
-export const BorrowerCommitments = () => {
+export const Commitments: React.FC = () => {
     const [value, setValue] = useState(0);
     const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
         setValue(newValue);
     };
     return (
         <>
-            <Paper elevation={3}>
-                <Typography align="center" variant="h6">
-                    Welcome to your Auctions & Loans
-                </Typography>
-                <Typography align="center" variant="subtitle2">
-                    Here you can find list of your auctions and loans and manage them
-                </Typography>
-            </Paper>
+            <Typography align="center" variant="h6">
+                Welcome to your Auctions & Loans
+            </Typography>
+            <Typography align="center" variant="subtitle2">
+                Here you can find list of your auctions and loans and manage them
+            </Typography>
             <Tabs value={value} onChange={handleChange} centered>
                 <Tab label="My auctions" to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} component={NavLink} />
                 <Tab label="My loans" to={ROUTES.BORROWER_COMMITMENTS_LOANS} component={NavLink} />
@@ -29,10 +27,10 @@ export const BorrowerCommitments = () => {
                     <Redirect to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} />
                 </Route>
                 <Route path={ROUTES.BORROWER_COMMITMENTS_AUCTIONS}>
-                    <BorrowerCommitmentsAuctions />
+                    <CommitmentsAuctions />
                 </Route>
                 <Route path={ROUTES.BORROWER_COMMITMENTS_LOANS}>
-                    <BorrowerCommitmentsLoans />
+                    <CommitmentsLoans />
                 </Route>
             </Switch>
         </>

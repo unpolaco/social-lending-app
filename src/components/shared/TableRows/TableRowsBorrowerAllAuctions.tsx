@@ -1,6 +1,6 @@
 import React from 'react';
 import {TextBold, WideCell, NarrowCell, StyledBox} from './TableRows.styles';
-import {Typography, IconButton} from '@material-ui/core';
+import {Typography, IconButton, Tooltip} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
@@ -15,10 +15,12 @@ export const TableRowsBorrowerAllAuctions: React.FC<TableRowsBorrowerAllAuctions
     return (
         <>
             <WideCell>
-                <StyledBox>
-                    <TextBold>{row.borrower}</TextBold>
-                    <Rating size="small" value={+row.borrowerRating} readOnly />
-                </StyledBox>
+                <Tooltip title="Rating of a user in 1-5 scale" enterDelay={500} leaveDelay={200}>
+                    <StyledBox>
+                        <TextBold>{row.borrower}</TextBold>
+                        <Rating size="small" value={+row.borrowerRating} readOnly />
+                    </StyledBox>
+                </Tooltip>
             </WideCell>
             <NarrowCell align="right">
                 <TextBold>{row.amount} zł</TextBold>

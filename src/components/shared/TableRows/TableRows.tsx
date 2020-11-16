@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {TableRow, Collapse} from '@material-ui/core';
+import {Collapse} from '@material-ui/core';
 import {CollapseBoxCreateOffer} from '../TableCollapseBox/CollapseBoxCreateOffer';
 import {CollapseBoxAuctionOffers} from '../TableCollapseBox/CollapseBoxAuctionOffers';
 import {CollapseBoxCreateLoan} from '../TableCollapseBox/CollapseBoxCreateLoan';
@@ -38,8 +38,8 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer})
                     }
                 })()}
             </StyledTableRow>
-            <TableRow>
-                <CollapsedCell colSpan={7} align="center">
+            <StyledTableRow>
+                <CollapsedCell colSpan={7} align="center" padding="none">
                     <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
                         {(() => {
                             switch (currentPage) {
@@ -53,7 +53,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer})
                         })()}
                     </Collapse>
                 </CollapsedCell>
-            </TableRow>
+            </StyledTableRow>
         </>
     );
 };

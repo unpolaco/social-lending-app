@@ -1,11 +1,11 @@
 import React from 'react';
 import {Typography, Tabs, Tab} from '@material-ui/core/';
-import {ROUTES} from '../../../helpers/routes';
+import {ROUTES} from '../../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
-import {LenderPortfolioOffers} from './LenderPortfolioOffers';
-import {LenderPortfolioInvestments} from './LenderPortfolioInvestments';
+import {PortfolioOffers} from './PortfolioOffers';
+import {PortfolioInvestments} from './PortfolioInvestments';
 
-export const LenderPortfolio = () => {
+export const Portfolio: React.FC = () => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -30,10 +30,10 @@ export const LenderPortfolio = () => {
                     <Redirect to={ROUTES.LENDER_PORTFOLIO_USEROFFERS} />
                 </Route>
                 <Route path={ROUTES.LENDER_PORTFOLIO_USEROFFERS}>
-                    <LenderPortfolioOffers />
+                    <PortfolioOffers />
                 </Route>
                 <Route path={ROUTES.LENDER_PORTFOLIO_USERINVESTMENTS}>
-                    <LenderPortfolioInvestments />
+                    <PortfolioInvestments />
                 </Route>
             </Switch>
         </>

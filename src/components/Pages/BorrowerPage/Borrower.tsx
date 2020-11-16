@@ -1,10 +1,10 @@
 import React from 'react';
 import {ButtonGroup, Button} from '@material-ui/core/';
-import {ROUTES} from '../../helpers/routes';
+import {ROUTES} from '../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
-import {BorrowerCommitments} from './BorrowerCommitments/BorrowerCommitments';
-import {BorrowerAuctions} from './BorrowerAuctions/BorrowerAuctions';
-import {BorrowerAccount} from './BorrowerAccount/BorrowerAccount';
+import {Commitments} from './Commitments/Commitments';
+import {Auctions} from './Auctions/Auctions';
+import {Account} from './Account/Account';
 import {StyledBackgroundPaper, NavigationBox} from './Borrower.styles';
 
 export const Borrower: React.FC = () => {
@@ -29,13 +29,13 @@ export const Borrower: React.FC = () => {
                         <Redirect to={ROUTES.BORROWER_COMMITMENTS} />
                     </Route>
                     <Route path={ROUTES.BORROWER_AUCTIONS}>
-                        <BorrowerAuctions />
+                        <Auctions />
                     </Route>
                     <Route path={ROUTES.BORROWER_COMMITMENTS}>
-                        <BorrowerCommitments />
+                        <Commitments />
                     </Route>
                     <Route path={ROUTES.BORROWER_ACCOUNT}>
-                        <BorrowerAccount />
+                        <Account />
                     </Route>
                 </Switch>
             </StyledBackgroundPaper>

@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import {useGetUserLoans} from '../../../hooks/useGetUserLoans';
-import {Table} from '../../shared/Table/Table';
+import {useGetUserLoans} from '../../../../hooks/useGetUserLoans';
+import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
+import {PageWrapper, Title} from './Commitments.styles';
 
-export const BorrowerCommitmentsLoans: React.FC = () => {
+export const CommitmentsLoans: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserLoans, userLoansList} = useGetUserLoans();
 
     useEffect(() => {
@@ -18,9 +19,9 @@ export const BorrowerCommitmentsLoans: React.FC = () => {
     }
 
     return (
-        <>
-            <div>Your Loans</div>
+        <PageWrapper>
+            <Title>Your Loans</Title>
             {userLoansList && <Table rows={userLoansList} currentPage="borrowerUserLoans" />}
-        </>
+        </PageWrapper>
     );
 };
