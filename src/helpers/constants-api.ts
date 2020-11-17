@@ -1,4 +1,6 @@
-export const apiAuctions = '/api/auctions';
-export const apiOffers = '/api/offers';
-export const apiLoans = '/api/loans';
-export const apiInvestments = '/api/investments';
+export const apiBase = '/api';
+export const apiAuctions = '/auctions';
+export const apiOffers = '/offers';
+export const apiLoans = '/loans';
+export const apiInvestments = '/investments';
+export const apiAuctionsBorrower = '/auctions/borrower';

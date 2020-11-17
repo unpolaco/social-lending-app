@@ -1,8 +1,6 @@
-import Axios from 'axios';
-import {apiAuctions} from '../helpers/constants-api';
-
-const axios = Axios.create({baseURL: apiAuctions});
+import {axios} from './axios';
+import {apiAuctionsBorrower} from '../helpers/constants-api';
 
 export const getUserAuctions = (userId: string) => {
-    return axios.get(`/borrower/${userId}`);
+    return axios.get(`${apiAuctionsBorrower}/${userId}`);
 };
