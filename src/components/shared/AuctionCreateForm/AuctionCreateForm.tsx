@@ -2,7 +2,7 @@ import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core';
 import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper} from './AuctionCreateForm.styles';
-import {initialValues, marks} from './AuctionCreateForm.constants';
+import {auctionCreateFormValidator, initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValues} from './AuctionCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -21,7 +21,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
             <AccordionDetails>
                 <AccordionWrapper>
                     <CreateAuctionCardWrapper>
-                        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+                        <Formik initialValues={initialValues} validate={auctionCreateFormValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <FormWrapper>
@@ -62,12 +62,13 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                             name="loanDuration"
                                             valueLabelDisplay="auto"
                                             step={1}
-                                            min={0}
-                                            max={36}
+                                            min={1}
+                                            max={24}
                                             marks={marks}
                                             value={values.loanDuration}
                                             onChange={(e, value) => setFieldValue('loanDuration', value)}
                                         />
+
                                         <Button type="submit">Create auction</Button>
                                     </FormWrapper>
                                 </Form>
