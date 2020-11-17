@@ -1,7 +1,6 @@
-import {AxiosRequestConfig} from 'axios';
 import {axios} from './axios';
 import {apiLoans} from '../helpers/constants-api';
 
-export const confirmCreateLoan = (loanId: AxiosRequestConfig | undefined) => {
+export const confirmCreateLoan = (loanId: string) => {
     return axios.get(`${apiLoans}/${loanId}/activate`);
 };
