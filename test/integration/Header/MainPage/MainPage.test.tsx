@@ -1,8 +1,8 @@
 import {screen} from '@testing-library/react';
-import {MainPage} from '../../../src/components/pages/MainPage/MainPage';
+import {MainPage} from '../../../../src/components/pages/MainPage/MainPage';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import {renderWithRouter} from '../../helpers/renderWithRouter';
+import {renderWithRouter} from '../../../helpers/renderWithRouter';
 
 describe('MainPage', () => {
     it('renders buttons', () => {

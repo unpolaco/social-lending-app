@@ -1,8 +1,7 @@
-import Axios, {AxiosRequestConfig} from 'axios';
+import {apiSaveNewAuctionDto} from './api.types';
+import {axios} from './axios';
 import {apiAuctions} from '../helpers/constants-api';
 
-const axios = Axios.create({baseURL: apiAuctions});
-
-export const saveNewAuction = (newAuctionData: AxiosRequestConfig | undefined) => {
-    return axios.post('', newAuctionData);
+export const saveNewAuction = (newAuctionData: apiSaveNewAuctionDto) => {
+    return axios.post(apiAuctions, newAuctionData);
 };

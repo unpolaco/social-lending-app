@@ -1,8 +1,7 @@
-import Axios, {AxiosRequestConfig} from 'axios';
+import {axios} from './axios';
 import {apiOffers} from '../helpers/constants-api';
+import {apiSaveNewOfferDto} from './api.types';
 
-const axios = Axios.create({baseURL: apiOffers});
-
-export const saveNewOffer = (newOfferData: AxiosRequestConfig | undefined) => {
-    return axios.post('', newOfferData);
+export const saveNewOffer = (newOfferData: apiSaveNewOfferDto) => {
+    return axios.post(apiOffers, newOfferData);
 };
