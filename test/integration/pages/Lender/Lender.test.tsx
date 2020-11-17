@@ -1,8 +1,8 @@
 import {screen} from '@testing-library/react';
-import {Lender} from '../../../src/components/pages/LenderPage/Lender';
+import {Lender} from '../../../../src/components/pages/LenderPage/Lender';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import {renderWithRouter} from '../../helpers/renderWithRouter';
+import {renderWithRouter} from '../../../helpers/renderWithRouter';
 
 describe('Lender', () => {
     it('renders buttons', async () => {
