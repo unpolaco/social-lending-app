@@ -2,7 +2,8 @@ import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core';
 import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper} from './AuctionCreateForm.styles';
-import {auctionCreateFormValidator, initialValues, marks} from './AuctionCreateForm.constants';
+import {initialValues, marks} from './AuctionCreateForm.constants';
+import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
 import {AuctionCreateFormValues} from './AuctionCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -21,7 +22,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
             <AccordionDetails>
                 <AccordionWrapper>
                     <CreateAuctionCardWrapper>
-                        <Formik initialValues={initialValues} validate={auctionCreateFormValidator} onSubmit={handleSubmit}>
+                        <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <FormWrapper>
@@ -54,8 +55,6 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                             InputLabelProps={{shrink: true}}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
-                                            error={Boolean(touched.loanStartDate && errors.loanStartDate)}
-                                            helperText={touched.loanStartDate && errors.loanStartDate}
                                         />
                                         <Typography>Duration of a loan in months</Typography>
                                         <Slider
