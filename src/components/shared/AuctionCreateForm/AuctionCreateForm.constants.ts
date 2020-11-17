@@ -23,5 +23,8 @@ export const auctionCreateFormValidator = (values: AuctionCreateFormValues) => {
     if (values.rate <= 0 || values.rate === 'e') {
         errors.rate = 'Enter correct rate';
     }
+    if (values.rate > 20) {
+        errors.rate = 'Such big rate is not allowed';
+    }
     return errors;
 };

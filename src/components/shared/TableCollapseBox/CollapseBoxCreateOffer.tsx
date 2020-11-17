@@ -3,7 +3,7 @@ import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} f
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {OfferData} from '../Table/Table.types';
-
+import {CollapseBoxCreateOfferValidator} from './CollapseBox.constants';
 interface CollapseBoxCreateOfferProps {
     row: OfferData;
     handleSaveNewOffer: any;
@@ -32,6 +32,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                         // temporary hide - waiting for server update
                         // allowDivision: true
                     }}
+                    validate={CollapseBoxCreateOfferValidator}
                     onSubmit={handleSubmit}
                 >
                     {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
@@ -56,7 +57,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                     <Slider
                                         name="amount"
                                         valueLabelDisplay="auto"
-                                        min={0}
+                                        min={1}
                                         max={amount}
                                         marks={marks}
                                         value={values.amount}
