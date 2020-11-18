@@ -23,7 +23,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                 <AccordionWrapper>
                     <CreateAuctionCardWrapper>
                         <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
-                            {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
+                            {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => (
                                 <Form onSubmit={handleSubmit}>
                                     <FormWrapper>
                                         <TextField
@@ -68,7 +68,9 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                             onChange={(e, value) => setFieldValue('loanDuration', value)}
                                         />
 
-                                        <Button type="submit">Create auction</Button>
+                                        <Button type="submit" disabled={!isValid}>
+                                            Create auction
+                                        </Button>
                                     </FormWrapper>
                                 </Form>
                             )}

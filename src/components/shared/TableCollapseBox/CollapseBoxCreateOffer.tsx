@@ -36,7 +36,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                     validate={CollapseBoxCreateOfferValidator}
                     onSubmit={handleSubmit}
                 >
-                    {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue}) => (
+                    {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => (
                         <Form onSubmit={handleSubmit}>
                             <FormikWrapper>
                                 <FieldWrapper>
@@ -70,7 +70,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                     {/* <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
                                     <Switch color="primary" checked={values.allowDivision} onChange={handleChange} name="allowDivision" /> */}
                                 </FieldWrapper>
-                                <Button type="submit" variant="outlined">
+                                <Button type="submit" variant="outlined" disabled={!isValid}>
                                     Create offer
                                 </Button>
                             </FormikWrapper>

@@ -12,6 +12,7 @@ interface CollapseBoxCreateLoanProps {
 export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row}) => {
     const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
     const {isFetchingConfirmCreateLoan, isErrorConfirmCreateLoan, fetchConfirmCreateLoan} = useGetConfirmCreateLoan();
+    const disabled = row.status === 'ACTIVE_COMPLETE' ? false : true;
 
     if (isFetchingCreateLoan || isFetchingConfirmCreateLoan) {
         return <CircularProgress />;
@@ -26,17 +27,14 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
     function handleConfirmCreateLoan() {
         fetchConfirmCreateLoan(loanDetails.id);
     }
-
+    console.log(row);
     return (
         <Box>
-            <Typography>Edit or delete your auction</Typography>
-            <Button variant="outlined" disabled>
-                Edit
-            </Button>
+            <Typography>Make a loan or delete your auction</Typography>
             <Button variant="outlined" disabled>
                 Delete
             </Button>
-            <Button variant="outlined" onClick={handleCreateLoan}>
+            <Button variant="outlined" onClick={handleCreateLoan} disabled={disabled}>
                 Make loan
             </Button>
             {loanDetails && (
