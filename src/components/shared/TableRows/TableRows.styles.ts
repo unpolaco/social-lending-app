@@ -9,6 +9,8 @@ export const StyledTableRow = styled(TableRow)`
     padding: 0 15px;
     width: 80%;
     margin: 15px;
+`;
+export const StyledTableRowHover = styled(StyledTableRow)`
     transition: 0.3s;
     &:hover {
         background-color: #a4b0be;

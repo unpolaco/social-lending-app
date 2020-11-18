@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import {Box, Typography} from '@material-ui/core/';
+import {paletteColors} from '../../../helpers/constants-colors';
 
 export const TextBold = styled(Typography)`
     font-weight: 500;
@@ -13,7 +14,8 @@ export const CreateOfferWrapper = styled.div`
 `;
 export const FormikWrapper = styled.div`
     padding: 20px;
-    border: 1px solid white;
+    border: 1px solid ${paletteColors.palette.form.border};
+    background-color: ${paletteColors.palette.form.background};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,7 +34,7 @@ export const FieldTitleTypography = styled.p`
 `;
 export const StyledBox = styled(Box)`
     border-radius: 5px;
-    border: 1px solid #487eb0;
+    border: 1px solid ${paletteColors.palette.form.border};
     width: 150px;
     margin: 8px;
     padding: 8px;
