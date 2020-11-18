@@ -2,6 +2,8 @@ import {FormikErrors} from 'formik';
 interface AuctionCreateFormValidatorProps {
     amount?: number;
     rate?: number;
+    loanDuration?: number;
+    loanStartDate?: string;
 }
 
 export const AuctionCreateFormValidator = (values: AuctionCreateFormValidatorProps) => {
