@@ -16,7 +16,7 @@ export const AuctionCreateFormValidator = (values: AuctionCreateFormValidatorPro
     }
 
     if (!values.rate) {
-        errors.rate = 'Enter correct amount';
+        errors.rate = 'Enter correct rate';
     } else if (values.rate <= 0) {
         errors.rate = 'Enter correct rate';
     } else if (values.rate > 20) {
