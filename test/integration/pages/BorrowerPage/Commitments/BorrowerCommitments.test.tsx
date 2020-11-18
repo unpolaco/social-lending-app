@@ -1,8 +1,8 @@
 import {screen} from '@testing-library/react';
-import {Portfolio} from '../../../../src/components/pages/LenderPage/Portfolio/Portfolio';
+import {Portfolio} from '../../../../../src/components/pages/LenderPage/Portfolio/Portfolio';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import {renderWithRouter} from '../../../helpers/renderWithRouter';
+import {renderWithRouter} from '../../../../helpers/renderWithRouter';
 
 describe('Portfolio', () => {
     it('renders tabs', async () => {

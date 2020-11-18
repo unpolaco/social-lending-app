@@ -1,7 +1,7 @@
 import {mocked} from 'ts-jest/utils';
-import {saveNewAuction} from '../../../../src/api/saveNewAuction';
-import {axios} from '../../../../src/api/axios';
-import {apiAuctions} from '../../../../src/helpers/constants-api';
+import {saveNewAuction} from '../../../src/api/saveNewAuction';
+import {axios} from '../../../src/api/axios';
+import {apiAuctions} from '../../../src/helpers/constants-api';
 
 jest.mock('../../../../src/api/axios');
 

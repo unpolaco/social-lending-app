@@ -1,7 +1,7 @@
 import {mocked} from 'ts-jest/utils';
-import {getUserLoans} from '../../../../src/api/getUserLoans';
-import {axios} from '../../../../src/api/axios';
-import {apiLoans} from '../../../../src/helpers/constants-api';
+import {getUserLoans} from '../../../src/api/getUserLoans';
+import {axios} from '../../../src/api/axios';
+import {apiLoans} from '../../../src/helpers/constants-api';
 
 jest.mock('../../../../src/api/axios');
 
