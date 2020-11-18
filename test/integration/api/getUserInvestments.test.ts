@@ -3,7 +3,7 @@ import {getUserInvestments} from '../../../src/api/getUserInvestments';
 import {axios} from '../../../src/api/axios';
 import {apiInvestments} from '../../../src/helpers/constants-api';
 
-jest.mock('../../../../src/api/axios');
+jest.mock('../../../src/api/axios');
 
 describe('getUserInvestments', () => {
     beforeEach(() => {

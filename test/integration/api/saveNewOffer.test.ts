@@ -3,7 +3,7 @@ import {saveNewOffer} from '../../../src/api/saveNewOffer';
 import {axios} from '../../../src/api/axios';
 import {apiOffers} from '../../../src/helpers/constants-api';
 
-jest.mock('../../../../src/api/axios');
+jest.mock('../../../src/api/axios');
 
 describe('saveNewOffer', () => {
     beforeEach(() => {
