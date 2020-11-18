@@ -3,6 +3,7 @@ import {useGetUserAuctions} from '../../../../hooks/useGetUserAuctions';
 import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 import {AuctionCreateForm} from '../../../shared/AuctionCreateForm/AuctionCreateForm';
+import {AuctionCreateFormValues} from '../../../shared/AuctionCreateForm/AuctionCreateForm.types';
 import {useSaveNewAuction} from '../../../../hooks/useSaveNewAuction';
 import {PageWrapper, Title} from './Commitments.styles';
 
@@ -21,7 +22,7 @@ export const CommitmentsAuctions: React.FC = () => {
         alert('Error');
     }
 
-    function handleSaveNewAuction(newAuctionData: any) {
+    function handleSaveNewAuction(newAuctionData: AuctionCreateFormValues) {
         newAuctionData.borrower = 'Bilbo_Baggins';
         fetchNewAuction(newAuctionData);
         fetchUserAuctions('Bilbo_Baggins');

@@ -3,7 +3,8 @@ import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} f
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {OfferData} from '../Table/Table.types';
-import {CollapseBoxCreateOfferValidator} from './CollapseBox.constants';
+import {CollapseBoxCreateOfferValidator} from './CollapseBoxCreateOffer.helpers';
+
 interface CollapseBoxCreateOfferProps {
     row: OfferData;
     handleSaveNewOffer: any;
