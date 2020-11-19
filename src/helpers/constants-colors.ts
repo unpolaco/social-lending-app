@@ -23,6 +23,11 @@ export const paletteColors: any = {
             4: '#EE5A24',
             5: '#EA2027',
         },
+        repayment: {
+            expected: '#C4E538',
+            late: '#EE5A24',
+            paid: '#7e8a96',
+        },
         form: {
             background: '#2f445c',
             border: '#487eb0',

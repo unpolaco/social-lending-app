@@ -3,6 +3,7 @@ import {Collapse} from '@material-ui/core';
 import {CollapseBoxCreateOffer} from '../TableCollapseBox/CollapseBoxCreateOffer';
 import {CollapseBoxAuctionOffers} from '../TableCollapseBox/CollapseBoxAuctionOffers';
 import {CollapseBoxCreateLoan} from '../TableCollapseBox/CollapseBoxCreateLoan';
+import {CollapseBoxDisplayLoanDetails} from '../TableCollapseBox/CollapseBoxDisplayLoanDetails';
 import {TableRowsBorrowerAllAuctions} from '../TableRows/TableRowsBorrowerAllAuctions';
 import {TableRowsBorrowerUserAuctions} from '../TableRows/TableRowsBorrowerUserAuctions';
 import {TableRowsBorrowerUserLoans} from '../TableRows/TableRowsBorrowerUserLoans';
@@ -47,6 +48,8 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer})
                                     return <CollapseBoxAuctionOffers row={row} />;
                                 case 'borrowerUserAuctions':
                                     return <CollapseBoxCreateLoan row={row} />;
+                                case 'borrowerUserLoans':
+                                    return <CollapseBoxDisplayLoanDetails row={row} />;
                                 case 'lenderAllAuctions':
                                     return <CollapseBoxCreateOffer row={row} handleSaveNewOffer={handleSaveNewOffer} />;
                             }

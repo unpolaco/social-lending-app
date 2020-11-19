@@ -2,9 +2,16 @@ import styled from '@emotion/styled';
 import {Box, Typography} from '@material-ui/core/';
 import {paletteColors} from '../../../helpers/constants-colors';
 
+const {palette} = paletteColors;
+
 export const TextBold = styled(Typography)`
     font-weight: 500;
     font-size: 17px;
+`;
+export const TextLight = styled(Typography)`
+    font-weight: 400;
+    font-size: 14px;
+    color: grey;
 `;
 export const CreateOfferWrapper = styled.div`
     border-radius: 5px;
@@ -14,13 +21,19 @@ export const CreateOfferWrapper = styled.div`
 `;
 export const FormikWrapper = styled.div`
     padding: 20px;
-    border: 1px solid ${paletteColors.palette.form.border};
-    background-color: ${paletteColors.palette.form.background};
+    border: 1px solid ${palette.form.border};
+    background-color: ${palette.form.background};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
     width: 300px;
+`;
+export const ScheduleWrapper = styled(FormikWrapper)`
+    margin: 5px;
+    border: 1px solid
+        ${props =>
+            props.color === 'PAID' ? palette.repayment.paid : props.color === 'LATE' ? palette.repayment.late : palette.repayment.expected};
 `;
 
 export const FieldWrapper = styled.div`
@@ -44,4 +57,14 @@ export const OffersWrapper = styled(Box)`
     display: flex;
     flex-wrap: wrap;
     flex: 1;
+`;
+export const RepaymentWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+export const LoanDetailWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
