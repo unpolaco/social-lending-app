@@ -10,7 +10,7 @@ interface CollapseBoxCreateLoanProps {
 }
 
 export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps> = ({row, fetchUserLoans}) => {
-    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment, response} = useGetMakeLoanRepayment();
+    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment} = useGetMakeLoanRepayment();
 
     if (isFetchingGet) {
         return <CircularProgress />;
@@ -19,8 +19,8 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps>
         alert('Error');
     }
 
-    function handleMakeRepayment() {
-        fetchMakeLoanRepayment(row.id);
+    async function handleMakeRepayment() {
+        await fetchMakeLoanRepayment(row.id);
         fetchUserLoans('Bilbo_Baggins');
     }
 
