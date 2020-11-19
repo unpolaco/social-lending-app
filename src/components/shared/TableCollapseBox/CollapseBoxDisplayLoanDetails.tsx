@@ -6,10 +6,11 @@ import {AuctionData} from '../Table/Table.types';
 
 interface CollapseBoxCreateLoanProps {
     row: AuctionData;
-    fetchUserLoans: any;
+    page: string;
+    fetchUserLoans?: any;
 }
 
-export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps> = ({row, fetchUserLoans}) => {
+export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps> = ({row, fetchUserLoans, page}) => {
     const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment} = useGetMakeLoanRepayment();
 
     if (isFetchingGet) {
@@ -27,9 +28,11 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps>
     return (
         <LoanDetailWrapper>
             <Typography>Loan repayment details</Typography>
-            <Button variant="outlined" onClick={handleMakeRepayment}>
-                Pay repayment
-            </Button>
+            {page === 'borrowerUserLoans' && (
+                <Button variant="outlined" onClick={handleMakeRepayment}>
+                    Pay repayment
+                </Button>
+            )}
             {row.schedule.map((repayment: any) => (
                 <ScheduleWrapper key={repayment.date} color={row.status}>
                     <RepaymentWrapper>

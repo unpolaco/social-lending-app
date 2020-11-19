@@ -29,13 +29,15 @@ export const FormikWrapper = styled.div`
     border-radius: 5px;
     width: 300px;
 `;
-export const ScheduleWrapper = styled(FormikWrapper)`
-    margin: 5px;
-    border: 1px solid
-        ${props =>
-            props.color === 'PAID' ? palette.repayment.paid : props.color === 'LATE' ? palette.repayment.late : palette.repayment.expected};
-`;
 
+export const ScheduleWrapper = styled.div`
+    display: flex;
+    border-top: 1px solid grey;
+    justify-content: space-between;
+    margin: 8px;
+    color: ${props =>
+        props.color === 'PAID' ? palette.repayment.paid : props.color === 'LATE' ? palette.repayment.late : palette.repayment.expected};
+`;
 export const FieldWrapper = styled.div`
     flex: 1;
     padding: 0 15px;
@@ -60,8 +62,9 @@ export const OffersWrapper = styled(Box)`
 `;
 export const RepaymentWrapper = styled.div`
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: 150px;
+    flex-direction: column;
+    align-items: flex-end;
 `;
 export const LoanDetailWrapper = styled.div`
     display: flex;

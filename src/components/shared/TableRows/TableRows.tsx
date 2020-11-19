@@ -54,7 +54,9 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                         </>
                                     );
                                 case 'borrowerUserLoans':
-                                    return <CollapseBoxDisplayLoanDetails row={row} fetchUserLoans={fetchUserLoans} />;
+                                    return (
+                                        <CollapseBoxDisplayLoanDetails row={row} fetchUserLoans={fetchUserLoans} page="borrowerUserLoans" />
+                                    );
                                 case 'lenderAllAuctions':
                                     return (
                                         <>
@@ -62,6 +64,8 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                             <CollapseBoxCreateOffer row={row} handleSaveNewOffer={handleSaveNewOffer} />
                                         </>
                                     );
+                                case 'lenderUserInvestments':
+                                    return <CollapseBoxDisplayLoanDetails row={row} page="lenderUserInvestments" />;
                             }
                         })()}
                     </Collapse>
