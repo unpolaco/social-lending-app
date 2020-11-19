@@ -14,6 +14,6 @@ describe('getUserLoans', () => {
         mocked(axios.get).mockResolvedValue({data: 'getDataMock'});
         const request = await getUserLoans('1');
         expect(request.data).toEqual('getDataMock');
-        expect(axios.get).toHaveBeenCalledWith(`${apiLoans}/1`);
+        expect(axios.get).toHaveBeenCalledWith(`${apiLoans}/borrower/1`);
     });
 });
