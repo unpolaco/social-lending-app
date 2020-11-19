@@ -67,7 +67,13 @@ export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOff
                     </TableBody>
                 </MaterialTable>
             </TableContainer>
-            <TablePagination count={rows.length} rowsPerPage={rowsPerPage} page={page} onChangePage={handleChangePage} />
+            <TablePagination
+                rowsPerPageOptions={[]}
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onChangePage={handleChangePage}
+            />
         </Paper>
     );
 };
