@@ -3,15 +3,16 @@ import {Collapse} from '@material-ui/core';
 import {CollapseBoxCreateOffer} from '../TableCollapseBox/CollapseBoxCreateOffer';
 import {CollapseBoxAuctionOffers} from '../TableCollapseBox/CollapseBoxAuctionOffers';
 import {CollapseBoxCreateLoan} from '../TableCollapseBox/CollapseBoxCreateLoan';
+import {CollapseBoxDisplayLoanDetails} from '../TableCollapseBox/CollapseBoxDisplayLoanDetails';
 import {TableRowsBorrowerAllAuctions} from '../TableRows/TableRowsBorrowerAllAuctions';
 import {TableRowsBorrowerUserAuctions} from '../TableRows/TableRowsBorrowerUserAuctions';
 import {TableRowsBorrowerUserLoans} from '../TableRows/TableRowsBorrowerUserLoans';
 import {TableRowsLenderAllAuctions} from '../TableRows/TableRowsLenderAllAuctions';
 import {TableRowsLenderUserInvestments} from '../TableRows/TableRowsLenderUserInvestments';
 import {TableRowsLenderUserOffers} from '../TableRows/TableRowsLenderUserOffers';
-import {CollapsedCell, StyledTableRow} from '../Table/Table.styles';
+import {CollapsedCell, StyledTableRowHover, StyledTableRow} from './TableRows.styles';
 
-export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer}) => {
+export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, fetchUserLoans}) => {
     const [clickedCollapsed, setClickedCollapsed] = useState<number | null>(null);
 
     const handleClickCollapse = (id: number) => {
@@ -20,7 +21,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer})
     };
     return (
         <>
-            <StyledTableRow role="checkbox" tabIndex={-1} key={row.id} onClick={() => handleClickCollapse(row.id)}>
+            <StyledTableRowHover role="checkbox" tabIndex={-1} key={row.id} onClick={() => handleClickCollapse(row.id)}>
                 {(() => {
                     switch (currentPage) {
                         case 'borrowerAllAuctions':
@@ -37,7 +38,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer})
                             return <TableRowsLenderUserOffers row={row} />;
                     }
                 })()}
-            </StyledTableRow>
+            </StyledTableRowHover>
             <StyledTableRow>
                 <CollapsedCell colSpan={7} align="center" padding="none">
                     <Collapse in={clickedCollapsed === row.id} timeout="auto" unmountOnExit>
@@ -47,6 +48,8 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer})
                                     return <CollapseBoxAuctionOffers row={row} />;
                                 case 'borrowerUserAuctions':
                                     return <CollapseBoxCreateLoan row={row} />;
+                                case 'borrowerUserLoans':
+                                    return <CollapseBoxDisplayLoanDetails row={row} fetchUserLoans={fetchUserLoans} />;
                                 case 'lenderAllAuctions':
                                     return <CollapseBoxCreateOffer row={row} handleSaveNewOffer={handleSaveNewOffer} />;
                             }

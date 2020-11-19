@@ -13,9 +13,10 @@ interface TableProps {
     rows: any;
     currentPage: string;
     handleSaveNewOffer?: any;
+    fetchUserLoans?: any;
 }
 
-export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOffer}) => {
+export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOffer, fetchUserLoans}) => {
     const rowsPerPage = 10;
     const [order, setOrder] = useState<Order>('asc');
     const [orderBy, setOrderBy] = useState<keyof AuctionData | keyof LoanData>('status');
@@ -51,7 +52,12 @@ export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOff
                         {stableSort(rows, getComparator(order, orderBy))
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => (
-                                <TableRows row={row} currentPage={currentPage} handleSaveNewOffer={handleSaveNewOffer} />
+                                <TableRows
+                                    row={row}
+                                    currentPage={currentPage}
+                                    handleSaveNewOffer={handleSaveNewOffer}
+                                    fetchUserLoans={fetchUserLoans}
+                                />
                             ))}
                         {emptyRows > 0 && (
                             <TableRow style={{height: 53 * emptyRows}}>

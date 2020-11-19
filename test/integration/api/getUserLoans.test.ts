@@ -1,9 +1,9 @@
 import {mocked} from 'ts-jest/utils';
-import {getUserLoans} from '../../../../src/api/getUserLoans';
-import {axios} from '../../../../src/api/axios';
-import {apiLoans} from '../../../../src/helpers/constants-api';
+import {getUserLoans} from '../../../src/api/getUserLoans';
+import {axios} from '../../../src/api/axios';
+import {apiLoans} from '../../../src/helpers/constants-api';
 
-jest.mock('../../../../src/api/axios');
+jest.mock('../../../src/api/axios');
 
 describe('getUserLoans', () => {
     beforeEach(() => {
@@ -14,6 +14,6 @@ describe('getUserLoans', () => {
         mocked(axios.get).mockResolvedValue({data: 'getDataMock'});
         const request = await getUserLoans('1');
         expect(request.data).toEqual('getDataMock');
-        expect(axios.get).toHaveBeenCalledWith(`${apiLoans}/1`);
+        expect(axios.get).toHaveBeenCalledWith(`${apiLoans}/borrower/1`);
     });
 });

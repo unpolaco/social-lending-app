@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
-import {Card} from '@material-ui/core/';
 import {paletteColors} from '../../../helpers/constants-colors';
 
-export const CreateAuctionCardWrapper = styled(Card)`
+export const CreateAuctionCardWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,11 +16,12 @@ export const AccordionWrapper = styled.div`
     }
 `;
 export const FormWrapper = styled.div`
-    padding: 20px;
-    border: 1px solid white;
     display: flex;
     flex-direction: column;
     height: 300px;
     justify-content: space-between;
+    padding: 20px;
+    border: 1px solid ${paletteColors.palette.form.border};
     border-radius: 5px;
+    background-color: ${paletteColors.palette.form.background};
 `;

@@ -6,6 +6,7 @@ export interface AuctionData {
     rate: number;
     auctionDuration: string;
     auctionStartDate: string;
+    schedule: any;
     loanStartDate: string;
     borrowerRating: number;
     offers: any;

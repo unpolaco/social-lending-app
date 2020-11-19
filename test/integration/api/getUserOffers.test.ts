@@ -1,9 +1,9 @@
 import {mocked} from 'ts-jest/utils';
-import {getUserOffers} from '../../../../src/api/getUserOffers';
-import {axios} from '../../../../src/api/axios';
-import {apiOffers} from '../../../../src/helpers/constants-api';
+import {getUserOffers} from '../../../src/api/getUserOffers';
+import {axios} from '../../../src/api/axios';
+import {apiOffers} from '../../../src/helpers/constants-api';
 
-jest.mock('../../../../src/api/axios');
+jest.mock('../../../src/api/axios');
 
 describe('getUserOffers', () => {
     beforeEach(() => {

@@ -1,9 +1,9 @@
 import {mocked} from 'ts-jest/utils';
-import {getUserAuctions} from '../../../../src/api/getUserAuctions';
-import {axios} from '../../../../src/api/axios';
-import {apiAuctionsBorrower} from '../../../../src/helpers/constants-api';
+import {getUserAuctions} from '../../../src/api/getUserAuctions';
+import {axios} from '../../../src/api/axios';
+import {apiAuctionsBorrower} from '../../../src/helpers/constants-api';
 
-jest.mock('../../../../src/api/axios');
+jest.mock('../../../src/api/axios');
 
 describe('getUserAuctions', () => {
     beforeEach(() => {
