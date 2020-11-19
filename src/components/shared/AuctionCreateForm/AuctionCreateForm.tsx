@@ -24,13 +24,16 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                     <CreateAuctionCardWrapper>
                         <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
-                                const loanAmount = values.amount! + (values.rate! / 100) * values.loanDuration;
+                                const loanAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
+                                const loanRepayment = (loanAmount / values.loanDuration).toFixed(2);
+                                const loanAmountDisplay = !Number.isNaN(Number(loanAmount)) && isValid ? ` ${loanAmount} zł` : ' 0 zł';
+                                const loanRepaymentDisplay =
+                                    !Number.isNaN(Number(loanRepayment)) && isValid ? ` ${loanRepayment} zł` : ' 0 zł';
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormWrapper>
-                                            <Typography>
-                                                Amount to pay: {!Number.isNaN(Number(loanAmount)) ? ` ${loanAmount} zł` : ' 0 zł'}{' '}
-                                            </Typography>
+                                            <Typography>Total amount to pay: {loanAmountDisplay}</Typography>
+                                            <Typography>Repayment amount: {loanRepaymentDisplay}</Typography>
                                             <TextField
                                                 autoFocus
                                                 name="amount"
@@ -52,14 +55,6 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 onBlur={handleBlur}
                                                 error={Boolean(touched.rate && errors.rate)}
                                                 helperText={touched.rate && errors.rate}
-                                            />
-                                            <TextField
-                                                name="loanStartDate"
-                                                type="date"
-                                                label="Start loan date"
-                                                InputLabelProps={{shrink: true}}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
                                             />
                                             <Typography>Duration of a loan in months</Typography>
                                             <Slider

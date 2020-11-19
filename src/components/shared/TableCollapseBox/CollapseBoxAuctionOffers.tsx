@@ -21,12 +21,16 @@ export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> =
                             <Typography>{offer.rate} %</Typography>
                             <Typography>
                                 {offer.allowAmountSplit ? (
-                                    <Tooltip title="Allow divide amount" enterDelay={500} leaveDelay={200}>
-                                        <IconAllowDivision color="#7e8a96" />
+                                    <Tooltip title="Allowed division of offer amount" enterDelay={500} leaveDelay={200}>
+                                        <span>
+                                            <IconAllowDivision color="#7e8a96" />
+                                        </span>
                                     </Tooltip>
                                 ) : (
-                                    <Tooltip title="Allow divide amount" enterDelay={500} leaveDelay={200}>
-                                        <IconAllowDivision color="#EA2027" />
+                                    <Tooltip title="Not allowed division of offer amount" enterDelay={500} leaveDelay={200}>
+                                        <span>
+                                            <IconAllowDivision color="#EA2027" />
+                                        </span>
                                     </Tooltip>
                                 )}
                             </Typography>

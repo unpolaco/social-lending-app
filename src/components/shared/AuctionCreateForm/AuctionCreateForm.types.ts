@@ -3,5 +3,4 @@ export interface AuctionCreateFormValues {
     amount: number | undefined;
     rate: number | undefined;
     loanDuration: number;
-    loanStartDate: string;
 }
