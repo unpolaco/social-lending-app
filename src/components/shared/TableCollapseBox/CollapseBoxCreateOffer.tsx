@@ -1,7 +1,7 @@
 import React from 'react';
 import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBox.styles';
 import {Formik, Form} from 'formik';
-import {Button, Typography, TextField, Slider, InputAdornment, Box} from '@material-ui/core';
+import {Button, Typography, TextField, Slider, InputAdornment, Box, Switch} from '@material-ui/core';
 import {OfferData} from '../Table/Table.types';
 import {CollapseBoxCreateOfferValidator} from './CollapseBoxCreateOffer.helpers';
 
@@ -29,9 +29,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                     initialValues={{
                         amount: amount,
                         rate: rate,
-
-                        // temporary hide - waiting for server update
-                        // allowDivision: true
+                        allowAmountSplit: true,
                     }}
                     validate={CollapseBoxCreateOfferValidator}
                     onSubmit={handleSubmit}
@@ -64,11 +62,13 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                         value={values.amount}
                                         onChange={(e, value) => setFieldValue('amount', value)}
                                     />
-
-                                    {/* temporary hide button - waiting for server update */}
-
-                                    {/* <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
-                                    <Switch color="primary" checked={values.allowDivision} onChange={handleChange} name="allowDivision" /> */}
+                                    <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
+                                    <Switch
+                                        color="primary"
+                                        checked={values.allowAmountSplit}
+                                        onChange={handleChange}
+                                        name="allowAmountSplit"
+                                    />
                                 </FieldWrapper>
                                 <Button type="submit" variant="outlined" disabled={!isValid}>
                                     Create offer
