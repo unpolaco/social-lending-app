@@ -34,7 +34,7 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps>
                 </Button>
             )}
             {row.schedule.map((repayment: any) => (
-                <ScheduleWrapper key={repayment.date} color={row.status}>
+                <ScheduleWrapper key={repayment.date} color={repayment.status}>
                     <RepaymentWrapper>
                         <TextLight>date</TextLight>
                         <TextBold>{repayment.date}</TextBold>

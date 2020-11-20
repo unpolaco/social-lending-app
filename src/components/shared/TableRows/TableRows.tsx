@@ -29,11 +29,11 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                         case 'borrowerUserAuctions':
                             return <TableRowsBorrowerUserAuctions row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'borrowerUserLoans':
-                            return <TableRowsBorrowerUserLoans row={row} />;
+                            return <TableRowsBorrowerUserLoans row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderAllAuctions':
                             return <TableRowsLenderAllAuctions row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderUserInvestments':
-                            return <TableRowsLenderUserInvestments row={row} />;
+                            return <TableRowsLenderUserInvestments row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderUserOffers':
                             return <TableRowsLenderUserOffers row={row} />;
                     }
