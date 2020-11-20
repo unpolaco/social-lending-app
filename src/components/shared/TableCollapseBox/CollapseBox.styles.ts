@@ -29,14 +29,14 @@ export const FormikWrapper = styled.div`
     border-radius: 5px;
     width: 300px;
 `;
-
 export const ScheduleWrapper = styled.div`
     display: flex;
     border-top: 1px solid grey;
     justify-content: space-between;
     margin: 8px;
-    color: ${props =>
-        props.color === 'PAID' ? palette.repayment.paid : props.color === 'LATE' ? palette.repayment.late : palette.repayment.expected};
+    ${({color}) => color === 'PAID' && `color: ${palette.repayment.paid}`}
+    ${({color}) => color === 'LATE' && `color: ${palette.repayment.late}`}
+    ${({color}) => color === 'EXPECTED' && `color: ${palette.repayment.expected}`}
 `;
 export const FieldWrapper = styled.div`
     flex: 1;
