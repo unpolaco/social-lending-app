@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import {TableCell} from '@material-ui/core';
 
 export const HiddenSpan = styled.span`
     border: 0;
@@ -10,4 +11,8 @@ export const HiddenSpan = styled.span`
     position: absolute;
     top: 20;
     width: 1;
+`;
+export const NarrowCell = styled(TableCell)`
+    cursor: pointer;
+    flex: 1;
 `;

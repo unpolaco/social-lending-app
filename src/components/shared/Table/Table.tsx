@@ -36,12 +36,14 @@ export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOff
                 <MaterialTable>
                     {(() => {
                         switch (currentPage) {
-                            case 'borrowerAllAuctions' || 'lenderAllAuctions':
+                            case 'borrowerAllAuctions':
                                 return <TableHeadAllAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
                             case 'borrowerUserAuctions':
                                 return <TableHeadUserAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
                             case 'borrowerUserLoans':
                                 return <TableHeadUserLoans order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
+                            case 'lenderAllAuctions':
+                                return <TableHeadAllAuctions order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
                             case 'lenderUserInvestments':
                                 return <TableHeadUserInvestments order={order} orderBy={orderBy} onRequestSort={handleRequestSort} />;
                             case 'lenderUserOffers':
