@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextBold, WideCell, NarrowCell, StyledBox} from './TableRows.styles';
+import {TextBold, WideCell, NarrowCell, StyledBox, StatusIcon} from './TableRows.styles';
 import {Typography, IconButton, Tooltip} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -32,10 +32,10 @@ export const TableRowsBorrowerAllAuctions: React.FC<TableRowsBorrowerAllAuctions
                 <TextBold>{row.auctionStartDate}</TextBold>
             </NarrowCell>
             <NarrowCell align="right">
-                <Typography>Loan start date:</Typography>
-                <TextBold>{row.loanStartDate}</TextBold>
+                <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>
+                    <StatusIcon color={row.status} />
+                </Tooltip>
             </NarrowCell>
-            <NarrowCell align="right">{row.status}</NarrowCell>
             <NarrowCell>
                 <IconButton aria-label="expand row" size="small">
                     {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
