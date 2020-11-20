@@ -29,7 +29,7 @@ export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> =
                                 ) : (
                                     <Tooltip title="Not allowed division of offer amount" enterDelay={500} leaveDelay={200}>
                                         <span>
-                                            <IconAllowDivision color="#EA2027" />
+                                            <IconAllowDivision color="#333333" />
                                         </span>
                                     </Tooltip>
                                 )}
