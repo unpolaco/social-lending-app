@@ -4,6 +4,8 @@ import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
 import {FormikWrapper} from './CollapseBox.styles';
 import {AuctionData} from '../Table/Table.types';
+import {useHistory} from 'react-router-dom';
+import {ROUTES} from '../../../helpers/routes';
 
 interface CollapseBoxCreateLoanProps {
     row: AuctionData;
@@ -13,6 +15,7 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
     const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
     const {isFetchingConfirmCreateLoan, isErrorConfirmCreateLoan, fetchConfirmCreateLoan} = useGetConfirmCreateLoan();
     const disabled = row.status === 'ACTIVE_COMPLETE' ? false : true;
+    const history = useHistory();
 
     if (isFetchingCreateLoan || isFetchingConfirmCreateLoan) {
         return <CircularProgress />;
@@ -26,8 +29,8 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
     }
     function handleConfirmCreateLoan() {
         fetchConfirmCreateLoan(loanDetails.id);
+        history.push(ROUTES.BORROWER_COMMITMENTS_LOANS);
     }
-    console.log(row);
     return (
         <Box>
             <Typography>Make a loan or delete your auction</Typography>
