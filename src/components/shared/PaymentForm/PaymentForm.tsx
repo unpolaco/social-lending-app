@@ -1,21 +1,48 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
-import {Button, Typography, TextField} from '@material-ui/core';
+import {Button, Typography, TextField, CircularProgress} from '@material-ui/core';
 import {FormWrapper} from './PaymentForm.styles';
+import {usePaymentOnPlatformAccount} from '../../../hooks/usePaymentOnPlatformAccount';
+import {usePaymentOnUserAccount} from '../../../hooks/usePaymentOnUserAccount';
 
-export const PaymentForm: React.FC = () => {
-    function handleSubmit(values: any) {}
+export const PaymentForm: React.FC<any> = ({paymentType, accountBalance}) => {
+    const {
+        isFetchingPaymentOnPlatform,
+        isErrorPaymentOnPlatform,
+        fetchPaymentOnPlatformAccount,
+        responsePaymentOnPlatform,
+    } = usePaymentOnPlatformAccount();
+    const {
+        isFetchingPaymentOnUserAccount,
+        isErrorPaymentOnUserAccount,
+        fetchPaymentOnUserAccount,
+        responsePaymentOnUserAccount,
+    } = usePaymentOnUserAccount();
+
+    if (isFetchingPaymentOnPlatform || isFetchingPaymentOnUserAccount) {
+        return <CircularProgress />;
+    }
+    if (isErrorPaymentOnPlatform || isErrorPaymentOnUserAccount) {
+        alert('Error');
+    }
+
+    function handleSubmit(values: any) {
+        const paymentDetails = {amount: values.amount, userName: 'Bilbo_Baggins'};
+        paymentType === 'paymentOnUserAccount' && fetchPaymentOnPlatformAccount(paymentDetails);
+        paymentType === 'paymentOnPlatform' && fetchPaymentOnUserAccount(paymentDetails);
+    }
 
     return (
         <>
-            <Typography>Make payment</Typography>
+            <Typography>Your platform account balance: {accountBalance} zł</Typography>
 
             <Formik initialValues={{amount: 0}} onSubmit={handleSubmit}>
                 {({handleSubmit, values, handleChange, handleBlur, errors, touched, isValid}) => {
                     return (
                         <Form onSubmit={handleSubmit}>
                             <FormWrapper>
-                                <Typography>Repayment amount:</Typography>
+                                {paymentType === 'paymentOnUserAccount' && <Typography>Make payment on your private account</Typography>}
+                                {paymentType === 'paymentOnPlatform' && <Typography>Make payment on your platform account</Typography>}
                                 <TextField
                                     autoFocus
                                     name="amount"

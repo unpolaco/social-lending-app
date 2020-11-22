@@ -1,27 +1,27 @@
 import {useCallback, useState} from 'react';
-import {postPaymentOnPlatformAccount} from '../api/postPaymentOnPlatformAccount';
+import {postPaymentOnUserAccount} from '../api/postPaymentOnUserAccount';
 
-export const usePaymentOnPlatformAccount = () => {
-    const [isFetching, setIsFetching] = useState<boolean>(false);
-    const [isError, setIsError] = useState<boolean>(false);
-    const [response, setResponse] = useState<any>();
+export const usePaymentOnUserAccount = () => {
+    const [isFetchingPaymentOnUserAccount, setIsFetchingPaymentOnUserAccount] = useState<boolean>(false);
+    const [isErrorPaymentOnUserAccount, setIsErrorPaymentOnUserAccount] = useState<boolean>(false);
+    const [responsePaymentOnUserAccount, setResponsePaymentOnUserAccount] = useState<any>();
 
-    const fetchPaymentOnPlatformAccount = useCallback(async paymentDetails => {
-        setIsFetching(true);
+    const fetchPaymentOnUserAccount = useCallback(async paymentDetails => {
+        setIsFetchingPaymentOnUserAccount(true);
         try {
-            const response: any = await postPaymentOnPlatformAccount(paymentDetails);
-            setResponse(response);
+            const response: any = await postPaymentOnUserAccount(paymentDetails);
+            setResponsePaymentOnUserAccount(response);
         } catch {
-            setIsError(true);
+            setIsErrorPaymentOnUserAccount(true);
         } finally {
-            setIsFetching(false);
+            setIsFetchingPaymentOnUserAccount(false);
         }
     }, []);
 
     return {
-        isFetching,
-        isError,
-        response,
-        fetchPaymentOnPlatformAccount,
+        isFetchingPaymentOnUserAccount,
+        isErrorPaymentOnUserAccount,
+        responsePaymentOnUserAccount,
+        fetchPaymentOnUserAccount,
     };
 };
