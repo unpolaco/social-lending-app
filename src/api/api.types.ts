@@ -9,3 +9,7 @@ export interface apiSaveNewOfferDto {
     amount: number;
     rate: number;
 }
+export interface apiPaymentDto {
+    userName: string;
+    amount: number;
+}
