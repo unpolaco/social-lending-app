@@ -28,6 +28,7 @@ export const CreateOfferWrapper = styled.div`
 export const FormikWrapper = styled.div`
     padding: 20px;
     display: flex;
+    margin: 0 auto;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 5px;
@@ -66,6 +67,7 @@ export const StyledBox = styled(Box)`
 `;
 export const OffersWrapper = styled(Box)`
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     flex: 1;
 `;

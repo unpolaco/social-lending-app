@@ -22,7 +22,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
     }
 
     return (
-        <Box>
+        <>
             <CreateOfferWrapper>
                 <Typography>Create an offer for this auction</Typography>
                 <Formik
@@ -78,6 +78,6 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                     )}
                 </Formik>
             </CreateOfferWrapper>
-        </Box>
+        </>
     );
 };
