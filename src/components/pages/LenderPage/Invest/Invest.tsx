@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
-import {Typography, CircularProgress} from '@material-ui/core/';
+import {CircularProgress} from '@material-ui/core/';
 import {useGetAllAuctions} from '../../../../hooks/useGetAllAuctions';
 import {useSaveNewOffer} from '../../../../hooks/useSaveNewOffer';
 import {Table} from '../../../shared/Table/Table';
+import {PageWrapper, Title} from './Invest.styles';
 
 export const Invest: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -26,9 +27,9 @@ export const Invest: React.FC = () => {
     }
 
     return (
-        <>
-            <Typography>List of all actual auctions:</Typography>
+        <PageWrapper>
+            <Title>List of all actual auctions:</Title>
             {auctionsList && <Table rows={auctionsList} currentPage="lenderAllAuctions" handleSaveNewOffer={handleSaveNewOffer} />}
-        </>
+        </PageWrapper>
     );
 };

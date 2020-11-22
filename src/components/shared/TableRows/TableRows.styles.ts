@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
-import {TableRow, Typography, TableCell, Box} from '@material-ui/core/';
+import {TableRow, TableCell, Box} from '@material-ui/core/';
+import {paletteColors} from '../../../helpers/constants-colors';
 
-export const TextBold = styled(Typography)`
-    font-weight: 500;
-    font-size: 17px;
+const {palette} = paletteColors;
+
+export const Text = styled.p`
+    font-weight: 400;
+    font-size: 15px;
 `;
 export const StyledTableRow = styled(TableRow)`
     padding: 0 15px;
@@ -31,4 +34,12 @@ export const CollapsedCell = styled(TableCell)`
 `;
 export const StyledBox = styled(Box)`
     margin: 0 30px;
+`;
+export const StatusIcon = styled.div`
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    ${({color}) => color === 'ACTIVE' && `background: ${palette.status.active}`};
+    ${({color}) => color === 'ACTIVE_COMPLETE' && `background: ${palette.status.activeComplete}`};
+    ${({color}) => color === 'ARCHIVED' && `background: ${palette.status.archived}`};
 `;

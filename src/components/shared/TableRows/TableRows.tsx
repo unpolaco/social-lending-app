@@ -29,11 +29,11 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                         case 'borrowerUserAuctions':
                             return <TableRowsBorrowerUserAuctions row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'borrowerUserLoans':
-                            return <TableRowsBorrowerUserLoans row={row} />;
+                            return <TableRowsBorrowerUserLoans row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderAllAuctions':
                             return <TableRowsLenderAllAuctions row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderUserInvestments':
-                            return <TableRowsLenderUserInvestments row={row} />;
+                            return <TableRowsLenderUserInvestments row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderUserOffers':
                             return <TableRowsLenderUserOffers row={row} />;
                     }
@@ -47,11 +47,25 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                 case 'borrowerAllAuctions':
                                     return <CollapseBoxAuctionOffers row={row} />;
                                 case 'borrowerUserAuctions':
-                                    return <CollapseBoxCreateLoan row={row} />;
+                                    return (
+                                        <>
+                                            <CollapseBoxAuctionOffers row={row} />
+                                            <CollapseBoxCreateLoan row={row} />
+                                        </>
+                                    );
                                 case 'borrowerUserLoans':
-                                    return <CollapseBoxDisplayLoanDetails row={row} fetchUserLoans={fetchUserLoans} />;
+                                    return (
+                                        <CollapseBoxDisplayLoanDetails row={row} fetchUserLoans={fetchUserLoans} page="borrowerUserLoans" />
+                                    );
                                 case 'lenderAllAuctions':
-                                    return <CollapseBoxCreateOffer row={row} handleSaveNewOffer={handleSaveNewOffer} />;
+                                    return (
+                                        <>
+                                            <CollapseBoxAuctionOffers row={row} />
+                                            <CollapseBoxCreateOffer row={row} handleSaveNewOffer={handleSaveNewOffer} />
+                                        </>
+                                    );
+                                case 'lenderUserInvestments':
+                                    return <CollapseBoxDisplayLoanDetails row={row} page="lenderUserInvestments" />;
                             }
                         })()}
                     </Collapse>

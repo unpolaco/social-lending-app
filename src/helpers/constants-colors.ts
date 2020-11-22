@@ -23,6 +23,11 @@ export const paletteColors: any = {
             4: '#EE5A24',
             5: '#EA2027',
         },
+        status: {
+            active: '#009432',
+            activeComplete: '#FFC312',
+            archived: '#3d5775',
+        },
         repayment: {
             expected: '#C4E538',
             late: '#EE5A24',
@@ -32,9 +37,15 @@ export const paletteColors: any = {
             background: '#2f445c',
             border: '#487eb0',
         },
+        page: {
+            lightBackground: ' #4b4b4b',
+        },
         info: {
             main: '#8db7d8',
         },
+    },
+    typography: {
+        fontFamily: 'Poppins',
     },
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core';
-import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper} from './AuctionCreateForm.styles';
+import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text} from './AuctionCreateForm.styles';
 import {initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
 import {AuctionCreateFormValues} from './AuctionCreateForm.types';
@@ -24,13 +24,16 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                     <CreateAuctionCardWrapper>
                         <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
-                                const loanAmount = values.amount! + (values.rate! / 100) * values.loanDuration;
+                                const loanAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
+                                const loanRepayment = (loanAmount / values.loanDuration).toFixed(2);
+                                const loanAmountDisplay = !Number.isNaN(Number(loanAmount)) && isValid ? ` ${loanAmount} zł` : ' 0 zł';
+                                const loanRepaymentDisplay =
+                                    !Number.isNaN(Number(loanRepayment)) && isValid ? ` ${loanRepayment} zł` : ' 0 zł';
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormWrapper>
-                                            <Typography>
-                                                Amount to pay: {!Number.isNaN(Number(loanAmount)) ? ` ${loanAmount} zł` : ' 0 zł'}{' '}
-                                            </Typography>
+                                            <Text>Total amount to pay: {loanAmountDisplay}</Text>
+                                            <Text>Repayment amount: {loanRepaymentDisplay}</Text>
                                             <TextField
                                                 autoFocus
                                                 name="amount"
@@ -53,15 +56,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 error={Boolean(touched.rate && errors.rate)}
                                                 helperText={touched.rate && errors.rate}
                                             />
-                                            <TextField
-                                                name="loanStartDate"
-                                                type="date"
-                                                label="Start loan date"
-                                                InputLabelProps={{shrink: true}}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                            />
-                                            <Typography>Duration of a loan in months</Typography>
+                                            <Text>Duration of a loan in months</Text>
                                             <Slider
                                                 name="loanDuration"
                                                 valueLabelDisplay="auto"

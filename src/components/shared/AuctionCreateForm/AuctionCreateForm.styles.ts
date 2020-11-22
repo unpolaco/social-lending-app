@@ -19,9 +19,14 @@ export const FormWrapper = styled.div`
     display: flex;
     flex-direction: column;
     height: 300px;
+    width: 300px;
     justify-content: space-between;
     padding: 20px;
     border: 1px solid ${paletteColors.palette.form.border};
     border-radius: 5px;
     background-color: ${paletteColors.palette.form.background};
+`;
+export const Text = styled.p`
+    font-weight: 400;
+    font-size: 15px;
 `;

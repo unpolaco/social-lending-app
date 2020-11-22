@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
-import {Container, Typography, CircularProgress} from '@material-ui/core/';
+import {CircularProgress} from '@material-ui/core/';
 import {Table} from '../../../shared/Table/Table';
 import {useGetAllAuctions} from '../../../../hooks/useGetAllAuctions';
+import {PageWrapper, Title} from './Auctions.styles';
 
 export const Auctions: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -18,9 +19,9 @@ export const Auctions: React.FC = () => {
     }
 
     return (
-        <Container>
-            <Typography>List of all actual auctions:</Typography>
+        <PageWrapper>
+            <Title>List of all actual auctions:</Title>
             {auctionsList && <Table rows={auctionsList} currentPage="borrowerAllAuctions" />}
-        </Container>
+        </PageWrapper>
     );
 };

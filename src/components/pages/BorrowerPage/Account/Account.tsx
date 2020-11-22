@@ -1,6 +1,43 @@
-import React from 'react';
-import {Typography} from '@material-ui/core/';
+import React, {useEffect} from 'react';
+import {CircularProgress} from '@material-ui/core/';
+import {useGetAccountDetails} from '../../../../hooks/useGetAccountDetails';
+import {StyledCard, PageWrapper, TextBold, TextLight, Title} from './Account.styles';
+import {PaymentCard} from '../../../shared/PaymentCard/PaymentCard';
 
 export const Account: React.FC = () => {
-    return <Typography>BORROWER ACCOUNT Page</Typography>;
+    const {isFetchingGet, isErrorGet, fetchAccountDetails, accountDetails} = useGetAccountDetails();
+
+    useEffect(() => {
+        fetchAccountDetails('Bilbo_Baggins');
+    }, [fetchAccountDetails]);
+
+    if (isFetchingGet) {
+        return <CircularProgress />;
+    }
+    if (isErrorGet) {
+        alert('Error');
+    }
+
+    return (
+        <>
+            <Title>BORROWER ACCOUNT Page</Title>
+            <PageWrapper>
+                {accountDetails && (
+                    <StyledCard>
+                        <TextLight>Username</TextLight>
+                        <TextBold>{accountDetails.userName}</TextBold>
+                        <TextLight>First name</TextLight>
+                        <TextBold>{accountDetails.name}</TextBold>
+                        <TextLight>Surname</TextLight>
+                        <TextBold>{accountDetails.surname}</TextBold>
+                        <TextLight>E-mail</TextLight>
+                        <TextBold>{accountDetails.email}</TextBold>
+                        <TextLight>Phone number</TextLight>
+                        <TextBold>{accountDetails.phoneNumber}</TextBold>
+                    </StyledCard>
+                )}
+                <PaymentCard currentPage="borrower" accountBalance={accountDetails?.accountBalance} />
+            </PageWrapper>
+        </>
+    );
 };

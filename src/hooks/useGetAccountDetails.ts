@@ -1,16 +1,16 @@
 import {useCallback, useState} from 'react';
-import {getMakeLoanRepayment} from './../api/getMakeLoanRepayment';
+import {getAccountDetails} from './../api/getAccountDetails';
 
-export const useGetMakeLoanRepayment = () => {
+export const useGetAccountDetails = () => {
     const [isFetchingGet, setIsFetchingGet] = useState<boolean>(false);
     const [isErrorGet, setIsErrorGet] = useState<boolean>(false);
-    const [response, setResponse] = useState<number>();
+    const [accountDetails, setAccountDetails] = useState<any>();
 
-    const fetchMakeLoanRepayment = useCallback(async (loanId: number) => {
+    const fetchAccountDetails = useCallback(async (userName: string) => {
         setIsFetchingGet(true);
         try {
-            const response: any = await getMakeLoanRepayment(loanId);
-            setResponse(response.status);
+            const response: any = await getAccountDetails(userName);
+            setAccountDetails(response.data);
         } catch {
             setIsErrorGet(true);
         } finally {
@@ -21,7 +21,7 @@ export const useGetMakeLoanRepayment = () => {
     return {
         isFetchingGet,
         isErrorGet,
-        fetchMakeLoanRepayment,
-        response,
+        accountDetails,
+        fetchAccountDetails,
     };
 };
