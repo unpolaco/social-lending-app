@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
-import {TableRow, Typography, TableCell, Box} from '@material-ui/core/';
+import {TableRow, TableCell, Box} from '@material-ui/core/';
 import {paletteColors} from '../../../helpers/constants-colors';
 
 const {palette} = paletteColors;
 
-export const TextBold = styled(Typography)`
-    font-weight: 500;
-    font-size: 17px;
+export const Text = styled.p`
+    font-weight: 400;
+    font-size: 15px;
 `;
 export const StyledTableRow = styled(TableRow)`
     padding: 0 15px;

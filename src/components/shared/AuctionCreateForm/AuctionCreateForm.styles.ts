@@ -26,3 +26,7 @@ export const FormWrapper = styled.div`
     border-radius: 5px;
     background-color: ${paletteColors.palette.form.background};
 `;
+export const Text = styled.p`
+    font-weight: 400;
+    font-size: 15px;
+`;

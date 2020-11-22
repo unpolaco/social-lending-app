@@ -1,6 +1,6 @@
 import React from 'react';
-import {HiddenSpan, NarrowCell} from './TableHead.styles';
-import {TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core';
+import {HiddenSpan, NarrowCell, TextHead, TextHeadCell} from './TableHead.styles';
+import {TableHead, TableRow, TableSortLabel} from '@material-ui/core';
 import {AuctionData, AuctionTableProps} from '../Table/Table.types';
 import {headCellsAllAuctions} from './TableHead.constants';
 
@@ -13,18 +13,18 @@ export const TableHeadAllAuctions: React.FC<AuctionTableProps> = ({order, orderB
             <TableRow>
                 {headCellsAllAuctions.map(headCell => (
                     <NarrowCell align="right">
-                        <TableCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
+                        <TextHeadCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
                             <TableSortLabel
                                 active={orderBy === headCell.id}
                                 direction={orderBy === headCell.id ? order : 'asc'}
                                 onClick={createSortHandler(headCell.id)}
                             >
-                                {headCell.label}
+                                <TextHead>{headCell.label}</TextHead>
                                 {orderBy === headCell.id ? (
                                     <HiddenSpan>{order === 'desc' ? 'sorted descending' : 'sorted ascending'}</HiddenSpan>
                                 ) : null}
                             </TableSortLabel>
-                        </TableCell>
+                        </TextHeadCell>
                     </NarrowCell>
                 ))}
             </TableRow>

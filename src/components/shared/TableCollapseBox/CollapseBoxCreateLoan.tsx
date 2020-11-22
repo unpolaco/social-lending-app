@@ -2,7 +2,7 @@ import React from 'react';
 import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
 import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
-import {FormikWrapper} from './CollapseBox.styles';
+import {FormikWrapper, Text} from './CollapseBox.styles';
 import {AuctionData} from '../Table/Table.types';
 import {useHistory} from 'react-router-dom';
 import {ROUTES} from '../../../helpers/routes';
@@ -42,11 +42,11 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
             </Button>
             {loanDetails && (
                 <FormikWrapper>
-                    <div>You are creating a loan with parameters above:</div>
-                    <div>Amount {loanDetails.amount} zł</div>
-                    <div>Duration {loanDetails.duration} months</div>
-                    <div>Rate {loanDetails.rate} %</div>
-                    <div>Start at {loanDetails.startDate}</div>
+                    <Text>You are creating a loan with parameters above:</Text>
+                    <Text>Amount {loanDetails.amount} zł</Text>
+                    <Text>Duration {loanDetails.duration} months</Text>
+                    <Text>Rate {loanDetails.rate} %</Text>
+                    <Text>Start at {loanDetails.startDate}</Text>
                     <Button onClick={handleConfirmCreateLoan}>CONFIRM</Button>
                 </FormikWrapper>
             )}

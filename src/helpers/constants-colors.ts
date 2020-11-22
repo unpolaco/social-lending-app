@@ -37,9 +37,15 @@ export const paletteColors: any = {
             background: '#2f445c',
             border: '#487eb0',
         },
+        page: {
+            lightBackground: ' #4b4b4b',
+        },
         info: {
             main: '#8db7d8',
         },
+    },
+    typography: {
+        fontFamily: 'Poppins',
     },
 };
 

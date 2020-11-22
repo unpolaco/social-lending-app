@@ -1,8 +1,9 @@
-import React from 'react';
-import {Typography, Button, CircularProgress} from '@material-ui/core/';
+import React, {useState} from 'react';
+import {Button, CircularProgress, Snackbar} from '@material-ui/core/';
 import {useGetMakeLoanRepayment} from '../../../hooks/useGetMakeLoanRepayment';
-import {ScheduleWrapper, RepaymentWrapper, TextBold, TextLight, LoanDetailWrapper} from './CollapseBox.styles';
+import {ScheduleWrapper, RepaymentWrapper, TextBold, TextLight, LoanDetailWrapper, Title} from './CollapseBox.styles';
 import {AuctionData} from '../Table/Table.types';
+import {Alert} from '../Alert/Alert';
 
 interface CollapseBoxCreateLoanProps {
     row: AuctionData;
@@ -11,44 +12,55 @@ interface CollapseBoxCreateLoanProps {
 }
 
 export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxCreateLoanProps> = ({row, fetchUserLoans, page}) => {
-    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment} = useGetMakeLoanRepayment();
+    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment, response} = useGetMakeLoanRepayment();
+    const [open, setOpen] = useState<boolean>(true);
 
+    async function handleMakeRepayment() {
+        await fetchMakeLoanRepayment(row.id);
+        console.log(response);
+
+        await setOpen(true);
+        fetchUserLoans('Bilbo_Baggins');
+    }
+
+    console.log(response);
     if (isFetchingGet) {
         return <CircularProgress />;
     }
     if (isErrorGet) {
         alert('Error');
     }
-
-    async function handleMakeRepayment() {
-        await fetchMakeLoanRepayment(row.id);
-        fetchUserLoans('Bilbo_Baggins');
-    }
-
     return (
         <LoanDetailWrapper>
-            <Typography>Loan repayment details</Typography>
+            <Title>Loan repayment details</Title>
             {page === 'borrowerUserLoans' && (
                 <Button variant="outlined" onClick={handleMakeRepayment}>
                     Pay repayment
                 </Button>
             )}
+            <ScheduleWrapper>
+                <TextLight>date</TextLight>
+                <TextLight>amount</TextLight>
+                <TextLight>status</TextLight>
+            </ScheduleWrapper>
             {row.schedule.map((repayment: any) => (
                 <ScheduleWrapper key={repayment.date} color={repayment.status}>
                     <RepaymentWrapper>
-                        <TextLight>date</TextLight>
                         <TextBold>{repayment.date}</TextBold>
                     </RepaymentWrapper>
                     <RepaymentWrapper>
-                        <TextLight>repayment amount</TextLight>
                         <TextBold>{repayment.value} zł</TextBold>
                     </RepaymentWrapper>
                     <RepaymentWrapper>
-                        <TextLight>status</TextLight>
                         <TextBold>{repayment.status}</TextBold>
                     </RepaymentWrapper>
                 </ScheduleWrapper>
             ))}
+            <Snackbar open={open} autoHideDuration={4000}>
+                <Alert onClose={() => setOpen(false)} severity="success">
+                    {response === 201 ? 'Your payment was successfull!' : 'Something was wrong'}
+                </Alert>
+            </Snackbar>
         </LoanDetailWrapper>
     );
 };

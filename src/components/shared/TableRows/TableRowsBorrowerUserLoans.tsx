@@ -1,6 +1,6 @@
 import React from 'react';
-import {TextBold, NarrowCell} from './TableRows.styles';
-import {Typography} from '@material-ui/core';
+import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
+import {Tooltip} from '@material-ui/core';
 import {LoanData} from '../Table/Table.types';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -15,15 +15,22 @@ export const TableRowsBorrowerUserLoans: React.FC<TableRowsBorrowerUserLoansProp
     return (
         <>
             <NarrowCell align="right">
-                <TextBold>{row.amount} zł</TextBold>
+                <Text>{row.amount} zł</Text>
             </NarrowCell>
-            <NarrowCell align="right">{row.rate}%</NarrowCell>
-            <NarrowCell align="right">{row.duration} months</NarrowCell>
             <NarrowCell align="right">
-                <Typography>Loan start date:</Typography>
-                <TextBold>{row.startDate}</TextBold>
+                <Text>{row.rate}%</Text>
             </NarrowCell>
-            <NarrowCell align="right">{row.status}</NarrowCell>
+            <NarrowCell align="right">
+                <Text>{row.duration} months</Text>
+            </NarrowCell>
+            <NarrowCell align="right">
+                <Text>{row.startDate}</Text>
+            </NarrowCell>
+            <NarrowCell align="right">
+                <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>
+                    <StatusIcon color={row.status} />
+                </Tooltip>
+            </NarrowCell>
             <NarrowCell>
                 <IconButton aria-label="expand row" size="small">
                     {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

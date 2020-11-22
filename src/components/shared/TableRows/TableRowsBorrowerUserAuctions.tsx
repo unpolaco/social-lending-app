@@ -1,6 +1,6 @@
 import React from 'react';
-import {TextBold, NarrowCell} from './TableRows.styles';
-import {Typography, IconButton} from '@material-ui/core';
+import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
+import {IconButton, Tooltip} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {AuctionData} from '../Table/Table.types';
@@ -14,19 +14,25 @@ export const TableRowsBorrowerUserAuctions: React.FC<TableRowsBorrowerUserAuctio
     return (
         <>
             <NarrowCell align="right">
-                <TextBold>{row.amount} zł</TextBold>
-            </NarrowCell>
-            <NarrowCell align="right">{row.rate}%</NarrowCell>
-            <NarrowCell align="right">{row.auctionDuration} months</NarrowCell>
-            <NarrowCell align="right">
-                <Typography>Auction start date:</Typography>
-                <TextBold>{row.auctionStartDate}</TextBold>
+                <Text>{row.amount} zł</Text>
             </NarrowCell>
             <NarrowCell align="right">
-                <Typography>Loan start date:</Typography>
-                <TextBold>{row.loanStartDate}</TextBold>
+                <Text>{row.rate}%</Text>
             </NarrowCell>
-            <NarrowCell align="right">{row.status}</NarrowCell>
+            <NarrowCell align="right">
+                <Text>{row.auctionDuration} months</Text>
+            </NarrowCell>
+            <NarrowCell align="right">
+                <Text>{row.auctionStartDate}</Text>
+            </NarrowCell>
+            <NarrowCell align="right">
+                <Text>{row.loanStartDate}</Text>
+            </NarrowCell>
+            <NarrowCell align="right">
+                <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>
+                    <StatusIcon color={row.status} />
+                </Tooltip>
+            </NarrowCell>
             <NarrowCell>
                 <IconButton aria-label="expand row" size="small">
                     {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

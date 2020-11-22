@@ -16,3 +16,12 @@ export const NarrowCell = styled(TableCell)`
     cursor: pointer;
     flex: 1;
 `;
+export const TextHead = styled.p`
+    font-weight: 400;
+    font-size: 13px;
+`;
+export const TextHeadCell = styled(TableCell)`
+    && {
+        border: none;
+    }
+`;

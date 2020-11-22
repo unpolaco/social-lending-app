@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {useGetUserOffers} from '../../../../hooks/useGetUserOffers';
 import {Table} from '../../../shared/Table/Table';
-import {CircularProgress, Container} from '@material-ui/core/';
+import {CircularProgress} from '@material-ui/core/';
+import {PageWrapper, Title} from './Portfolio.styles';
 
 export const PortfolioOffers: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchUserOffers, userOffersList} = useGetUserOffers();
@@ -18,9 +19,9 @@ export const PortfolioOffers: React.FC = () => {
     }
 
     return (
-        <Container>
-            <div>Your Offers</div>
+        <PageWrapper>
+            <Title>Your Offers</Title>
             {userOffersList && <Table rows={userOffersList} currentPage="lenderUserOffers" />}
-        </Container>
+        </PageWrapper>
     );
 };

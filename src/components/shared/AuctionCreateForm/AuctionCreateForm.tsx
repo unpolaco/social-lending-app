@@ -1,7 +1,7 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core';
-import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper} from './AuctionCreateForm.styles';
+import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text} from './AuctionCreateForm.styles';
 import {initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
 import {AuctionCreateFormValues} from './AuctionCreateForm.types';
@@ -32,8 +32,8 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormWrapper>
-                                            <Typography>Total amount to pay: {loanAmountDisplay}</Typography>
-                                            <Typography>Repayment amount: {loanRepaymentDisplay}</Typography>
+                                            <Text>Total amount to pay: {loanAmountDisplay}</Text>
+                                            <Text>Repayment amount: {loanRepaymentDisplay}</Text>
                                             <TextField
                                                 autoFocus
                                                 name="amount"
@@ -56,7 +56,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 error={Boolean(touched.rate && errors.rate)}
                                                 helperText={touched.rate && errors.rate}
                                             />
-                                            <Typography>Duration of a loan in months</Typography>
+                                            <Text>Duration of a loan in months</Text>
                                             <Slider
                                                 name="loanDuration"
                                                 valueLabelDisplay="auto"
