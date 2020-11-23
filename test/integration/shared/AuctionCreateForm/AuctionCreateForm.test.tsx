@@ -1,24 +1,41 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react';
+import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {AuctionCreateForm} from '../../../../src/components/shared/AuctionCreateForm/AuctionCreateForm';
-import {AuctionCreateFormValues} from '../../../../src/components/shared/AuctionCreateForm/AuctionCreateForm.types';
 import userEvent from '@testing-library/user-event';
 describe('testing AuctionCreateForm component', () => {
     const handleSaveNewAuction: any = jest.fn();
 
     it('renders inputs', async () => {
-        const {getByText, findByRole} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
-        expect(screen.getByText(/Enter amount */)).toBeInTheDocument();
-        expect(screen.getByText(/Enter expected rate */)).toBeInTheDocument();
-        expect(screen.getByText(/Create auction/)).toBeInTheDocument();
-        expect(await screen.findByRole('slider')).toBeInTheDocument();
+        const {getByTestId} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
+        expect(screen.getByTestId('amountAuctionCreate')).toBeInTheDocument();
+        expect(screen.getByTestId('rateAuctionCreate')).toBeInTheDocument();
+        expect(screen.getByTestId('sliderAuctionCreate')).toBeInTheDocument();
+        expect(screen.getByTestId('buttonAuctionCreate')).toBeInTheDocument();
     });
 
-    it('make button disabled when "0" is typed', async () => {
-        const {getByRole, findByText} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
+    it('make button disabled when "-1" is typed in amount input', async () => {
+        const {getByTestId} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
+        userEvent.type(screen.getByTestId('amountAuctionCreate'), '-1');
+        await waitFor(() => expect(screen.getByTestId('buttonAuctionCreate')).toBeDisabled());
+    });
+    it('make button disabled when "21" is typed in rate input', async () => {
+        const {getByTestId} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
+        userEvent.type(screen.getByTestId('rateAuctionCreate'), '21');
+        await waitFor(() => expect(screen.getByTestId('buttonAuctionCreate')).toBeDisabled());
+    });
+    it('make button disabled when "0" is typed in amount input and others are valid', async () => {
+        const {getByTestId} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
+        userEvent.type(screen.getByTestId('amountAuctionCreate'), '0');
+        userEvent.type(screen.getByTestId('rateAuctionCreate'), '5');
+        fireEvent.change(screen.getByTestId('sliderAuctionCreate').querySelector('input')!, {target: {value: 5}});
+        await waitFor(() => expect(screen.getByTestId('buttonAuctionCreate')).toBeDisabled());
+    });
 
-        userEvent.type(screen.getByText(/Enter amount */), '0');
-        userEvent.click(screen.getByRole('button', {name: /Create offer/i}));
-        expect(await screen.findByText(/Create auction/)).toBeDisabled();
+    it('make button enabled when all inputs are filled with valid numbers', async () => {
+        const {getByTestId} = render(<AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />);
+        userEvent.type(screen.getByTestId('amountAuctionCreate'), '300');
+        userEvent.type(screen.getByTestId('rateAuctionCreate'), '5');
+        fireEvent.change(screen.getByTestId('sliderAuctionCreate').querySelector('input')!, {target: {value: 5}});
+        await waitFor(() => expect(screen.getByTestId('buttonAuctionCreate')).toBeEnabled());
     });
 });

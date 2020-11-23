@@ -1,9 +1,11 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
-import {Button, Typography, TextField} from '@material-ui/core';
+import {Button, Typography, TextField, InputAdornment} from '@material-ui/core';
 import {FormWrapper} from './PaymentForm.styles';
+import {PaymentFormProps} from './PaymentForm.types';
+import {PaymentFormValidator} from './PaymentForm.helpers';
 
-export const PaymentFormOnUserAccount: React.FC<any> = ({currentPage, fetchPaymentOnUserAccount}) => {
+export const PaymentFormOnUserAccount: React.FC<PaymentFormProps> = ({currentPage, fetchPaymentOnUserAccount}) => {
     function handleSubmit(values: any) {
         const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';
         const paymentDetails = {amount: values.amount, userName: userName};
@@ -11,7 +13,7 @@ export const PaymentFormOnUserAccount: React.FC<any> = ({currentPage, fetchPayme
     }
     return (
         <>
-            <Formik initialValues={{amount: undefined}} onSubmit={handleSubmit}>
+            <Formik initialValues={{amount: undefined}} validate={PaymentFormValidator} onSubmit={handleSubmit}>
                 {({handleSubmit, values, handleChange, handleBlur, errors, touched, isValid}) => {
                     return (
                         <Form onSubmit={handleSubmit}>
@@ -20,14 +22,16 @@ export const PaymentFormOnUserAccount: React.FC<any> = ({currentPage, fetchPayme
                                 <TextField
                                     name="amount"
                                     type="number"
+                                    data-testid="amountPayment"
                                     label={'Enter amount *'}
                                     value={values.amount ?? ''}
+                                    InputProps={{endAdornment: <InputAdornment position="end">zł</InputAdornment>}}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     error={Boolean(touched.amount && errors.amount)}
                                     helperText={touched.amount && errors.amount}
                                 />
-                                <Button type="submit" disabled={!isValid}>
+                                <Button type="submit" data-testid="buttonPayment" disabled={!isValid} variant="outlined">
                                     Confirm payment
                                 </Button>
                             </FormWrapper>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBox.styles';
 import {Formik, Form} from 'formik';
-import {Button, Typography, TextField, Slider, InputAdornment, Switch} from '@material-ui/core';
+import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {CollapseBoxCreateOfferValidator} from './CollapseBoxCreateOffer.helpers';
 import {CollapseBoxCreateOfferProps} from './CollapseBoxCreateOffer.types';
 
@@ -24,7 +24,6 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                     initialValues={{
                         amount: amount,
                         rate: rate,
-                        allowAmountSplit: true,
                     }}
                     validate={CollapseBoxCreateOfferValidator}
                     onSubmit={handleSubmit}
@@ -37,6 +36,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                     <TextField
                                         name="rate"
                                         type="number"
+                                        data-testid="rateOfferCreate"
                                         label={'Enter expected rate *'}
                                         InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
                                         value={values.rate ?? ''}
@@ -50,6 +50,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                     <FieldTitleTypography>Your offer amount is {values.amount}zł</FieldTitleTypography>
                                     <Slider
                                         name="amount"
+                                        data-testid="amountOfferCreate"
                                         valueLabelDisplay="auto"
                                         min={1}
                                         max={amount}
@@ -57,15 +58,9 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                         value={values.amount}
                                         onChange={(e, value) => setFieldValue('amount', value)}
                                     />
-                                    <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
-                                    <Switch
-                                        color="primary"
-                                        checked={values.allowAmountSplit}
-                                        onChange={handleChange}
-                                        name="allowAmountSplit"
-                                    />
+                                    <FieldTitleTypography>Do you know that your offer amount could be divided?</FieldTitleTypography>
                                 </FieldWrapper>
-                                <Button type="submit" variant="outlined" disabled={!isValid}>
+                                <Button type="submit" data-testid="buttonOfferCreate" disabled={!isValid} variant="outlined">
                                     Create offer
                                 </Button>
                             </FormikWrapper>

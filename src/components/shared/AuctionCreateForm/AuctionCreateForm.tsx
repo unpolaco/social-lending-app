@@ -38,6 +38,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 autoFocus
                                                 name="amount"
                                                 type="number"
+                                                data-testid="amountAuctionCreate"
                                                 label={'Enter amount *'}
                                                 InputProps={{endAdornment: <InputAdornment position="end">zł</InputAdornment>}}
                                                 value={values.amount ?? ''}
@@ -49,6 +50,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                             <TextField
                                                 name="rate"
                                                 type="number"
+                                                data-testid="rateAuctionCreate"
                                                 label={'Enter expected rate *'}
                                                 InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
                                                 value={values.rate ?? ''}
@@ -60,6 +62,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                             <Text>Duration of a loan in months</Text>
                                             <Slider
                                                 name="loanDuration"
+                                                data-testid="sliderAuctionCreate"
                                                 valueLabelDisplay="auto"
                                                 step={1}
                                                 min={1}
@@ -69,7 +72,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 onChange={(e, value) => setFieldValue('loanDuration', value)}
                                             />
 
-                                            <Button type="submit" disabled={!isValid}>
+                                            <Button type="submit" disabled={!isValid} data-testid="buttonAuctionCreate">
                                                 Create auction
                                             </Button>
                                         </FormWrapper>
