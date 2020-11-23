@@ -1,15 +1,16 @@
 import {useCallback, useState} from 'react';
 import {getAllAuctions} from './../api/getAllAuctions';
+import {AuctionDto} from '../api/api.types';
 
 export const useGetAllAuctions = () => {
     const [isFetchingGet, setIsFetchingGet] = useState<boolean>(false);
     const [isErrorGet, setIsErrorGet] = useState<boolean>(false);
-    const [auctionsList, setAuctionsList] = useState<any>();
+    const [auctionsList, setAuctionsList] = useState<AuctionDto>();
 
     const fetchAllAuctions = useCallback(async () => {
         setIsFetchingGet(true);
         try {
-            const response: any = await getAllAuctions();
+            const response = await getAllAuctions();
             setAuctionsList(response.data);
         } catch {
             setIsErrorGet(true);

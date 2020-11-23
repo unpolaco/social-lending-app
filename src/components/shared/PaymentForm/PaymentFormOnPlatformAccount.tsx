@@ -11,7 +11,7 @@ export const PaymentFormOnPlatformAccount: React.FC<any> = ({currentPage, fetchP
     }
     return (
         <>
-            <Formik initialValues={{amount: 0}} onSubmit={handleSubmit}>
+            <Formik initialValues={{amount: undefined}} onSubmit={handleSubmit}>
                 {({handleSubmit, values, handleChange, handleBlur, errors, touched, isValid}) => {
                     return (
                         <Form onSubmit={handleSubmit}>
@@ -21,7 +21,7 @@ export const PaymentFormOnPlatformAccount: React.FC<any> = ({currentPage, fetchP
                                     name="amount"
                                     type="number"
                                     label={'Enter amount *'}
-                                    value={values.amount}
+                                    value={values.amount ?? ''}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     error={Boolean(touched.amount && errors.amount)}

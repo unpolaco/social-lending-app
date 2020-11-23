@@ -1,19 +1,20 @@
 import React from 'react';
 import {HiddenSpan, NarrowCell, TextHead, TextHeadCell} from './TableHead.styles';
 import {TableHead, TableRow, TableSortLabel} from '@material-ui/core';
-import {AuctionData, AuctionTableProps} from '../Table/Table.types';
+import {AuctionTableProps} from './TableHead.types';
+import {Auction} from '../../../helpers/types';
 import {headCellsAllAuctions} from './TableHead.constants';
 
 export const TableHeadAllAuctions: React.FC<AuctionTableProps> = ({order, orderBy, onRequestSort}) => {
-    const createSortHandler = (property: keyof AuctionData) => (event: React.MouseEvent<unknown>) => {
+    const createSortHandler = (property: keyof Auction) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };
     return (
         <TableHead>
             <TableRow>
                 {headCellsAllAuctions.map(headCell => (
-                    <NarrowCell align="right">
-                        <TextHeadCell key={headCell.id} sortDirection={orderBy === headCell.id ? order : false}>
+                    <NarrowCell key={headCell.id} align="right">
+                        <TextHeadCell sortDirection={orderBy === headCell.id ? order : false}>
                             <TableSortLabel
                                 active={orderBy === headCell.id}
                                 direction={orderBy === headCell.id ? order : 'asc'}

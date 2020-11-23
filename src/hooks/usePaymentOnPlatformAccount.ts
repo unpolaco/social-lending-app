@@ -9,7 +9,7 @@ export const usePaymentOnPlatformAccount = () => {
     const fetchPaymentOnPlatformAccount = useCallback(async paymentDetails => {
         setIsFetchingPaymentOnPlatform(true);
         try {
-            const response: any = await postPaymentOnPlatformAccount(paymentDetails);
+            const response = await postPaymentOnPlatformAccount(paymentDetails);
             setResponsePaymentOnPlatform(response);
         } catch {
             setIsErrorPaymentOnPlatform(true);

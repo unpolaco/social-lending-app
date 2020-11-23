@@ -2,22 +2,17 @@ import React from 'react';
 import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBox.styles';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Switch} from '@material-ui/core';
-import {OfferData} from '../Table/Table.types';
 import {CollapseBoxCreateOfferValidator} from './CollapseBoxCreateOffer.helpers';
-
-interface CollapseBoxCreateOfferProps {
-    row: OfferData;
-    handleSaveNewOffer: any;
-}
+import {CollapseBoxCreateOfferProps} from './CollapseBoxCreateOffer.types';
 
 export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({row, handleSaveNewOffer}) => {
-    const {amount, id, rate} = row;
+    const {amount, offerId, rate} = row;
     const marks = [
         {value: 0, label: '0 zł'},
         {value: amount, label: `${amount} zł`},
     ];
     function handleSubmit(values: any) {
-        values.auctionId = id;
+        values.auctionId = offerId;
         handleSaveNewOffer(values);
     }
 
@@ -44,7 +39,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                         type="number"
                                         label={'Enter expected rate *'}
                                         InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
-                                        value={values.rate}
+                                        value={values.rate ?? ''}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         error={Boolean(touched.rate && errors.rate)}

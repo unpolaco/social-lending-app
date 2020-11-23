@@ -3,12 +3,7 @@ import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
 import {IconButton, Tooltip} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {AuctionData} from '../Table/Table.types';
-
-interface TableRowsBorrowerUserAuctionsProps {
-    row: AuctionData;
-    clickedCollapsed: number | null;
-}
+import {TableRowsBorrowerUserAuctionsProps} from './TableRowsBorrowerUserAuctions.types';
 
 export const TableRowsBorrowerUserAuctions: React.FC<TableRowsBorrowerUserAuctionsProps> = ({row, clickedCollapsed}) => {
     return (
@@ -20,13 +15,7 @@ export const TableRowsBorrowerUserAuctions: React.FC<TableRowsBorrowerUserAuctio
                 <Text>{row.rate}%</Text>
             </NarrowCell>
             <NarrowCell align="right">
-                <Text>{row.auctionDuration} months</Text>
-            </NarrowCell>
-            <NarrowCell align="right">
-                <Text>{row.auctionStartDate}</Text>
-            </NarrowCell>
-            <NarrowCell align="right">
-                <Text>{row.loanStartDate}</Text>
+                <Text>{row.loanDuration} months</Text>
             </NarrowCell>
             <NarrowCell align="right">
                 <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>

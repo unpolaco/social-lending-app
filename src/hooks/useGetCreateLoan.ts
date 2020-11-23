@@ -1,15 +1,16 @@
 import {useCallback, useState} from 'react';
 import {createLoan} from '../api/createLoan';
+import {LoanDto} from '../api/api.types';
 
 export const useGetCreateLoan = () => {
     const [isFetchingCreateLoan, setIsFetchingCreateLoan] = useState<boolean>(false);
     const [isErrorCreateLoan, setIsErrorCreateLoan] = useState<boolean>(false);
-    const [loanDetails, setLoanDetails] = useState<any>();
+    const [loanDetails, setLoanDetails] = useState<LoanDto>();
 
     const fetchCreateLoan = useCallback(async auctionId => {
         setIsFetchingCreateLoan(true);
         try {
-            const response: any = await createLoan(auctionId);
+            const response = await createLoan(auctionId);
             setLoanDetails(response.data);
         } catch {
             setIsErrorCreateLoan(true);

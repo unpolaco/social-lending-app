@@ -1,13 +1,8 @@
 import {FormikErrors} from 'formik';
-interface AuctionCreateFormValidatorProps {
-    amount?: number;
-    rate?: number;
-    loanDuration?: number;
-    loanStartDate?: string;
-}
+import {AuctionCreateFormValues} from './AuctionCreateForm.types';
 
-export const AuctionCreateFormValidator = (values: AuctionCreateFormValidatorProps) => {
-    const errors: FormikErrors<AuctionCreateFormValidatorProps> = {};
+export const AuctionCreateFormValidator = (values: AuctionCreateFormValues) => {
+    const errors: FormikErrors<AuctionCreateFormValues> = {};
 
     if (!values.amount) {
         errors.amount = 'Amount is required';

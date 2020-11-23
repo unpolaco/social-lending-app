@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Typography, Tabs, Tab} from '@material-ui/core/';
 import {ROUTES} from '../../../../helpers/routes';
 import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
@@ -6,7 +6,7 @@ import {PortfolioOffers} from './PortfolioOffers';
 import {PortfolioInvestments} from './PortfolioInvestments';
 
 export const Portfolio: React.FC = () => {
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
     const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue);

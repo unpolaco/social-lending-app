@@ -1,15 +1,16 @@
 import {useCallback, useState} from 'react';
 import {getUserLoans} from './../api/getUserLoans';
+import {LoanDto} from '../api/api.types';
 
 export const useGetUserLoans = () => {
     const [isFetchingGet, setIsFetchingGet] = useState<boolean>(false);
     const [isErrorGet, setIsErrorGet] = useState<boolean>(false);
-    const [userLoansList, setUserLoansList] = useState<any>();
+    const [userLoansList, setUserLoansList] = useState<LoanDto>();
 
     const fetchUserLoans = useCallback(async (userId: string) => {
         setIsFetchingGet(true);
         try {
-            const response: any = await getUserLoans(userId);
+            const response = await getUserLoans(userId);
             setUserLoansList(response.data);
         } catch {
             setIsErrorGet(true);

@@ -4,12 +4,7 @@ import {IconButton, Tooltip} from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {Rating} from '@material-ui/lab';
-import {AuctionData} from '../Table/Table.types';
-
-interface TableRowsBorrowerAllAuctionsProps {
-    row: AuctionData;
-    clickedCollapsed: number | null;
-}
+import {TableRowsBorrowerAllAuctionsProps} from './TableRowsBorrowerAllAuctions.types';
 
 export const TableRowsBorrowerAllAuctions: React.FC<TableRowsBorrowerAllAuctionsProps> = ({row, clickedCollapsed}) => {
     return (
@@ -29,10 +24,7 @@ export const TableRowsBorrowerAllAuctions: React.FC<TableRowsBorrowerAllAuctions
                 <Text>{row.rate}%</Text>
             </NarrowCell>
             <NarrowCell align="right">
-                <Text>{row.auctionDuration} months</Text>
-            </NarrowCell>
-            <NarrowCell align="right">
-                <Text>{row.auctionStartDate}</Text>
+                <Text>{row.loanDuration} months</Text>
             </NarrowCell>
             <NarrowCell align="right">
                 <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>

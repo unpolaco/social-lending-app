@@ -25,7 +25,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                         <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
                                 const loanAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
-                                const loanRepayment = (loanAmount / values.loanDuration).toFixed(2);
+                                const loanRepayment = (loanAmount / values.loanDuration!).toFixed(2);
                                 const loanAmountDisplay = !Number.isNaN(Number(loanAmount)) && isValid ? ` ${loanAmount} zł` : ' 0 zł';
                                 const loanRepaymentDisplay =
                                     !Number.isNaN(Number(loanRepayment)) && isValid ? ` ${loanRepayment} zł` : ' 0 zł';
@@ -39,7 +39,8 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 name="amount"
                                                 type="number"
                                                 label={'Enter amount *'}
-                                                value={values.amount}
+                                                InputProps={{endAdornment: <InputAdornment position="end">zł</InputAdornment>}}
+                                                value={values.amount ?? ''}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 error={Boolean(touched.amount && errors.amount)}
@@ -50,7 +51,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 type="number"
                                                 label={'Enter expected rate *'}
                                                 InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
-                                                value={values.rate}
+                                                value={values.rate ?? ''}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 error={Boolean(touched.rate && errors.rate)}

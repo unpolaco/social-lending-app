@@ -1,22 +1,15 @@
-export interface AuctionDto {
+export interface Auction {
     amount: number;
     borrower: string;
     borrowerRating: number;
     id: number;
     loanDuration: number;
-    offers: OfferDto[];
+    offers: Offer[];
     rate: number;
     risk: number;
     status: string;
 }
-export interface NewAuctionDto {
-    amount: number;
-    borrower: string;
-    loanDuration: number;
-    rate: number;
-    auctionId: number;
-}
-export interface OfferDto {
+export interface Offer {
     amount: number;
     borrowerName: string;
     lenderUserName: string;
@@ -27,42 +20,33 @@ export interface OfferDto {
     risk: number;
     status: string;
 }
-export interface LoanDto {
+export interface Loan {
     amount: number;
     borrowerName: string;
     duration: number;
     investmentId: number;
     lenderName: string;
-    schedule: ScheduleDto[];
+    schedule: Schedule[];
     loanDuration: number;
     rate: number;
     id: number;
     risk: number;
     status: string;
 }
-export interface InvestmentDto {
+export interface Investment {
     amount: number;
     borrowerName: string;
     duration: number;
     investmentId: number;
     lenderName: string;
-    schedule: ScheduleDto[];
+    schedule: Schedule[];
     loanDuration: number;
     rate: number;
     risk: number;
     status: string;
 }
-export interface ScheduleDto {
+export interface Schedule {
     date: string;
     status: string;
     value: number;
-}
-export interface AccountDto {
-    accountBalance: number;
-    email: string;
-    hasLinkedBankAccount: boolean;
-    name: string;
-    phoneNumber: string;
-    surname: string;
-    userName: string;
 }
