@@ -1,15 +1,16 @@
 import {useCallback, useState} from 'react';
 import {getUserInvestments} from './../api/getUserInvestments';
+import {InvestmentDto} from '../api/api.types';
 
 export const useGetUserInvestments = () => {
     const [isFetchingGet, setIsFetchingGet] = useState<boolean>(false);
     const [isErrorGet, setIsErrorGet] = useState<boolean>(false);
-    const [userInvestmentsList, setUserInvestmentsList] = useState<any>();
+    const [userInvestmentsList, setUserInvestmentsList] = useState<InvestmentDto>();
 
     const fetchUserInvestments = useCallback(async (userId: string) => {
         setIsFetchingGet(true);
         try {
-            const response: any = await getUserInvestments(userId);
+            const response = await getUserInvestments(userId);
             setUserInvestmentsList(response.data);
         } catch {
             setIsErrorGet(true);

@@ -1,11 +1,12 @@
 import React from 'react';
 import {HiddenSpan, TextHead, TextHeadCell} from './TableHead.styles';
 import {TableHead, TableRow, TableSortLabel} from '@material-ui/core';
-import {AuctionData, AuctionTableProps} from '../Table/Table.types';
+import {AuctionTableProps} from './TableHead.types';
+import {Auction} from '../../../helpers/types';
 import {headCellsUserAuctions} from './TableHead.constants';
 
 export const TableHeadUserAuctions: React.FC<AuctionTableProps> = ({order, orderBy, onRequestSort}) => {
-    const createSortHandler = (property: keyof AuctionData) => (event: React.MouseEvent<unknown>) => {
+    const createSortHandler = (property: keyof Auction) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };
     return (

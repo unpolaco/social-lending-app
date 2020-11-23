@@ -3,13 +3,9 @@ import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
 import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
 import {FormikWrapper, Text} from './CollapseBox.styles';
-import {AuctionData} from '../Table/Table.types';
 import {useHistory} from 'react-router-dom';
 import {ROUTES} from '../../../helpers/routes';
-
-interface CollapseBoxCreateLoanProps {
-    row: AuctionData;
-}
+import {CollapseBoxCreateLoanProps} from './CollapseBoxCreateLoan.types';
 
 export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row}) => {
     const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
@@ -28,7 +24,7 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
         fetchCreateLoan(auctionId);
     }
     function handleConfirmCreateLoan() {
-        fetchConfirmCreateLoan(loanDetails.id);
+        fetchConfirmCreateLoan(loanDetails?.id);
         history.push(ROUTES.BORROWER_COMMITMENTS_LOANS);
     }
     return (
@@ -46,7 +42,6 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
                     <Text>Amount {loanDetails.amount} zł</Text>
                     <Text>Duration {loanDetails.duration} months</Text>
                     <Text>Rate {loanDetails.rate} %</Text>
-                    <Text>Start at {loanDetails.startDate}</Text>
                     <Button onClick={handleConfirmCreateLoan}>CONFIRM</Button>
                 </FormikWrapper>
             )}

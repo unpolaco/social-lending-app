@@ -1,11 +1,7 @@
 import React from 'react';
 import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
-import {OfferData} from '../Table/Table.types';
 import {Tooltip} from '@material-ui/core';
-
-interface TableRowsLenderUserOffersProps {
-    row: OfferData;
-}
+import {TableRowsLenderUserOffersProps} from './TableRowsLenderUserOffers.types';
 
 export const TableRowsLenderUserOffers: React.FC<TableRowsLenderUserOffersProps> = ({row}) => {
     return (

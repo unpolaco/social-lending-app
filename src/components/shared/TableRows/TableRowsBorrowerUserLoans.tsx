@@ -1,15 +1,10 @@
 import React from 'react';
 import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
 import {Tooltip} from '@material-ui/core';
-import {LoanData} from '../Table/Table.types';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {IconButton} from '@material-ui/core';
-
-interface TableRowsBorrowerUserLoansProps {
-    row: LoanData;
-    clickedCollapsed: number | null;
-}
+import {TableRowsBorrowerUserLoansProps} from './TableRowsBorrowerUserLoans.types';
 
 export const TableRowsBorrowerUserLoans: React.FC<TableRowsBorrowerUserLoansProps> = ({row, clickedCollapsed}) => {
     return (
@@ -22,9 +17,6 @@ export const TableRowsBorrowerUserLoans: React.FC<TableRowsBorrowerUserLoansProp
             </NarrowCell>
             <NarrowCell align="right">
                 <Text>{row.duration} months</Text>
-            </NarrowCell>
-            <NarrowCell align="right">
-                <Text>{row.startDate}</Text>
             </NarrowCell>
             <NarrowCell align="right">
                 <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>

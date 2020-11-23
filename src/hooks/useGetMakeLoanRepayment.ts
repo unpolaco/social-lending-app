@@ -9,7 +9,7 @@ export const useGetMakeLoanRepayment = () => {
     const fetchMakeLoanRepayment = useCallback(async (loanId: number) => {
         setIsFetchingGet(true);
         try {
-            const response: any = await getMakeLoanRepayment(loanId);
+            const response = await getMakeLoanRepayment(loanId);
             setResponse(response.status);
         } catch {
             setIsErrorGet(true);

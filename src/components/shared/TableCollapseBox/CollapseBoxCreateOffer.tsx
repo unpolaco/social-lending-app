@@ -1,23 +1,18 @@
 import React from 'react';
 import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography} from './CollapseBox.styles';
 import {Formik, Form} from 'formik';
-import {Button, Typography, TextField, Slider, InputAdornment, Switch} from '@material-ui/core';
-import {OfferData} from '../Table/Table.types';
+import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {CollapseBoxCreateOfferValidator} from './CollapseBoxCreateOffer.helpers';
-
-interface CollapseBoxCreateOfferProps {
-    row: OfferData;
-    handleSaveNewOffer: any;
-}
+import {CollapseBoxCreateOfferProps} from './CollapseBoxCreateOffer.types';
 
 export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({row, handleSaveNewOffer}) => {
-    const {amount, id, rate} = row;
+    const {amount, offerId, rate} = row;
     const marks = [
         {value: 0, label: '0 zł'},
         {value: amount, label: `${amount} zł`},
     ];
     function handleSubmit(values: any) {
-        values.auctionId = id;
+        values.auctionId = offerId;
         handleSaveNewOffer(values);
     }
 
@@ -29,7 +24,6 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                     initialValues={{
                         amount: amount,
                         rate: rate,
-                        allowAmountSplit: true,
                     }}
                     validate={CollapseBoxCreateOfferValidator}
                     onSubmit={handleSubmit}
@@ -42,9 +36,10 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                     <TextField
                                         name="rate"
                                         type="number"
+                                        data-testid="rateOfferCreate"
                                         label={'Enter expected rate *'}
                                         InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
-                                        value={values.rate}
+                                        value={values.rate ?? ''}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         error={Boolean(touched.rate && errors.rate)}
@@ -55,6 +50,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                     <FieldTitleTypography>Your offer amount is {values.amount}zł</FieldTitleTypography>
                                     <Slider
                                         name="amount"
+                                        data-testid="amountOfferCreate"
                                         valueLabelDisplay="auto"
                                         min={1}
                                         max={amount}
@@ -62,15 +58,9 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                         value={values.amount}
                                         onChange={(e, value) => setFieldValue('amount', value)}
                                     />
-                                    <FieldTitleTypography>Do you want to allow automatically division of your offer? </FieldTitleTypography>
-                                    <Switch
-                                        color="primary"
-                                        checked={values.allowAmountSplit}
-                                        onChange={handleChange}
-                                        name="allowAmountSplit"
-                                    />
+                                    <FieldTitleTypography>Do you know that your offer amount could be divided?</FieldTitleTypography>
                                 </FieldWrapper>
-                                <Button type="submit" variant="outlined" disabled={!isValid}>
+                                <Button type="submit" data-testid="buttonOfferCreate" disabled={!isValid} variant="outlined">
                                     Create offer
                                 </Button>
                             </FormikWrapper>

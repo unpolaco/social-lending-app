@@ -3,17 +3,9 @@ import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {IconButton, Tooltip} from '@material-ui/core';
+import {TableRowsLenderUserInvestmentsProps} from './TableRowsLenderUserInvestments.types';
 
-interface TableRowsLenderUserInvestmentsProps {
-    borrowerName: string;
-    amount: number;
-    rate: number;
-    duration: number;
-    status: string;
-    clickedCollapsed: number | null;
-}
-
-export const TableRowsLenderUserInvestments: React.FC<any> = ({row, clickedCollapsed}) => {
+export const TableRowsLenderUserInvestments: React.FC<TableRowsLenderUserInvestmentsProps> = ({row, clickedCollapsed}) => {
     return (
         <>
             <NarrowCell align="right">
@@ -35,7 +27,7 @@ export const TableRowsLenderUserInvestments: React.FC<any> = ({row, clickedColla
             </NarrowCell>
             <NarrowCell>
                 <IconButton aria-label="expand row" size="small">
-                    {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    {clickedCollapsed === row.investmentId ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IconButton>
             </NarrowCell>
         </>

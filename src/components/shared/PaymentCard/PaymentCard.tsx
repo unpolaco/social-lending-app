@@ -30,11 +30,17 @@ export const PaymentCard: React.FC<any> = ({accountBalance, currentPage}) => {
     if (isErrorPaymentOnPlatform || isErrorPaymentOnUserAccount) {
         openError = true;
         openSuccess = false;
+        console.log(openError, 'openError2');
+        console.log(openSuccess, 'openSuccess2');
     }
     if (responsePaymentOnUserAccount || responsePaymentOnPlatform) {
         openError = false;
         openSuccess = true;
+        console.log(openError, 'openError3');
+        console.log(openSuccess, 'openSuccess3');
     }
+    console.log(openError, 'openError1');
+    console.log(openSuccess, 'openSuccess1');
 
     return (
         <StyledCard>

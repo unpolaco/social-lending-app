@@ -1,12 +1,8 @@
 import React from 'react';
-import {AuctionData} from '../Table/Table.types';
 import {Typography, Box, Tooltip} from '@material-ui/core/';
 import {OffersWrapper, StyledBox, Text} from './CollapseBox.styles';
 import {IconAllowDivision} from '../../../assets/IconAllowDivision';
-
-interface CollapseBoxAuctionOffersProps {
-    row: AuctionData;
-}
+import {CollapseBoxAuctionOffersProps} from './CollapseBoxAuctionOffers.types';
 
 export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> = ({row}) => {
     return (
