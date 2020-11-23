@@ -1,7 +1,7 @@
 import {axios} from './axios';
 import {apiOffers} from '../helpers/constants-api';
-import {apiSaveNewOfferDto} from './api.types';
+import {NewOfferDto} from './api.types';
 
-export const saveNewOffer = (newOfferData: apiSaveNewOfferDto) => {
+export const saveNewOffer = (newOfferData: NewOfferDto) => {
     return axios.post(apiOffers, newOfferData);
 };

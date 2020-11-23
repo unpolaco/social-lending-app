@@ -27,6 +27,10 @@ export interface OfferDto {
     risk: number;
     status: string;
 }
+export interface NewOfferDto {
+    amount: number;
+    rate: number;
+}
 export interface LoanDto {
     amount: number;
     borrowerName: string;
@@ -64,5 +68,9 @@ export interface AccountDto {
     name: string;
     phoneNumber: string;
     surname: string;
+    userName: string;
+}
+export interface PaymentDto {
+    amount: number;
     userName: string;
 }
