@@ -22,9 +22,9 @@ export const CommitmentsAuctions: React.FC = () => {
         alert('Error');
     }
 
-    function handleSaveNewAuction(newAuctionData: AuctionCreateFormValues) {
+    async function handleSaveNewAuction(newAuctionData: AuctionCreateFormValues) {
         newAuctionData.borrower = 'Bilbo_Baggins';
-        fetchNewAuction(newAuctionData);
+        await fetchNewAuction(newAuctionData);
         fetchUserAuctions('Bilbo_Baggins');
     }
 

@@ -20,9 +20,9 @@ export const Invest: React.FC = () => {
         alert('Error');
     }
 
-    function handleSaveNewOffer(newOfferData: any) {
+    async function handleSaveNewOffer(newOfferData: any) {
         newOfferData.lenderUserName = 'Samwise_Gamgee';
-        fetchNewOffer(newOfferData);
+        await fetchNewOffer(newOfferData);
         fetchAllAuctions();
     }
 
