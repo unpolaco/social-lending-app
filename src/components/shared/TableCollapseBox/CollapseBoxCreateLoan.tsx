@@ -1,22 +1,28 @@
 import React from 'react';
 import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
 import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
-import {CollapseBoxCreateLoanProps} from './CollapseBoxCreateLoan.types';
+import {useDeleteAuction} from '../../../hooks/useDeleteAuction';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 
-export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row}) => {
+export const CollapseBoxCreateLoan: React.FC<any> = ({row, fetchUserAuctions}) => {
     const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
+    const {isFetchingDelete, isErrorDelete, fetchDeleteAuction} = useDeleteAuction();
     const disabled = row.status === 'ACTIVE_COMPLETE' ? false : true;
+    const auctionId: number = row.id;
+    const userName = row.borrower;
 
-    if (isFetchingCreateLoan) {
+    if (isFetchingCreateLoan || isFetchingDelete) {
         return <CircularProgress />;
     }
-    if (isErrorCreateLoan) {
+    if (isErrorCreateLoan || isErrorDelete) {
         alert('Error');
     }
-    const auctionId: number = row.id;
     function handleCreateLoan() {
         fetchCreateLoan(auctionId);
+    }
+    async function handleDeleteAuction() {
+        await fetchDeleteAuction(auctionId);
+        fetchUserAuctions(userName);
     }
 
     return (
@@ -26,7 +32,7 @@ export const CollapseBoxCreateLoan: React.FC<CollapseBoxCreateLoanProps> = ({row
             ) : (
                 <>
                     <Typography>Make a loan or delete your auction</Typography>
-                    <Button variant="outlined" disabled>
+                    <Button variant="outlined" onClick={handleDeleteAuction} disabled={isFetchingDelete}>
                         Delete
                     </Button>
                     <Button variant="outlined" onClick={handleCreateLoan} disabled={disabled}>

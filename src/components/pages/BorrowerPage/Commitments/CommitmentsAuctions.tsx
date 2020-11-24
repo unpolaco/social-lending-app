@@ -32,7 +32,7 @@ export const CommitmentsAuctions: React.FC = () => {
         <PageWrapper>
             <AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />
             <Title>Your Auctions</Title>
-            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" />}
+            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />}
         </PageWrapper>
     );
 };

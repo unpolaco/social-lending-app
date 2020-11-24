@@ -12,7 +12,7 @@ import {TableRowsLenderUserInvestments} from '../TableRows/TableRowsLenderUserIn
 import {TableRowsLenderUserOffers} from '../TableRows/TableRowsLenderUserOffers';
 import {CollapsedCell, StyledTableRowHover, StyledTableRow} from './TableRows.styles';
 
-export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, fetchUserLoans}) => {
+export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, fetchUserLoans, fetchUserAuctions}) => {
     const [clickedCollapsed, setClickedCollapsed] = useState<number | null>(null);
 
     const handleClickCollapse = (id: number) => {
@@ -50,7 +50,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                     return (
                                         <>
                                             <CollapseBoxAuctionOffers row={row} />
-                                            <CollapseBoxCreateLoan row={row} />
+                                            <CollapseBoxCreateLoan row={row} fetchUserAuctions={fetchUserAuctions} />
                                         </>
                                     );
                                 case 'borrowerUserLoans':

@@ -1,5 +1,3 @@
-import {Auction, Loan, Offer, Investment} from '../../../helpers/types';
-
 export type Order = 'asc' | 'desc';
 
 export interface TableProps {
@@ -7,4 +5,5 @@ export interface TableProps {
     currentPage: string;
     handleSaveNewOffer?: any;
     fetchUserLoans?: any;
+    fetchUserAuctions?: any;
 }
