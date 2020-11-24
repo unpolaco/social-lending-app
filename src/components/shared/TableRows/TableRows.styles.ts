@@ -42,4 +42,6 @@ export const StatusIcon = styled.div`
     ${({color}) => color === 'ACTIVE' && `background: ${palette.status.active}`};
     ${({color}) => color === 'ACTIVE_COMPLETE' && `background: ${palette.status.activeComplete}`};
     ${({color}) => color === 'ARCHIVED' && `background: ${palette.status.archived}`};
+    ${({color}) => color === 'UNCONFIRMED' && `background: ${palette.status.unconfirmed}`};
+    ${({color}) => color === 'REPAID' && `background: ${palette.status.repaid}`};
 `;

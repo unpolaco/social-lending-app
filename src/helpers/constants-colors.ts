@@ -26,7 +26,9 @@ export const paletteColors: any = {
         status: {
             active: '#009432',
             activeComplete: '#FFC312',
-            archived: '#3d5775',
+            archived: '#4b4b4b',
+            unconfirmed: '#8e44ad',
+            repaid: '#3d5775',
         },
         repayment: {
             expected: '#C4E538',
