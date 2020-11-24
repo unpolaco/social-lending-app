@@ -1,7 +1,6 @@
 import React from 'react';
-import {Typography, Box, Tooltip} from '@material-ui/core/';
+import {Typography, Box} from '@material-ui/core/';
 import {OffersWrapper, StyledBox, Text} from './CollapseBox.styles';
-import {IconAllowDivision} from '../../../assets/IconAllowDivision';
 import {CollapseBoxAuctionOffersProps} from './CollapseBoxAuctionOffers.types';
 
 export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> = ({row}) => {
@@ -15,21 +14,6 @@ export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> =
                             <Text>{offer.lenderUserName}</Text>
                             <Text>{offer.amount} zł</Text>
                             <Text>{offer.rate} %</Text>
-                            <Text>
-                                {offer.allowAmountSplit ? (
-                                    <Tooltip title="Allowed division of offer amount" enterDelay={500} leaveDelay={200}>
-                                        <span>
-                                            <IconAllowDivision color="#7e8a96" />
-                                        </span>
-                                    </Tooltip>
-                                ) : (
-                                    <Tooltip title="Not allowed division of offer amount" enterDelay={500} leaveDelay={200}>
-                                        <span>
-                                            <IconAllowDivision color="#333333" />
-                                        </span>
-                                    </Tooltip>
-                                )}
-                            </Text>
                         </StyledBox>
                     ))}
             </OffersWrapper>

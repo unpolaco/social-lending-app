@@ -23,5 +23,7 @@ export const usePaymentOnPlatformAccount = () => {
         isErrorPaymentOnPlatform,
         responsePaymentOnPlatform,
         fetchPaymentOnPlatformAccount,
+        setIsErrorPaymentOnPlatform,
+        setResponsePaymentOnPlatform,
     };
 };

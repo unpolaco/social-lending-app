@@ -14,6 +14,7 @@ export interface Offer {
     borrowerName: string;
     lenderUserName: string;
     borrowerRating: number;
+    id: number;
     offerId: number;
     loanDuration: number;
     rate: number;

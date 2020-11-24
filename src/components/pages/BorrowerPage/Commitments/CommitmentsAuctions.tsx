@@ -22,9 +22,9 @@ export const CommitmentsAuctions: React.FC = () => {
         alert('Error');
     }
 
-    function handleSaveNewAuction(newAuctionData: AuctionCreateFormValues) {
+    async function handleSaveNewAuction(newAuctionData: AuctionCreateFormValues) {
         newAuctionData.borrower = 'Bilbo_Baggins';
-        fetchNewAuction(newAuctionData);
+        await fetchNewAuction(newAuctionData);
         fetchUserAuctions('Bilbo_Baggins');
     }
 
@@ -32,7 +32,7 @@ export const CommitmentsAuctions: React.FC = () => {
         <PageWrapper>
             <AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />
             <Title>Your Auctions</Title>
-            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" />}
+            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />}
         </PageWrapper>
     );
 };

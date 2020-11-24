@@ -6,5 +6,7 @@ export interface CollapseBoxCreateOfferProps {
 }
 
 export interface CollapseBoxCreateOfferValidatorProps {
-    rate: number;
+    rate?: number;
+    amount?: number;
+    auctionId?: number;
 }

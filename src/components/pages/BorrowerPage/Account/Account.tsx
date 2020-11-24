@@ -36,7 +36,7 @@ export const Account: React.FC = () => {
                         <TextBold>{accountDetails.phoneNumber}</TextBold>
                     </StyledCard>
                 )}
-                <PaymentCard currentPage="borrower" accountBalance={accountDetails?.accountBalance} />
+                <PaymentCard currentPage="borrower" />
             </PageWrapper>
         </>
     );

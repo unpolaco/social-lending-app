@@ -23,5 +23,7 @@ export const usePaymentOnUserAccount = () => {
         isErrorPaymentOnUserAccount,
         responsePaymentOnUserAccount,
         fetchPaymentOnUserAccount,
+        setIsErrorPaymentOnUserAccount,
+        setResponsePaymentOnUserAccount,
     };
 };

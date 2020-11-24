@@ -10,7 +10,7 @@ import {TableHeadUserAuctions} from '../TableHead/TableHeadUserAuctions';
 import {TableHeadUserOffers} from '../TableHead/TableHeadUserOffers';
 import {TableHeadUserLoans} from '../TableHead/TableHeadUserLoans';
 
-export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOffer, fetchUserLoans}) => {
+export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOffer, fetchUserLoans, fetchUserAuctions}) => {
     const rowsPerPage = 10;
     const [order, setOrder] = useState<Order>('asc');
     const [orderBy, setOrderBy] = useState<keyof Auction | keyof Loan | keyof Offer>('status');
@@ -54,6 +54,7 @@ export const Table: React.FC<TableProps> = ({rows, currentPage, handleSaveNewOff
                                     currentPage={currentPage}
                                     handleSaveNewOffer={handleSaveNewOffer}
                                     fetchUserLoans={fetchUserLoans}
+                                    fetchUserAuctions={fetchUserAuctions}
                                 />
                             ))}
                         {emptyRows > 0 && (
