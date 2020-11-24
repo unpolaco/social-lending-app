@@ -1,9 +1,10 @@
 import React from 'react';
 import {Button, CircularProgress} from '@material-ui/core/';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
-import {FormikWrapper, Text} from './LoanConfirm.styles';
+import {FormikWrapper, Text, TextLight} from './LoanConfirm.styles';
 import {useHistory} from 'react-router-dom';
 import {ROUTES} from '../../../helpers/routes';
+import {LoanOffers} from '../LoanOffers/LoanOffers';
 
 export const LoanConfirm: React.FC<any> = ({loanDetails}) => {
     const {isFetchingConfirmCreateLoan, isErrorConfirmCreateLoan, fetchConfirmCreateLoan} = useGetConfirmCreateLoan();
@@ -24,9 +25,12 @@ export const LoanConfirm: React.FC<any> = ({loanDetails}) => {
             {loanDetails && (
                 <FormikWrapper>
                     <Text>You are creating a loan with parameters above:</Text>
-                    <Text>Amount {loanDetails.amount} zł</Text>
+                    <TextLight>Amount to borrow </TextLight>
+                    <Text>{loanDetails.amount} zł</Text>
+                    <Text>Amount to return {loanDetails.repayment} zł</Text>
                     <Text>Duration {loanDetails.duration} months</Text>
                     <Text>Rate {loanDetails.rate} %</Text>
+                    <LoanOffers row={loanDetails} />
                     <Button onClick={handleConfirmCreateLoan} variant="outlined">
                         CONFIRM
                     </Button>
