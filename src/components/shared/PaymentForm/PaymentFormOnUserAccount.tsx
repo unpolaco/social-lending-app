@@ -5,11 +5,12 @@ import {FormWrapper} from './PaymentForm.styles';
 import {PaymentFormProps} from './PaymentForm.types';
 import {PaymentFormValidator} from './PaymentForm.helpers';
 
-export const PaymentFormOnUserAccount: React.FC<PaymentFormProps> = ({currentPage, fetchPaymentOnUserAccount}) => {
-    function handleSubmit(values: any) {
+export const PaymentFormOnUserAccount: React.FC<PaymentFormProps> = ({currentPage, fetchPaymentOnUserAccount, fetchAccountDetails}) => {
+    async function handleSubmit(values: any) {
         const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';
         const paymentDetails = {amount: values.amount, userName: userName};
-        fetchPaymentOnUserAccount(paymentDetails);
+        await fetchPaymentOnUserAccount(paymentDetails);
+        await fetchAccountDetails(userName);
     }
     return (
         <>
