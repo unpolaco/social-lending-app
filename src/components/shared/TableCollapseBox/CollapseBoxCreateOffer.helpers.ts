@@ -7,10 +7,10 @@ export const CollapseBoxCreateOfferValidator = (values: CollapseBoxCreateOfferVa
     if (!values.rate) {
         errors.rate = 'Rate is required';
     }
-    if (values.rate <= 0) {
+    if (values.rate! <= 0) {
         errors.rate = 'Enter correct rate';
     }
-    if (values.rate > 20) {
+    if (values.rate! > 20) {
         errors.rate = 'Such a big rate is not allowed';
     }
     return errors;
