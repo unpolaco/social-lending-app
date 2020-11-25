@@ -1,6 +1,6 @@
-import {CollapseBoxCreateOfferValidator} from '../../../../src/components/shared/TableCollapseBox/CollapseBoxCreateOffer.helpers';
+import {OfferCreateValidator} from '../../../../src/components/shared/OfferCreate/OfferCreate.helpers';
 
-describe('CollapseBoxCreateOfferValidator', () => {
+describe('OfferCreateValidator', () => {
     describe('rate incorrect inputs tests', () => {
         test.each([
             [-1, 'Enter correct rate'],
@@ -11,7 +11,7 @@ describe('CollapseBoxCreateOfferValidator', () => {
         ])(
             "should return 'Enter correct rate' if rate is lower or equal 0 and 'Such a big rate is not allowed' if is greater than 20",
             (rate, expectedResult) => {
-                const errors = CollapseBoxCreateOfferValidator({rate});
+                const errors = OfferCreateValidator({rate});
                 expect(errors.rate).toBe(expectedResult);
             },
         );

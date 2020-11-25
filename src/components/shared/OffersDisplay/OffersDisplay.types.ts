@@ -1,5 +1,5 @@
 import {Auction} from '../../../helpers/types';
 
-export interface CollapseBoxAuctionOffersProps {
+export interface OffersDisplayProps {
     row: Auction;
 }

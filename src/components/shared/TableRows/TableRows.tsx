@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Collapse} from '@material-ui/core';
-import {CollapseBoxCreateOffer} from '../TableCollapseBox/CollapseBoxCreateOffer';
-import {CollapseBoxAuctionOffers} from '../TableCollapseBox/CollapseBoxAuctionOffers';
-import {CollapseBoxCreateLoan} from '../TableCollapseBox/CollapseBoxCreateLoan';
-import {CollapseBoxDisplayLoanDetails} from '../TableCollapseBox/CollapseBoxDisplayLoanDetails';
+import {OfferCreate} from '../OfferCreate/OfferCreate';
+import {OffersDisplay} from '../OffersDisplay/OffersDisplay';
+import {LoanCreate} from '../LoanCreate/LoanCreate';
+import {LoanDetails} from '../LoanDetails/LoanDetails';
 import {TableRowsBorrowerAllAuctions} from '../TableRows/TableRowsBorrowerAllAuctions';
 import {TableRowsBorrowerUserAuctions} from '../TableRows/TableRowsBorrowerUserAuctions';
 import {TableRowsBorrowerUserLoans} from '../TableRows/TableRowsBorrowerUserLoans';
@@ -46,27 +46,25 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                         {(() => {
                             switch (currentPage) {
                                 case 'borrowerAllAuctions':
-                                    return <CollapseBoxAuctionOffers row={row} />;
+                                    return <OffersDisplay row={row} />;
                                 case 'borrowerUserAuctions':
                                     return (
                                         <>
-                                            <CollapseBoxAuctionOffers row={row} />
-                                            <CollapseBoxCreateLoan row={row} fetchUserAuctions={fetchUserAuctions} />
+                                            <OffersDisplay row={row} />
+                                            <LoanCreate row={row} fetchUserAuctions={fetchUserAuctions} />
                                         </>
                                     );
                                 case 'borrowerUserLoans':
-                                    return (
-                                        <CollapseBoxDisplayLoanDetails row={row} fetchUserLoans={fetchUserLoans} page="borrowerUserLoans" />
-                                    );
+                                    return <LoanDetails row={row} fetchUserLoans={fetchUserLoans} page="borrowerUserLoans" />;
                                 case 'lenderAllAuctions':
                                     return (
                                         <>
-                                            <CollapseBoxAuctionOffers row={row} />
-                                            <CollapseBoxCreateOffer row={row} handleSaveNewOffer={handleSaveNewOffer} />
+                                            <OffersDisplay row={row} />
+                                            <OfferCreate row={row} handleSaveNewOffer={handleSaveNewOffer} />
                                         </>
                                     );
                                 case 'lenderUserInvestments':
-                                    return <CollapseBoxDisplayLoanDetails row={row} page="lenderUserInvestments" />;
+                                    return <LoanDetails row={row} page="lenderUserInvestments" />;
                                 case 'lenderUserOffers':
                                     return <OfferEdit row={row} fetchUserOffers={fetchUserOffers} />;
                             }

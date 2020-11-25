@@ -1,6 +1,6 @@
 import {Loan} from '../../../helpers/types';
 
-export interface CollapseBoxDisplayLoanDetailsProps {
+export interface LoanDetailsProps {
     row: Loan;
     page: string;
     fetchUserLoans?: any;

@@ -1,9 +1,9 @@
 import React from 'react';
 import {Typography, Box} from '@material-ui/core/';
-import {OffersWrapper, StyledBox, Text} from './CollapseBox.styles';
-import {CollapseBoxAuctionOffersProps} from './CollapseBoxAuctionOffers.types';
+import {OffersWrapper, StyledBox, Text} from './OffersDisplay.styles';
+import {OffersDisplayProps} from './OffersDisplay.types';
 
-export const CollapseBoxAuctionOffers: React.FC<CollapseBoxAuctionOffersProps> = ({row}) => {
+export const OffersDisplay: React.FC<OffersDisplayProps> = ({row}) => {
     return (
         <Box>
             <Typography>Auction offers</Typography>

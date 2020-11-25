@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button, CircularProgress, Snackbar} from '@material-ui/core/';
 import {useGetMakeLoanRepayment} from '../../../hooks/useGetMakeLoanRepayment';
-import {ScheduleWrapper, RepaymentWrapper, TextBold, TextLight, LoanDetailWrapper, Title} from './CollapseBox.styles';
+import {ScheduleWrapper, RepaymentWrapper, Text, TextLight, LoanDetailWrapper, Title} from './LoanDetails.styles';
 import {Alert} from '../Alert/Alert';
-import {CollapseBoxDisplayLoanDetailsProps} from './CollapseBoxDisplayLoanDetails.types';
+import {LoanDetailsProps} from './LoanDetails.types';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 
-export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxDisplayLoanDetailsProps> = ({row, fetchUserLoans, page}) => {
+export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, page}) => {
     const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment, setIsPaid, setIsErrorGet, isPaid} = useGetMakeLoanRepayment();
 
     async function handleMakeRepayment() {
@@ -49,13 +49,13 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxDisplayLoanDetai
                     {row.schedule.map((repayment: any) => (
                         <ScheduleWrapper key={repayment.date} color={repayment.status}>
                             <RepaymentWrapper>
-                                <TextBold>{repayment.date}</TextBold>
+                                <Text>{repayment.date}</Text>
                             </RepaymentWrapper>
                             <RepaymentWrapper>
-                                <TextBold>{repayment.value} zł</TextBold>
+                                <Text>{repayment.value} zł</Text>
                             </RepaymentWrapper>
                             <RepaymentWrapper>
-                                <TextBold>{repayment.status}</TextBold>
+                                <Text>{repayment.status}</Text>
                             </RepaymentWrapper>
                         </ScheduleWrapper>
                     ))}

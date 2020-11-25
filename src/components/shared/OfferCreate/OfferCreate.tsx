@@ -1,18 +1,18 @@
 import React from 'react';
-import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography, Text} from './CollapseBox.styles';
+import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography, Text} from './OfferCreate.styles';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
-import {CollapseBoxCreateOfferValidator} from './CollapseBoxCreateOffer.helpers';
-import {CollapseBoxCreateOfferProps, CollapseBoxCreateOfferValidatorProps} from './CollapseBoxCreateOffer.types';
+import {OfferCreateValidator} from './OfferCreate.helpers';
+import {OfferCreateProps, OfferCreateValidatorProps} from './OfferCreate.types';
 
-export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({row, handleSaveNewOffer}) => {
+export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer}) => {
     const {amount, id, rate} = row;
     const marks = [
         {value: 0, label: '0 zł'},
         {value: amount, label: `${amount} zł`},
     ];
 
-    function handleSubmit(values: CollapseBoxCreateOfferValidatorProps) {
+    function handleSubmit(values: OfferCreateValidatorProps) {
         values.auctionId = id;
         handleSaveNewOffer(values);
     }
@@ -25,11 +25,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                 ) : (
                     <>
                         <Typography>Create an offer for this auction</Typography>
-                        <Formik
-                            initialValues={{amount: amount, rate: rate}}
-                            validate={CollapseBoxCreateOfferValidator}
-                            onSubmit={handleSubmit}
-                        >
+                        <Formik initialValues={{amount: amount, rate: rate}} validate={OfferCreateValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
                                 const profitAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
                                 const profitAmountDisplay =

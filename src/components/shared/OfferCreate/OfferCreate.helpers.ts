@@ -1,8 +1,8 @@
 import {FormikErrors} from 'formik';
-import {CollapseBoxCreateOfferValidatorProps} from './CollapseBoxCreateOffer.types';
+import {OfferCreateValidatorProps} from './OfferCreate.types';
 
-export const CollapseBoxCreateOfferValidator = (values: CollapseBoxCreateOfferValidatorProps) => {
-    const errors: FormikErrors<CollapseBoxCreateOfferValidatorProps> = {};
+export const OfferCreateValidator = (values: OfferCreateValidatorProps) => {
+    const errors: FormikErrors<OfferCreateValidatorProps> = {};
 
     if (!values.rate) {
         errors.rate = 'Rate is required';

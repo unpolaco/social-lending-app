@@ -4,7 +4,7 @@ import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
 import {useDeleteAuction} from '../../../hooks/useDeleteAuction';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 
-export const CollapseBoxCreateLoan: React.FC<any> = ({row, fetchUserAuctions}) => {
+export const LoanCreate: React.FC<any> = ({row, fetchUserAuctions}) => {
     const {isFetchingCreateLoan, isErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
     const {isFetchingDelete, isErrorDelete, fetchDeleteAuction} = useDeleteAuction();
     const disabled = row.status === 'ACTIVE_COMPLETE' ? false : true;

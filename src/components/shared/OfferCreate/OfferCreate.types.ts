@@ -1,11 +1,11 @@
 import {Offer} from '../../../helpers/types';
 
-export interface CollapseBoxCreateOfferProps {
+export interface OfferCreateProps {
     row: Offer;
     handleSaveNewOffer: any;
 }
 
-export interface CollapseBoxCreateOfferValidatorProps {
+export interface OfferCreateValidatorProps {
     rate?: number;
     amount?: number;
     auctionId?: number;
