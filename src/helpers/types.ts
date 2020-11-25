@@ -35,7 +35,8 @@ export interface Loan {
     status: string;
 }
 export interface Investment {
-    amount: number;
+    loanAmount: number;
+    returnAmount: number;
     borrowerName: string;
     duration: number;
     investmentId: number;

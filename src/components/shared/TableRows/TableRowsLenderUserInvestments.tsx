@@ -12,13 +12,13 @@ export const TableRowsLenderUserInvestments: React.FC<TableRowsLenderUserInvestm
                 <Text>{row.borrowerName}</Text>
             </NarrowCell>
             <NarrowCell align="right">
-                <Text>{row.amount} zł</Text>
+                <Text>{row.loanAmount} zł</Text>
             </NarrowCell>
             <NarrowCell align="right">
                 <Text>{row.rate}%</Text>
             </NarrowCell>
             <NarrowCell align="right">
-                <Text>{row.duration}</Text>
+                <Text>{row.duration} months</Text>
             </NarrowCell>
             <NarrowCell align="right">
                 <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>

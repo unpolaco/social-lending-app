@@ -7,10 +7,10 @@ export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
     const offerId: number = row.offerId;
     const userName: string = row.lenderUserName;
 
-    if (isFetchingDelete || isFetchingDelete) {
+    if (isFetchingDelete) {
         return <CircularProgress />;
     }
-    if (isErrorDelete || isErrorDelete) {
+    if (isErrorDelete) {
         alert('Error');
     }
 

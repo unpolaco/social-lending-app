@@ -9,14 +9,15 @@ export const TextBold = styled.p`
     font-size: 17px;
 `;
 export const Text = styled.p`
-    font-weight: 400;
+    font-weight: 500;
     font-size: 15px;
+    color: white;
 `;
 export const TextLight = styled.p`
     font-weight: 400;
-    font-size: 14px;
-    text-align: right;
-    color: grey;
+    font-size: 15px;
+    text-align: left;
+    color: #bdc3c7;
     width: 150px;
 `;
 export const CreateOfferWrapper = styled.div`
@@ -50,38 +51,8 @@ export const ScheduleWrapper = styled.div`
     ${({color}) => color === 'EXPECTED' && `color: ${palette.repayment.expected}`}
 `;
 export const FieldWrapper = styled.div`
+    display: flex;
     flex: 1;
-    padding: 0 15px;
-`;
-export const FieldTitleTypography = styled.p`
-    font-size: 17px;
-    font-weight: 500;
-    margin-bottom: 15px;
-`;
-export const StyledBox = styled(Box)`
-    border-radius: 5px;
-    border: 1px solid ${paletteColors.palette.form.border};
-    margin: 8px;
-    padding: 8px;
-    text-align: center;
-`;
-export const OffersWrapper = styled(Box)`
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex: 1;
-`;
-export const RepaymentWrapper = styled.div`
-    display: flex;
-    width: 150px;
-    flex-direction: column;
-    align-items: flex-end;
-`;
-export const LoanDetailWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 5px;
-    border: 1px solid ${palette.form.border};
-    margin: 20px;
+    justify-content: space-between;
+    padding: 5px 0;
 `;

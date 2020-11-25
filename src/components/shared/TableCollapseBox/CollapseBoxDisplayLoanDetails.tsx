@@ -17,8 +17,8 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxDisplayLoanDetai
     if (isFetchingGet) {
         return <CircularProgress />;
     }
-    if (isErrorGet) {
-        alert('Error');
+    if (isPaid) {
+        alert('Your payment was successfull!');
     }
 
     const handleCloseErrorAlert = () => {

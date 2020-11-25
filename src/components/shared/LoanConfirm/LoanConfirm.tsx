@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, CircularProgress} from '@material-ui/core/';
 import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
-import {FormikWrapper, Text, TextLight} from './LoanConfirm.styles';
+import {FormikWrapper, Text, TextLight, FieldWrapper} from './LoanConfirm.styles';
 import {useHistory} from 'react-router-dom';
 import {ROUTES} from '../../../helpers/routes';
 import {LoanOffers} from '../LoanOffers/LoanOffers';
@@ -25,11 +25,22 @@ export const LoanConfirm: React.FC<any> = ({loanDetails}) => {
             {loanDetails && (
                 <FormikWrapper>
                     <Text>You are creating a loan with parameters above:</Text>
-                    <TextLight>Amount to borrow </TextLight>
-                    <Text>{loanDetails.amount} zł</Text>
-                    <Text>Amount to return {loanDetails.repayment} zł</Text>
-                    <Text>Duration {loanDetails.duration} months</Text>
-                    <Text>Rate {loanDetails.rate} %</Text>
+                    <FieldWrapper>
+                        <TextLight>Amount to borrow </TextLight>
+                        <Text>{loanDetails.amount} zł</Text>
+                    </FieldWrapper>
+                    <FieldWrapper>
+                        <TextLight>Amount to return </TextLight>
+                        <Text>{loanDetails.repayment} zł</Text>
+                    </FieldWrapper>
+                    <FieldWrapper>
+                        <TextLight>Rate </TextLight>
+                        <Text>{loanDetails.rate} %</Text>
+                    </FieldWrapper>
+                    <FieldWrapper>
+                        <TextLight>Duration </TextLight>
+                        <Text>{loanDetails.duration} months</Text>
+                    </FieldWrapper>
                     <LoanOffers row={loanDetails} />
                     <Button onClick={handleConfirmCreateLoan} variant="outlined">
                         CONFIRM
