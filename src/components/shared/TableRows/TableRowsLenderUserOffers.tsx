@@ -1,9 +1,11 @@
 import React from 'react';
 import {Text, NarrowCell, StatusIcon} from './TableRows.styles';
-import {Tooltip} from '@material-ui/core';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import {IconButton, Tooltip} from '@material-ui/core';
 import {TableRowsLenderUserOffersProps} from './TableRowsLenderUserOffers.types';
 
-export const TableRowsLenderUserOffers: React.FC<TableRowsLenderUserOffersProps> = ({row}) => {
+export const TableRowsLenderUserOffers: React.FC<TableRowsLenderUserOffersProps> = ({row, clickedCollapsed}) => {
     return (
         <>
             <NarrowCell align="right">
@@ -16,6 +18,11 @@ export const TableRowsLenderUserOffers: React.FC<TableRowsLenderUserOffersProps>
                 <Tooltip title={row.status} enterDelay={500} leaveDelay={200}>
                     <StatusIcon color={row.status} />
                 </Tooltip>
+            </NarrowCell>
+            <NarrowCell>
+                <IconButton aria-label="expand row" size="small">
+                    {clickedCollapsed === row.id ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IconButton>
             </NarrowCell>
         </>
     );

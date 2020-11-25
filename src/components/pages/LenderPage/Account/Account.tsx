@@ -34,8 +34,6 @@ export const Account: React.FC = () => {
                         <TextBold>{accountDetails.email}</TextBold>
                         <TextLight>Phone number</TextLight>
                         <TextBold>{accountDetails.phoneNumber}</TextBold>
-                        <TextLight>hasLinkedBankAccount</TextLight>
-                        <TextBold>{accountDetails.hasLinkedBankAccount}</TextBold>
                     </StyledCard>
                 )}
                 <PaymentCard currentPage="lender" />

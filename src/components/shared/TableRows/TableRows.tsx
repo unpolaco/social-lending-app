@@ -10,9 +10,10 @@ import {TableRowsBorrowerUserLoans} from '../TableRows/TableRowsBorrowerUserLoan
 import {TableRowsLenderAllAuctions} from '../TableRows/TableRowsLenderAllAuctions';
 import {TableRowsLenderUserInvestments} from '../TableRows/TableRowsLenderUserInvestments';
 import {TableRowsLenderUserOffers} from '../TableRows/TableRowsLenderUserOffers';
+import {OfferEdit} from '../OfferEdit/OfferEdit';
 import {CollapsedCell, StyledTableRowHover, StyledTableRow} from './TableRows.styles';
 
-export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, fetchUserLoans, fetchUserAuctions}) => {
+export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, fetchUserLoans, fetchUserAuctions, fetchUserOffers}) => {
     const [clickedCollapsed, setClickedCollapsed] = useState<number | null>(null);
 
     const handleClickCollapse = (id: number) => {
@@ -35,7 +36,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                         case 'lenderUserInvestments':
                             return <TableRowsLenderUserInvestments row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderUserOffers':
-                            return <TableRowsLenderUserOffers row={row} />;
+                            return <TableRowsLenderUserOffers row={row} clickedCollapsed={clickedCollapsed} />;
                     }
                 })()}
             </StyledTableRowHover>
@@ -66,6 +67,8 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                     );
                                 case 'lenderUserInvestments':
                                     return <CollapseBoxDisplayLoanDetails row={row} page="lenderUserInvestments" />;
+                                case 'lenderUserOffers':
+                                    return <OfferEdit row={row} fetchUserOffers={fetchUserOffers} />;
                             }
                         })()}
                     </Collapse>

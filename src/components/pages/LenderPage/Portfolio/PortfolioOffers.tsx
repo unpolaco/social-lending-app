@@ -21,7 +21,7 @@ export const PortfolioOffers: React.FC = () => {
     return (
         <PageWrapper>
             <Title>Your Offers</Title>
-            {userOffersList && <Table rows={userOffersList} currentPage="lenderUserOffers" />}
+            {userOffersList && <Table rows={userOffersList} currentPage="lenderUserOffers" fetchUserOffers={fetchUserOffers} />}
         </PageWrapper>
     );
 };

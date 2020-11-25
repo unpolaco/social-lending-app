@@ -72,7 +72,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                                 onChange={(e, value) => setFieldValue('loanDuration', value)}
                                             />
 
-                                            <Button type="submit" disabled={!isValid} data-testid="buttonAuctionCreate">
+                                            <Button type="submit" disabled={!isValid} data-testid="buttonAuctionCreate" variant="outlined">
                                                 Create auction
                                             </Button>
                                         </FormWrapper>

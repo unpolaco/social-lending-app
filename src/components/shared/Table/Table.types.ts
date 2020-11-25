@@ -6,4 +6,5 @@ export interface TableProps {
     handleSaveNewOffer?: any;
     fetchUserLoans?: any;
     fetchUserAuctions?: any;
+    fetchUserOffers?: any;
 }
