@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, CircularProgress, Snackbar} from '@material-ui/core/';
 import {useGetMakeLoanRepayment} from '../../../hooks/useGetMakeLoanRepayment';
 import {ScheduleWrapper, RepaymentWrapper, TextBold, TextLight, LoanDetailWrapper, Title} from './CollapseBox.styles';
@@ -7,13 +7,11 @@ import {CollapseBoxDisplayLoanDetailsProps} from './CollapseBoxDisplayLoanDetail
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 
 export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxDisplayLoanDetailsProps> = ({row, fetchUserLoans, page}) => {
-    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment, response} = useGetMakeLoanRepayment();
-    const [open, setOpen] = useState<boolean>(false);
+    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment, setIsPaid, setIsErrorGet, isPaid} = useGetMakeLoanRepayment();
 
     async function handleMakeRepayment() {
         await fetchMakeLoanRepayment(row.id);
         fetchUserLoans('Bilbo_Baggins');
-        await setOpen(true);
     }
 
     if (isFetchingGet) {
@@ -22,14 +20,24 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxDisplayLoanDetai
     if (isErrorGet) {
         alert('Error');
     }
+
+    const handleCloseErrorAlert = () => {
+        setIsErrorGet(false);
+    };
+    const handleCloseSuccessAlert = () => {
+        setIsPaid(false);
+    };
+
     return (
         <LoanDetailWrapper>
-            {row.status === 'UNCONFIRMED' ? (
+            {row.status === 'UNCONFIRMED' && page === 'borrowerUserLoans' && (
                 <>
                     <Title>Confirm your loan</Title>
                     <LoanConfirm loanDetails={row} />
                 </>
-            ) : (
+            )}
+            {row.status === 'UNCONFIRMED' && page === 'lenderUserInvestments' && <Title>Your investment is unconfirmed</Title>}
+            {row.status !== 'UNCONFIRMED' && (
                 <>
                     <Title>Loan repayment details</Title>
                     {page === 'borrowerUserLoans' && (
@@ -55,10 +63,11 @@ export const CollapseBoxDisplayLoanDetails: React.FC<CollapseBoxDisplayLoanDetai
                             </RepaymentWrapper>
                         </ScheduleWrapper>
                     ))}
-                    <Snackbar open={open} autoHideDuration={4000}>
-                        <Alert onClose={() => setOpen(false)} severity="success">
-                            {response ? 'Your payment was successfull!' : 'Something was wrong'}
-                        </Alert>
+                    <Snackbar open={isPaid} autoHideDuration={3000} onClose={handleCloseSuccessAlert} onClick={handleCloseSuccessAlert}>
+                        <Alert severity="success">'Your payment was successfull!'</Alert>
+                    </Snackbar>
+                    <Snackbar open={isErrorGet} autoHideDuration={3000} onClose={handleCloseErrorAlert} onClick={handleCloseErrorAlert}>
+                        <Alert severity="error">'Error payment. Please try again.'</Alert>
                     </Snackbar>
                 </>
             )}
