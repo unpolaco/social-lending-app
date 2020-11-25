@@ -11,7 +11,6 @@ export const useGetMakeLoanRepayment = () => {
         try {
             await getMakeLoanRepayment(loanId);
             setIsPaid(true);
-            console.log(isPaid, 'hook');
         } catch {
             setIsErrorGet(true);
         } finally {

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import {Box} from '@material-ui/core/';
 import {paletteColors} from '../../../helpers/constants-colors';
 
 const {palette} = paletteColors;
