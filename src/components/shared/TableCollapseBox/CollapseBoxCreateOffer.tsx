@@ -37,7 +37,7 @@ export const CollapseBoxCreateOffer: React.FC<CollapseBoxCreateOfferProps> = ({r
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormikWrapper>
-                                            <Text>Your profit will be: {profitAmountDisplay} zł</Text>
+                                            <Text>Your profit will be: {profitAmountDisplay}</Text>
                                             <FieldWrapper>
                                                 <FieldTitleTypography>Your rate offer is {values.rate}%</FieldTitleTypography>
                                                 <TextField

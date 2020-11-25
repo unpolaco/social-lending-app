@@ -9,6 +9,7 @@ import {Alert} from '../Alert/Alert';
 import {useGetAccountDetails} from '../../../hooks/useGetAccountDetails';
 
 export const PaymentCard: React.FC<any> = ({currentPage}) => {
+    const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';
     const {
         isFetchingPaymentOnPlatform,
         isErrorPaymentOnPlatform,
@@ -29,8 +30,8 @@ export const PaymentCard: React.FC<any> = ({currentPage}) => {
     const {isFetchingGet, isErrorGet, fetchAccountDetails, accountDetails} = useGetAccountDetails();
 
     useEffect(() => {
-        fetchAccountDetails('Samwise_Gamgee');
-    }, [fetchAccountDetails]);
+        fetchAccountDetails(userName);
+    }, [fetchAccountDetails, userName]);
 
     if (isFetchingGet) {
         return <CircularProgress />;
