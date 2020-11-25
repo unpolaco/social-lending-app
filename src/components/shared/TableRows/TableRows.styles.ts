@@ -44,4 +44,5 @@ export const StatusIcon = styled.div`
     ${({color}) => color === 'ARCHIVED' && `background: ${palette.status.archived}`};
     ${({color}) => color === 'UNCONFIRMED' && `background: ${palette.status.unconfirmed}`};
     ${({color}) => color === 'REPAID' && `background: ${palette.status.repaid}`};
+    ${({color}) => color === 'COMPLETED' && `background: ${palette.status.completed}`};
 `;
