@@ -31,7 +31,7 @@ export const PaymentCard: React.FC<any> = ({currentPage}) => {
 
     useEffect(() => {
         fetchAccountDetails(userName);
-    }, [fetchAccountDetails]);
+    }, [fetchAccountDetails, userName]);
 
     if (isFetchingGet) {
         return <CircularProgress />;
