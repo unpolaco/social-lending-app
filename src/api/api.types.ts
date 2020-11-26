@@ -71,6 +71,16 @@ export interface AccountDto {
     surname: string;
     userName: string;
 }
+export interface PublicAccountDto {
+    email: string;
+    totalRating: number;
+    opinions: OpinionsDto[];
+}
+export interface OpinionsDto {
+    author: string;
+    opinionText: string;
+    opinionRating: number;
+}
 export interface PaymentDto {
     amount: number;
     userName: string;

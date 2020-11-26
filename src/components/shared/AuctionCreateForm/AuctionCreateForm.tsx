@@ -15,7 +15,7 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
     return (
         <Accordion>
             <AccordionWrapper>
-                <AccordionSummary expandIcon={<AddIcon />}>
+                <AccordionSummary expandIcon={<AddIcon />} data-testid="createNewAuctionBtn">
                     <Typography variant="h6">Create new auction</Typography>
                 </AccordionSummary>
             </AccordionWrapper>

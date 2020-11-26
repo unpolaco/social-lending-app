@@ -52,3 +52,13 @@ export interface Schedule {
     status: string;
     value: number;
 }
+export interface PublicAccount {
+    email: string;
+    totalRating: number;
+    opinions: Opinions[];
+}
+export interface Opinions {
+    author: string;
+    opinionText: string;
+    opinionRating: number;
+}

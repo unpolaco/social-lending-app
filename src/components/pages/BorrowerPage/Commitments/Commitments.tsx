@@ -19,7 +19,7 @@ export const Commitments: React.FC = () => {
                 Here you can find list of your auctions and loans and manage them
             </Typography>
             <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="My auctions" to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} component={NavLink} />
+                <Tab label="My auctions" to={ROUTES.BORROWER_COMMITMENTS_AUCTIONS} component={NavLink} data-testid="myAuctionsBtn" />
                 <Tab label="My loans" to={ROUTES.BORROWER_COMMITMENTS_LOANS} component={NavLink} />
             </Tabs>
             <Switch>

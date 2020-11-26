@@ -15,7 +15,7 @@ export const Borrower: React.FC = () => {
                     <Button component={NavLink} to={ROUTES.BORROWER_AUCTIONS}>
                         All Auctions
                     </Button>
-                    <Button component={NavLink} to={ROUTES.BORROWER_COMMITMENTS}>
+                    <Button component={NavLink} to={ROUTES.BORROWER_COMMITMENTS} data-testid="borrowerCommitmentsBtn">
                         Loans & My auctions
                     </Button>
                     <Button component={NavLink} to={ROUTES.BORROWER_ACCOUNT}>
