@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {CircularProgress} from '@material-ui/core/';
-import {useGetAllAuctions} from '../../../../hooks/useGetAllAuctions';
-import {useSaveNewOffer} from '../../../../hooks/useSaveNewOffer';
+import {useGetAllAuctions} from '../../../../hooks/api/auction/useGetAllAuctions';
+import {useSaveNewOffer} from '../../../../hooks/api/offer/useSaveNewOffer';
 import {Table} from '../../../shared/Table/Table';
 import {PageWrapper, Title} from './Invest.styles';
 

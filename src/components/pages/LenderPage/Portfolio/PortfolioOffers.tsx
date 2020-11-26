@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useGetUserOffers} from '../../../../hooks/useGetUserOffers';
+import {useGetUserOffers} from '../../../../hooks/api/offer/useGetUserOffers';
 import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Portfolio.styles';

@@ -3,10 +3,10 @@ import {CircularProgress, Snackbar} from '@material-ui/core';
 import {PaymentFormOnUserAccount} from '../PaymentForm/PaymentFormOnUserAccount';
 import {PaymentFormOnPlatformAccount} from '../PaymentForm/PaymentFormOnPlatformAccount';
 import {StyledCard, TextBold} from './PaymentCard.styles';
-import {usePaymentOnPlatformAccount} from '../../../hooks/usePaymentOnPlatformAccount';
-import {usePaymentOnUserAccount} from '../../../hooks/usePaymentOnUserAccount';
+import {usePaymentOnPlatformAccount} from '../../../hooks/api/payment/usePaymentOnPlatformAccount';
+import {usePaymentOnUserAccount} from '../../../hooks/api/payment/usePaymentOnUserAccount';
 import {Alert} from '../Alert/Alert';
-import {useGetAccountDetails} from '../../../hooks/useGetAccountDetails';
+import {useGetAccountDetails} from '../../../hooks/api/account/useGetAccountDetails';
 
 export const PaymentCard: React.FC<any> = ({currentPage}) => {
     const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';

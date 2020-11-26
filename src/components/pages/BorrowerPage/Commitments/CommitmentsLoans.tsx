@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useGetUserLoans} from '../../../../hooks/useGetUserLoans';
+import {useGetUserLoans} from '../../../../hooks/api/loan/useGetUserLoans';
 import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Commitments.styles';

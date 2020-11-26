@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {CircularProgress} from '@material-ui/core/';
-import {useGetAccountDetails} from '../../../../hooks/useGetAccountDetails';
+import {useGetAccountDetails} from '../../../../hooks/api/account/useGetAccountDetails';
 import {StyledCard, PageWrapper, TextBold, TextLight, Title} from './Account.styles';
 import {PaymentCard} from '../../../shared/PaymentCard/PaymentCard';
 

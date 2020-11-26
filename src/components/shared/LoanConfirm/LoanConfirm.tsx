@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, CircularProgress} from '@material-ui/core/';
-import {useGetConfirmCreateLoan} from '../../../hooks/useGetConfirmCreateLoan';
+import {useGetConfirmCreateLoan} from '../../../hooks/api/loan/useGetConfirmCreateLoan';
 import {FormikWrapper, Text, TextLight, FieldWrapper} from './LoanConfirm.styles';
 import {useHistory} from 'react-router-dom';
 import {ROUTES} from '../../../helpers/routes';

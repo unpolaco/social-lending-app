@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {CircularProgress} from '@material-ui/core/';
 import {Table} from '../../../shared/Table/Table';
-import {useGetAllAuctions} from '../../../../hooks/useGetAllAuctions';
+import {useGetAllAuctions} from '../../../../hooks/api/auction/useGetAllAuctions';
 import {PageWrapper, Title} from './Auctions.styles';
 
 export const Auctions: React.FC = () => {

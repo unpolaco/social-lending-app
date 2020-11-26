@@ -1,7 +1,7 @@
 import React from 'react';
 import {Typography, Box, Button, CircularProgress} from '@material-ui/core/';
-import {useGetCreateLoan} from '../../../hooks/useGetCreateLoan';
-import {useDeleteAuction} from '../../../hooks/useDeleteAuction';
+import {useGetCreateLoan} from '../../../hooks/api/auction/useGetCreateLoan';
+import {useDeleteAuction} from '../../../hooks/api/auction/useDeleteAuction';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 
 export const LoanCreate: React.FC<any> = ({row, fetchUserAuctions}) => {
