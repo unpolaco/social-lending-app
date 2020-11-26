@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {useGetUserAuctions} from '../../../../hooks/useGetUserAuctions';
+import {useGetUserAuctions} from '../../../../hooks/api/auction/useGetUserAuctions';
 import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 import {AuctionCreateForm} from '../../../shared/AuctionCreateForm/AuctionCreateForm';
 import {AuctionCreateFormValues} from '../../../shared/AuctionCreateForm/AuctionCreateForm.types';
-import {useSaveNewAuction} from '../../../../hooks/useSaveNewAuction';
+import {useSaveNewAuction} from '../../../../hooks/api/auction/useSaveNewAuction';
 import {PageWrapper, Title} from './Commitments.styles';
 
 export const CommitmentsAuctions: React.FC = () => {

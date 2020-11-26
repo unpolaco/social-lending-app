@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Button, CircularProgress, Typography} from '@material-ui/core/';
-import {useDeleteUserOffer} from '../../../hooks/useDeleteUserOffer';
+import {useDeleteUserOffer} from '../../../hooks/api/offer/useDeleteUserOffer';
 
 export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
     const {isFetchingDelete, isErrorDelete, fetchDeleteUserOffer} = useDeleteUserOffer();

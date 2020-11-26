@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useGetUserInvestments} from '../../../../hooks/useGetUserInvestments';
+import {useGetUserInvestments} from '../../../../hooks/api/investment/useGetUserInvestments';
 import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Portfolio.styles';
