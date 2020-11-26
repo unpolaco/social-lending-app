@@ -60,7 +60,7 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
                         </ScheduleWrapper>
                     ))}
                     <Snackbar open={isPaid} autoHideDuration={3000} onClose={handleCloseSuccessAlert} onClick={handleCloseSuccessAlert}>
-                        <Alert severity="success">'Your payment was successfull!'</Alert>
+                        <Alert severity="success">'Your payment was successful!'</Alert>
                     </Snackbar>
                     <Snackbar open={isErrorGet} autoHideDuration={3000} onClose={handleCloseErrorAlert} onClick={handleCloseErrorAlert}>
                         <Alert severity="error">'Error payment. Please try again.'</Alert>

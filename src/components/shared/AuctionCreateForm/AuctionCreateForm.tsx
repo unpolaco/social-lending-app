@@ -6,12 +6,12 @@ import {initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
 import {AuctionCreateFormValues} from './AuctionCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
+import {RateReview} from '@material-ui/icons';
 
 export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
     function handleSubmit(values: AuctionCreateFormValues) {
         handleSaveNewAuction(values);
     }
-
     return (
         <Accordion>
             <AccordionWrapper>
@@ -24,16 +24,17 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                     <CreateAuctionCardWrapper>
                         <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
-                                const loanAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
-                                const loanRepayment = (loanAmount / values.loanDuration!).toFixed(2);
-                                const loanAmountDisplay = !Number.isNaN(Number(loanAmount)) && isValid ? ` ${loanAmount} zł` : ' 0 zł';
-                                const loanRepaymentDisplay =
-                                    !Number.isNaN(Number(loanRepayment)) && isValid ? ` ${loanRepayment} zł` : ' 0 zł';
+                                const amount = values.amount! || 0;
+                                const rate = values.rate! || 0;
+                                const loanAmount: number =
+                                    amount && RateReview && isValid ? +(amount + amount * (rate / 100)).toFixed(2) : 0;
+                                const loanRepayment = loanAmount && isValid ? +(loanAmount / values.loanDuration!).toFixed(2) : 0;
+
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormWrapper>
-                                            <Text>Total amount to pay: {loanAmountDisplay}</Text>
-                                            <Text>Repayment amount: {loanRepaymentDisplay}</Text>
+                                            <Text>Total amount to pay: {loanAmount || '0'} zł</Text>
+                                            <Text>Repayment amount: {loanRepayment || '0'} zł</Text>
                                             <TextField
                                                 autoFocus
                                                 name="amount"

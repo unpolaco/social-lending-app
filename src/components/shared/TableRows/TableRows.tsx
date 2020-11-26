@@ -17,8 +17,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
     const [clickedCollapsed, setClickedCollapsed] = useState<number | null>(null);
 
     const handleClickCollapse = (id: number) => {
-        if (clickedCollapsed === id) setClickedCollapsed(null);
-        else setClickedCollapsed(id);
+        setClickedCollapsed(clickedCollapsed === id ? null : id);
     };
     return (
         <>
