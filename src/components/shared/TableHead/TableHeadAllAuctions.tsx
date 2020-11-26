@@ -1,5 +1,5 @@
 import React from 'react';
-import {HiddenSpan, NarrowCell, TextHead, TextHeadCell} from './TableHead.styles';
+import {HiddenSpan, NarrowCell, TextHead} from './TableHead.styles';
 import {TableHead, TableRow, TableSortLabel} from '@material-ui/core';
 import {AuctionTableProps} from './TableHead.types';
 import {Auction} from '../../../helpers/types';
