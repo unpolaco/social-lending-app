@@ -12,6 +12,7 @@ import {TableRowsLenderUserInvestments} from '../TableRows/TableRowsLenderUserIn
 import {TableRowsLenderUserOffers} from '../TableRows/TableRowsLenderUserOffers';
 import {OfferEdit} from '../OfferEdit/OfferEdit';
 import {CollapsedCell, StyledTableRowHover, StyledTableRow} from './TableRows.styles';
+import {PublicProfile} from '../PublicProfile/PublicProfile';
 
 export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, fetchUserLoans, fetchUserAuctions, fetchUserOffers}) => {
     const [clickedCollapsed, setClickedCollapsed] = useState<number | null>(null);
@@ -27,7 +28,13 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                         case 'borrowerAllAuctions':
                             return <TableRowsBorrowerAllAuctions row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'borrowerUserAuctions':
-                            return <TableRowsBorrowerUserAuctions row={row} clickedCollapsed={clickedCollapsed} />;
+                            return (
+                                <TableRowsBorrowerUserAuctions
+                                    row={row}
+                                    clickedCollapsed={clickedCollapsed}
+                                    data-testid="userAuctionTableRow"
+                                />
+                            );
                         case 'borrowerUserLoans':
                             return <TableRowsBorrowerUserLoans row={row} clickedCollapsed={clickedCollapsed} />;
                         case 'lenderAllAuctions':
@@ -45,7 +52,12 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                         {(() => {
                             switch (currentPage) {
                                 case 'borrowerAllAuctions':
-                                    return <OffersDisplay row={row} />;
+                                    return (
+                                        <>
+                                            <PublicProfile row={row} />
+                                            <OffersDisplay row={row} />
+                                        </>
+                                    );
                                 case 'borrowerUserAuctions':
                                     return (
                                         <>
@@ -58,6 +70,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                 case 'lenderAllAuctions':
                                     return (
                                         <>
+                                            <PublicProfile row={row} />
                                             <OffersDisplay row={row} />
                                             <OfferCreate row={row} handleSaveNewOffer={handleSaveNewOffer} />
                                         </>
