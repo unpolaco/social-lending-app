@@ -1,19 +1,16 @@
 import styled from '@emotion/styled';
 import {paletteColors} from '../../../helpers/constants-colors';
-
 const {palette} = paletteColors;
 
 export const Text = styled.p`
-    font-weight: 500;
-    font-size: 15px;
-    color: white;
-`;
-export const TextLight = styled.p`
     font-weight: 400;
     font-size: 15px;
-    text-align: left;
-    color: #bdc3c7;
-    width: 150px;
+`;
+export const CreateOfferWrapper = styled.div`
+    border-radius: 5px;
+    padding: 8px;
+    width: 100%;
+    text-align: center;
 `;
 export const FormikWrapper = styled.div`
     padding: 20px;
@@ -27,8 +24,11 @@ export const FormikWrapper = styled.div`
     width: 300px;
 `;
 export const FieldWrapper = styled.div`
-    display: flex;
     flex: 1;
-    justify-content: space-between;
-    padding: 5px 0;
+    padding: 0 15px;
+`;
+export const FieldTitleTypography = styled.p`
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 15px;
 `;
