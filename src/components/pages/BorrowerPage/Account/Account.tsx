@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {CircularProgress} from '@material-ui/core/';
 import {useGetAccountDetails} from '../../../../hooks/api/account/useGetAccountDetails';
-import {StyledCard, PageWrapper, TextBold, TextLight, Title} from './Account.styles';
+import {PageWrapper, Title} from './Account.styles';
 import {PaymentCard} from '../../../shared/PaymentCard/PaymentCard';
+import {PrivateProfile} from '../../../shared/PrivateProfile/PrivateProfile';
 
 export const Account: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchAccountDetails, accountDetails} = useGetAccountDetails();
@@ -22,20 +23,7 @@ export const Account: React.FC = () => {
         <>
             <Title>BORROWER ACCOUNT Page</Title>
             <PageWrapper>
-                {accountDetails && (
-                    <StyledCard>
-                        <TextLight>Username</TextLight>
-                        <TextBold>{accountDetails.userName}</TextBold>
-                        <TextLight>First name</TextLight>
-                        <TextBold>{accountDetails.name}</TextBold>
-                        <TextLight>Surname</TextLight>
-                        <TextBold>{accountDetails.surname}</TextBold>
-                        <TextLight>E-mail</TextLight>
-                        <TextBold>{accountDetails.email}</TextBold>
-                        <TextLight>Phone number</TextLight>
-                        <TextBold>{accountDetails.phoneNumber}</TextBold>
-                    </StyledCard>
-                )}
+                {accountDetails && <PrivateProfile accountDetails={accountDetails} />}
                 <PaymentCard currentPage="borrower" />
             </PageWrapper>
         </>
