@@ -23,7 +23,7 @@ export const PaymentFormOnUserAccount: React.FC<PaymentFormProps> = ({currentPag
                                 <TextField
                                     name="amount"
                                     type="number"
-                                    data-testid="amountPayment"
+                                    id="amountPaymentOnUserAccount"
                                     label={'Enter amount *'}
                                     value={values.amount ?? ''}
                                     InputProps={{endAdornment: <InputAdornment position="end">zł</InputAdornment>}}

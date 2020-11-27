@@ -54,7 +54,6 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                 case 'borrowerAllAuctions':
                                     return (
                                         <>
-                                            <PublicProfile row={row} />
                                             <OffersDisplay row={row} />
                                         </>
                                     );
@@ -76,7 +75,12 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                         </>
                                     );
                                 case 'lenderUserInvestments':
-                                    return <LoanDetails row={row} page="lenderUserInvestments" />;
+                                    return (
+                                        <>
+                                            <LoanDetails row={row} page="lenderUserInvestments" />
+                                            <PublicProfile row={row} page="lenderUserInvestments" />
+                                        </>
+                                    );
                                 case 'lenderUserOffers':
                                     return <OfferEdit row={row} fetchUserOffers={fetchUserOffers} />;
                             }

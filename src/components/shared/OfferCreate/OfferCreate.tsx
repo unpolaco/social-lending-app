@@ -40,6 +40,7 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
                                                     name="rate"
                                                     type="number"
                                                     data-testid="rateOfferCreate"
+                                                    id="rate"
                                                     label={'Enter expected rate *'}
                                                     InputProps={{endAdornment: <InputAdornment position="end">%</InputAdornment>}}
                                                     value={values.rate ?? ''}

@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import {Card} from '@material-ui/core/';
 import {paletteColors} from '../../../helpers/constants-colors';
-const {palette} = paletteColors;
 
 export const PageWrapper = styled.div`
     display: flex;
@@ -9,7 +8,7 @@ export const PageWrapper = styled.div`
     padding: 15px;
     margin-top: 15px;
     border-radius: 5px;
-    background-color: ${palette.page.lightBackground};
+    background-color: ${paletteColors.palette.page.lightBackground};
     height: 90%;
 `;
 export const TextBold = styled.p`
@@ -21,6 +20,7 @@ export const TextLight = styled.p`
     margin: 5px;
     font-weight: 400;
     font-size: 12px;
+    color: grey;
 `;
 export const StyledCard = styled(Card)`
     display: flex;
@@ -28,16 +28,6 @@ export const StyledCard = styled(Card)`
     align-items: flex-start;
     padding: 15px;
     width: 400px;
-    && {
-        background-color: ${palette.page.lightestBackground};
-    }
-`;
-export const StyledOpinionCard = styled(Card)`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    margin-top: 8px;
 `;
 export const Title = styled.p`
     line-height: 50px;
