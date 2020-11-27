@@ -1,51 +1,46 @@
 import styled from '@emotion/styled';
-import {TableRow, TableCell, Button, Box} from '@material-ui/core/';
+import {Card} from '@material-ui/core/';
 import {paletteColors} from '../../../helpers/constants-colors';
-
 const {palette} = paletteColors;
 
-export const Text = styled.p`
+export const PageWrapper = styled.div`
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: ${palette.page.lightBackground};
+    height: 90%;
+`;
+export const TextBold = styled.p`
+    font-weight: 500;
+    font-size: 17px;
+    margin: 5px;
+`;
+export const TextLight = styled.p`
+    margin: 5px;
     font-weight: 400;
-    font-size: 15px;
+    font-size: 12px;
 `;
-export const TestButton = styled(Button)`
-    z-index: 100000;
-`;
-export const StyledTableRow = styled(TableRow)`
-    padding: 0 15px;
-    width: 80%;
-    margin: 15px;
-`;
-export const StyledTableRowHover = styled(StyledTableRow)`
-    transition: 0.3s;
-    &:hover {
-        background-color: #a4b0be;
+export const StyledCard = styled(Card)`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    width: 400px;
+    && {
+        background-color: ${palette.page.lightestBackground};
     }
 `;
-export const WideCell = styled(TableCell)`
+export const StyledOpinionCard = styled(Card)`
     display: flex;
-    justify-content: flex-end;
-    flex: 1;
-    cursor: pointer;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    margin-top: 8px;
 `;
-export const NarrowCell = styled(TableCell)`
-    cursor: pointer;
-    flex: 1;
-`;
-export const CollapsedCell = styled(TableCell)`
-    padding: 0;
-`;
-export const StyledBox = styled(Box)`
-    margin: 0 30px;
-`;
-export const StatusIcon = styled.div`
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    ${({color}) => color === 'ACTIVE' && `background: ${palette.status.active}`};
-    ${({color}) => color === 'ACTIVE_COMPLETE' && `background: ${palette.status.activeComplete}`};
-    ${({color}) => color === 'ARCHIVED' && `background: ${palette.status.archived}`};
-    ${({color}) => color === 'UNCONFIRMED' && `background: ${palette.status.unconfirmed}`};
-    ${({color}) => color === 'REPAID' && `background: ${palette.status.repaid}`};
-    ${({color}) => color === 'COMPLETED' && `background: ${palette.status.completed}`};
+export const Title = styled.p`
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 600;
 `;

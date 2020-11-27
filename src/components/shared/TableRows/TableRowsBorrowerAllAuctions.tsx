@@ -13,7 +13,7 @@ export const TableRowsBorrowerAllAuctions: React.FC<TableRowsBorrowerAllAuctions
                 <Tooltip title="Rating of a user in 1-5 scale" enterDelay={500} leaveDelay={200}>
                     <StyledBox>
                         <Text>{row.borrower}</Text>
-                        <Rating size="small" value={+row.borrowerRating} readOnly />
+                        <Rating size="small" value={+row.borrowerRating} precision={0.5} readOnly />
                     </StyledBox>
                 </Tooltip>
             </WideCell>

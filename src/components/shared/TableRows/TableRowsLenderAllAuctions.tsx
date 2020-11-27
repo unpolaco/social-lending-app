@@ -12,7 +12,7 @@ export const TableRowsLenderAllAuctions: React.FC<TableRowsLenderAllAuctionsProp
             <WideCell>
                 <StyledBox>
                     <Text>{row.borrower}</Text>
-                    <Rating size="small" value={+row.borrowerRating} readOnly />
+                    <Rating size="small" value={+row.borrowerRating} precision={0.5} readOnly />
                 </StyledBox>
             </WideCell>
             <NarrowCell align="right">

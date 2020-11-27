@@ -42,6 +42,7 @@ export const paletteColors: any = {
         },
         page: {
             lightBackground: ' #4b4b4b',
+            lightestBackground: ' #7e8a96',
         },
         info: {
             main: '#8db7d8',
