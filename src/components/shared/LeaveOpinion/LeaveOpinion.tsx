@@ -5,10 +5,13 @@ import {Button, CircularProgress, TextField} from '@material-ui/core';
 import {useLeaveOpinion} from '../../../hooks/api/investment/useLeaveOpinion';
 import {Form, Formik} from 'formik';
 
-export const LeaveOpinion: React.FC<any> = ({row}) => {
+export const LeaveOpinion: React.FC<any> = ({row, currentInvestmentOpinion}) => {
     const {isFetchingLeaveOpinion, isErrorLeaveOpinion, fetchLeaveOpinion} = useLeaveOpinion();
     const author = row.lenderName;
     const investmentId = row.investmentId;
+    const initialValues = currentInvestmentOpinion
+        ? {opinionRating: currentInvestmentOpinion.opinionRating, opinionText: currentInvestmentOpinion.opinionText}
+        : {opinionRating: 0, opinionText: ''};
 
     if (isFetchingLeaveOpinion) {
         return <CircularProgress />;
@@ -22,6 +25,7 @@ export const LeaveOpinion: React.FC<any> = ({row}) => {
             author: author,
             opinionText: values.opinionText,
             opinionRating: +values.opinionRating,
+            investmentId: investmentId,
         };
         fetchLeaveOpinion(investmentId, opinionDetails);
     }
@@ -29,7 +33,7 @@ export const LeaveOpinion: React.FC<any> = ({row}) => {
     return (
         <div>
             <Text>Leave your opinion about transaction</Text>
-            <Formik initialValues={{opinionRating: 5, opinionText: ''}} onSubmit={handleLeaveOpinion}>
+            <Formik initialValues={initialValues} onSubmit={handleLeaveOpinion}>
                 {({handleSubmit, values, handleChange}) => {
                     return (
                         <Form onSubmit={handleSubmit}>
@@ -38,7 +42,7 @@ export const LeaveOpinion: React.FC<any> = ({row}) => {
                                 name="opinionRating"
                                 size="small"
                                 precision={0.5}
-                                value={values.opinionRating}
+                                value={+values.opinionRating}
                                 onChange={handleChange}
                             />
                             <TextField

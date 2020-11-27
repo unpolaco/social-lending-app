@@ -54,6 +54,8 @@ export interface Schedule {
 }
 export interface PublicAccount {
     email: string;
+    name: string;
+    surname: string;
     totalRating: number;
     opinions: Opinions[];
 }
@@ -61,4 +63,5 @@ export interface Opinions {
     author: string;
     opinionText: string;
     opinionRating: number;
+    investmentId: number;
 }

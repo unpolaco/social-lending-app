@@ -9,6 +9,8 @@ import {LeaveOpinion} from '../LeaveOpinion/LeaveOpinion';
 export const PublicProfile: React.FC<any> = ({row, page}) => {
     const {isFetchingGet, isErrorGet, fetchAccountPublicProfile, publicProfile} = useGetAccountPublicProfile();
     const userName: string = page === 'lenderUserInvestments' ? row.borrowerName : row.borrower;
+    const investmentId = row.investmentId;
+    const currentInvestmentOpinion = publicProfile?.opinions?.find((opinion: Opinions) => opinion.investmentId === investmentId);
 
     if (isFetchingGet) {
         return <CircularProgress />;
@@ -30,8 +32,13 @@ export const PublicProfile: React.FC<any> = ({row, page}) => {
                 <>
                     <TextBold>User public profile</TextBold>
                     <StyledCard>
+                        <TextLight>First name</TextLight>
+                        <TextBold>{publicProfile.name}</TextBold>
+                        <TextLight>Surname</TextLight>
+                        <TextBold>{publicProfile.surname}</TextBold>
                         <TextLight>User email</TextLight>
                         <TextBold>{publicProfile.email}</TextBold>
+                        <TextLight>User rating</TextLight>
                         <Rating size="small" value={+publicProfile.totalRating} precision={0.5} readOnly />
                         {publicProfile.opinions.map((opinion: Opinions, index) => (
                             <StyledOpinionCard key={index}>
@@ -40,7 +47,7 @@ export const PublicProfile: React.FC<any> = ({row, page}) => {
                                 <TextBold>{opinion.opinionText}</TextBold>
                             </StyledOpinionCard>
                         ))}
-                        {page === 'lenderUserInvestments' && <LeaveOpinion row={row} />}
+                        {page === 'lenderUserInvestments' && <LeaveOpinion row={row} currentInvestmentOpinion={currentInvestmentOpinion} />}
                     </StyledCard>
                 </>
             )}
