@@ -1,16 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Typography, Tabs, Tab} from '@material-ui/core/';
 import {ROUTES} from '../../../../helpers/routes';
-import {NavLink, Route, Switch, Redirect} from 'react-router-dom';
+import {NavLink, Route, Switch, Redirect, useLocation} from 'react-router-dom';
 import {PortfolioOffers} from './PortfolioOffers';
 import {PortfolioInvestments} from './PortfolioInvestments';
 
 export const Portfolio: React.FC = () => {
-    const [value, setValue] = useState(0);
-
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-        setValue(newValue);
-    };
+    const offersPath = ROUTES.LENDER_PORTFOLIO_USEROFFERS;
+    const investmentsPath = ROUTES.LENDER_PORTFOLIO_USERINVESTMENTS;
+    const activeRoute = useLocation().pathname;
 
     return (
         <>
@@ -20,9 +18,9 @@ export const Portfolio: React.FC = () => {
             <Typography align="center" variant="subtitle2">
                 Here you can find list of your offers and investments and manage them
             </Typography>
-            <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="My offers" to={ROUTES.LENDER_PORTFOLIO_USEROFFERS} component={NavLink} />
-                <Tab label="My investments" to={ROUTES.LENDER_PORTFOLIO_USERINVESTMENTS} component={NavLink} />
+            <Tabs value={activeRoute} centered>
+                <Tab label="My offers" to={offersPath} value={offersPath} component={NavLink} />
+                <Tab label="My investments" to={investmentsPath} value={investmentsPath} component={NavLink} />
             </Tabs>
 
             <Switch>
