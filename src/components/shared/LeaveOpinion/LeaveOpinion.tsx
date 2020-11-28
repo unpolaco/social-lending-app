@@ -4,30 +4,34 @@ import {Text} from './LeaveOpinion.styles';
 import {Button, CircularProgress, TextField} from '@material-ui/core';
 import {useLeaveOpinion} from '../../../hooks/api/investment/useLeaveOpinion';
 import {Form, Formik} from 'formik';
+import {AlertSnackBar} from '../Alert/AlertSnackbar';
+import {LeaveOpinionProps} from './LeaveOpinion.types';
+import {prepareAlertDetails} from './../../shared/Alert/Alert.helpers';
 
-export const LeaveOpinion: React.FC<any> = ({row, currentInvestmentOpinion}) => {
-    const {isFetchingLeaveOpinion, isErrorLeaveOpinion, fetchLeaveOpinion} = useLeaveOpinion();
+export const LeaveOpinion: React.FC<LeaveOpinionProps> = ({row, currentInvestmentOpinion, handleGetPublicProfile}) => {
+    const {isErrorLeaveOpinion, fetchLeaveOpinion, setIsErrorLeaveOpinion, isResponse, setIsResponse} = useLeaveOpinion();
     const author = row.lenderName;
     const investmentId = row.investmentId;
     const initialValues = currentInvestmentOpinion
         ? {opinionRating: currentInvestmentOpinion.opinionRating, opinionText: currentInvestmentOpinion.opinionText}
         : {opinionRating: 0, opinionText: ''};
 
-    if (isFetchingLeaveOpinion) {
-        return <CircularProgress />;
-    }
-    if (isErrorLeaveOpinion) {
-        alert('Error');
-    }
-
-    function handleLeaveOpinion(values: any) {
+    async function handleLeaveOpinion(values: any) {
         const opinionDetails = {
             author: author,
             opinionText: values.opinionText,
             opinionRating: +values.opinionRating,
             investmentId: investmentId,
         };
-        fetchLeaveOpinion(investmentId, opinionDetails);
+        await fetchLeaveOpinion(investmentId, opinionDetails);
+        handleGetPublicProfile();
+    }
+
+    let alertDetails: any = {};
+    if (isErrorLeaveOpinion) {
+        alertDetails = prepareAlertDetails(setIsErrorLeaveOpinion, 'error', 'Your opinion can not be submitted');
+    } else if (isResponse) {
+        alertDetails = prepareAlertDetails(setIsResponse, 'success', 'Your opinion was submitted');
     }
 
     return (
@@ -62,6 +66,13 @@ export const LeaveOpinion: React.FC<any> = ({row, currentInvestmentOpinion}) => 
                     );
                 }}
             </Formik>
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                ></AlertSnackBar>
+            )}
         </div>
     );
 };

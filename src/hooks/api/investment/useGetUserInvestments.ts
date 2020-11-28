@@ -22,6 +22,7 @@ export const useGetUserInvestments = () => {
     return {
         isFetchingGet,
         isErrorGet,
+        setIsErrorGet,
         userInvestmentsList,
         fetchUserInvestments,
     };

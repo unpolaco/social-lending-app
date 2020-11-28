@@ -22,6 +22,7 @@ export const useGetUserLoans = () => {
     return {
         isFetchingGet,
         isErrorGet,
+        setIsErrorGet,
         userLoansList,
         fetchUserLoans,
     };

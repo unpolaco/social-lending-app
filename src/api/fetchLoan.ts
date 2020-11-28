@@ -5,10 +5,14 @@ export const getUserLoans = (userId: string) => {
     return axios.get(`${apiLoans}/borrower/${userId}`);
 };
 
-export const confirmCreateLoan = (loanId: string) => {
+export const getConfirmCreateLoan = (loanId: string) => {
     return axios.get(`${apiLoans}/${loanId}/activate`);
 };
 
 export const getMakeLoanRepayment = (loanId: number) => {
     return axios.get(`${apiLoans}/${loanId}/repay`);
+};
+
+export const deleteLoan = (loanId: number) => {
+    return axios.delete(`${apiLoans}/${loanId}/reject`);
 };

@@ -22,6 +22,7 @@ export const useGetCreateLoan = () => {
     return {
         isFetchingCreateLoan,
         isErrorCreateLoan,
+        setIsErrorCreateLoan,
         loanDetails,
         fetchCreateLoan,
     };

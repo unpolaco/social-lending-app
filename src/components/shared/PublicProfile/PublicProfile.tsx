@@ -6,22 +6,20 @@ import {Button, CircularProgress} from '@material-ui/core';
 import {OpinionForm} from '../../../../src/api/api.types';
 import {LeaveOpinion} from '../LeaveOpinion/LeaveOpinion';
 import {PublicProfileProps} from './PublicProfile.types';
+import {prepareAlertDetails} from '../Alert/Alert.helpers';
+import {AlertSnackBar} from '../Alert/AlertSnackbar';
 
 export const PublicProfile: React.FC<PublicProfileProps> = ({row, page}) => {
-    const {isFetchingGet, isErrorGet, fetchAccountPublicProfile, publicProfile} = useGetAccountPublicProfile();
+    const {isFetchingGet, isErrorGet, setIsErrorGet, fetchAccountPublicProfile, publicProfile} = useGetAccountPublicProfile();
     const userName: string = row.borrowerName;
     const investmentId = row.investmentId;
     const currentInvestmentOpinion = publicProfile?.opinions?.find((opinion: OpinionForm) => opinion.investmentId === investmentId);
 
-    if (isFetchingGet) {
-        return <CircularProgress />;
-    }
-    if (isErrorGet) {
-        alert('Error');
-    }
     function handleGetPublicProfile() {
         fetchAccountPublicProfile(userName);
     }
+
+    const alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <div>
@@ -31,6 +29,7 @@ export const PublicProfile: React.FC<PublicProfileProps> = ({row, page}) => {
             {publicProfile && (
                 <>
                     <TextBold>User public profile</TextBold>
+                    {isFetchingGet && <CircularProgress />}
                     <StyledCard>
                         <TextLight>First name</TextLight>
                         <TextBold>{publicProfile.name}</TextBold>
@@ -56,6 +55,13 @@ export const PublicProfile: React.FC<PublicProfileProps> = ({row, page}) => {
                         )}
                     </StyledCard>
                 </>
+            )}
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                ></AlertSnackBar>
             )}
         </div>
     );

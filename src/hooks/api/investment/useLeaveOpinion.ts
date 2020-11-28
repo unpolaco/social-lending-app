@@ -3,28 +3,23 @@ import {leaveOpinion} from './../../../api/fetchInvestment';
 import {OpinionForm} from '../../../api/api.types';
 
 export const useLeaveOpinion = () => {
-    const [isFetchingLeaveOpinion, setIsFetchingLeaveOpinion] = useState<boolean>(false);
-    const [isErrorLeaveOpinion, setIsErrorLeaveOpinion] = useState<any>(false);
-    const [response, setResponse] = useState<any>();
+    const [isErrorLeaveOpinion, setIsErrorLeaveOpinion] = useState<boolean>(false);
+    const [isResponse, setIsResponse] = useState<boolean>(false);
 
     const fetchLeaveOpinion = useCallback(async (investmentId: number, opinionDetails: OpinionForm) => {
-        setIsFetchingLeaveOpinion(true);
         try {
             await leaveOpinion(investmentId, opinionDetails);
-            setResponse(true);
+            setIsResponse(true);
         } catch {
             setIsErrorLeaveOpinion(true);
-        } finally {
-            setIsFetchingLeaveOpinion(false);
         }
     }, []);
 
     return {
-        isFetchingLeaveOpinion,
-        isErrorLeaveOpinion,
-        response,
         fetchLeaveOpinion,
+        isErrorLeaveOpinion,
         setIsErrorLeaveOpinion,
-        setResponse,
+        isResponse,
+        setIsResponse,
     };
 };

@@ -22,6 +22,7 @@ export const useGetUserOffers = () => {
     return {
         isFetchingGet,
         isErrorGet,
+        setIsErrorGet,
         userOffersList,
         fetchUserOffers,
     };

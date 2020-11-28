@@ -1,13 +1,10 @@
 export interface OfferDto {
     amount: number;
-    borrowerName: string;
     lenderUserName: string;
-    borrowerRating: number;
     offerId: number;
     loanDuration: number;
     rate: number;
     id: number;
-    risk: number;
     status: string;
 }
 export interface AuctionDto {
@@ -18,7 +15,6 @@ export interface AuctionDto {
     loanDuration: number;
     offers: OfferDto[];
     rate: number;
-    risk: number;
     status: string;
 }
 export interface ScheduleDto {
@@ -36,7 +32,6 @@ export interface LoanDto {
     loanDuration: number;
     rate: number;
     id: number;
-    risk: number;
     status: string;
 }
 export interface InvestmentDto {
@@ -49,7 +44,6 @@ export interface InvestmentDto {
     schedule: ScheduleDto[];
     loanDuration: number;
     rate: number;
-    risk: number;
     status: string;
 }
 export interface AccountDto {

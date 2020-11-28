@@ -22,6 +22,7 @@ export const useGetAccountPublicProfile = () => {
     return {
         isFetchingGet,
         isErrorGet,
+        setIsErrorGet,
         publicProfile,
         fetchAccountPublicProfile,
     };

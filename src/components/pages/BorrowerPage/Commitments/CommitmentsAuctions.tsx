@@ -6,21 +6,16 @@ import {AuctionCreateForm} from '../../../shared/AuctionCreateForm/AuctionCreate
 import {AuctionCreateFormValues} from '../../../shared/AuctionCreateForm/AuctionCreateForm.types';
 import {useSaveNewAuction} from '../../../../hooks/api/auction/useSaveNewAuction';
 import {PageWrapper, Title} from './Commitments.styles';
+import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
+import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
 
 export const CommitmentsAuctions: React.FC = () => {
-    const {isFetchingGet, isErrorGet, fetchUserAuctions, userAuctionsList} = useGetUserAuctions();
-    const {isFetchingSave, isErrorSave, fetchNewAuction} = useSaveNewAuction();
+    const {isFetchingGet, isErrorGet, setIsErrorGet, fetchUserAuctions, userAuctionsList} = useGetUserAuctions();
+    const {isFetchingSave, isErrorSave, setIsErrorSave, isSaveResponse, setIsSaveResponse, fetchNewAuction} = useSaveNewAuction();
 
     useEffect(() => {
         fetchUserAuctions('Bilbo_Baggins');
     }, [fetchUserAuctions]);
-
-    if (isFetchingGet || isFetchingSave) {
-        return <CircularProgress />;
-    }
-    if (isErrorGet || isErrorSave) {
-        alert('Error');
-    }
 
     async function handleSaveNewAuction(newAuctionData: AuctionCreateFormValues) {
         newAuctionData.borrower = 'Bilbo_Baggins';
@@ -28,11 +23,27 @@ export const CommitmentsAuctions: React.FC = () => {
         fetchUserAuctions('Bilbo_Baggins');
     }
 
+    let alertDetails: any = {};
+    if (isErrorGet) {
+        alertDetails = prepareAlertDetails(setIsErrorGet);
+    } else if (isErrorSave) {
+        alertDetails = prepareAlertDetails(setIsErrorSave, 'error', 'Your auction was not saved');
+    } else if (isSaveResponse) {
+        alertDetails = prepareAlertDetails(setIsSaveResponse, 'success', 'Your auction was saved');
+    }
+
     return (
         <PageWrapper>
             <AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />
             <Title>Your Auctions</Title>
             {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />}
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                ></AlertSnackBar>
+            )}
         </PageWrapper>
     );
 };
