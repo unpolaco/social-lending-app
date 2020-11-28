@@ -1,6 +1,6 @@
-import {Investment} from '../../../helpers/types';
+import {InvestmentDto} from '../../../../src/api/api.types';
 
 export interface TableRowsLenderUserInvestmentsProps {
-    row: Investment;
+    row: InvestmentDto;
     clickedCollapsed: number | null;
 }

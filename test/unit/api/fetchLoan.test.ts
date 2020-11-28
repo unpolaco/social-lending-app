@@ -1,18 +1,18 @@
 import {mocked} from 'ts-jest/utils';
-import {getMakeLoanRepayment, getUserLoans, confirmCreateLoan} from '../../../src/api/fetchLoan';
+import {getMakeLoanRepayment, getUserLoans, getConfirmCreateLoan} from '../../../src/api/fetchLoan';
 import {axios} from '../../../src/api/axios';
 import {apiLoans} from '../../../src/helpers/constants-api';
 
 jest.mock('../../../src/api/axios.ts');
 
-describe('confirmCreateLoan', () => {
+describe('getConfirmCreateLoan', () => {
     beforeEach(() => {
         mocked(axios.get).mockResolvedValue('getMock');
     });
 
     it('calls request confirm create loan and passes response', async () => {
         mocked(axios.get).mockResolvedValue({data: 'getDataMock'});
-        const request = await confirmCreateLoan('1');
+        const request = await getConfirmCreateLoan('1');
         expect(request.data).toEqual('getDataMock');
         expect(axios.get).toHaveBeenCalledWith(`${apiLoans}/1/activate`);
     });

@@ -1,8 +1,8 @@
 import {useCallback, useState} from 'react';
-import {getAccountDetails} from '../../../api/fetchAccount';
+import {getAccountPrivateProfile} from '../../../api/fetchAccount';
 import {AccountDto} from '../../../api/api.types';
 
-export const useGetAccountDetails = () => {
+export const useGetAccountPrivateProfile = () => {
     const [isFetchingGet, setIsFetchingGet] = useState<boolean>(false);
     const [isErrorGet, setIsErrorGet] = useState<boolean>(false);
     const [accountDetails, setAccountDetails] = useState<AccountDto>();
@@ -10,7 +10,7 @@ export const useGetAccountDetails = () => {
     const fetchAccountDetails = useCallback(async (userName: string) => {
         setIsFetchingGet(true);
         try {
-            const response = await getAccountDetails(userName);
+            const response = await getAccountPrivateProfile(userName);
             setAccountDetails(response.data);
         } catch {
             setIsErrorGet(true);

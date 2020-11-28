@@ -1,6 +1,6 @@
-import {Offer} from '../../../helpers/types';
+import {OfferDto} from '../../../../src/api/api.types';
 
 export interface TableRowsLenderUserOffersProps {
-    row: Offer;
+    row: OfferDto;
     clickedCollapsed: number | null;
 }

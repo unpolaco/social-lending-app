@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyledCard, TextLight, TextBold} from './PrivateProfile.styles';
+import {PrivateProfileProps} from './PrivateProfile.types';
 
-export const PrivateProfile: React.FC<any> = ({accountDetails}) => {
+export const PrivateProfile: React.FC<PrivateProfileProps> = ({accountDetails}) => {
     return (
         <StyledCard>
             <TextLight>Username</TextLight>

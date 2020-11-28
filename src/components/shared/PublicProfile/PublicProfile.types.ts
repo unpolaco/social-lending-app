@@ -1,6 +1,6 @@
 import {LoanDto} from '../../../../src/api/api.types';
 
-export interface LoanCreateProps {
+export interface PublicProfileProps {
     row: LoanDto;
-    fetchUserAuctions: any;
+    page: string;
 }

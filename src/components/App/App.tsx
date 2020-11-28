@@ -16,8 +16,8 @@ export const App: React.FC = () => {
         <BrowserRouter basename={basename}>
             <ThemeProvider theme={solidTheme}>
                 <Header />
-                <Switch>
-                    <StyledBox>
+                <StyledBox>
+                    <Switch>
                         <Route path={ROUTES.HOME} exact>
                             <MainPage />
                         </Route>
@@ -27,8 +27,8 @@ export const App: React.FC = () => {
                         <Route path={ROUTES.BORROWER}>
                             <Borrower />
                         </Route>
-                    </StyledBox>
-                </Switch>
+                    </Switch>
+                </StyledBox>
             </ThemeProvider>
         </BrowserRouter>
     );

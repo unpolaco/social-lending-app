@@ -1,5 +1,5 @@
-import {Auction} from '../../../helpers/types';
+import {AuctionDto} from '../../../../src/api/api.types';
 
 export interface OffersDisplayProps {
-    row: Auction;
+    row: AuctionDto;
 }

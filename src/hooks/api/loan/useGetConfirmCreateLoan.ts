@@ -1,5 +1,5 @@
 import {useCallback, useState} from 'react';
-import {confirmCreateLoan} from '../../../api/fetchLoan';
+import {getConfirmCreateLoan} from '../../../api/fetchLoan';
 
 export const useGetConfirmCreateLoan = () => {
     const [isFetchingConfirmCreateLoan, setIsFetchingConfirmCreateLoan] = useState<boolean>(false);
@@ -8,7 +8,7 @@ export const useGetConfirmCreateLoan = () => {
     const fetchConfirmCreateLoan = useCallback(async loanId => {
         setIsFetchingConfirmCreateLoan(true);
         try {
-            await confirmCreateLoan(loanId);
+            await getConfirmCreateLoan(loanId);
         } catch {
             setIsErrorConfirmCreateLoan(true);
         } finally {

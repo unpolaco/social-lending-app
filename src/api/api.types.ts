@@ -6,6 +6,7 @@ export interface OfferDto {
     offerId: number;
     loanDuration: number;
     rate: number;
+    id: number;
     risk: number;
     status: string;
 }
@@ -65,7 +66,7 @@ export interface PublicAccountDto {
     name: string;
     surname: string;
     totalRating: number;
-    opinions: OpinionsForm[];
+    opinions: OpinionForm[];
 }
 export interface NewAuctionForm {
     amount: number;
@@ -77,8 +78,9 @@ export interface NewAuctionForm {
 export interface NewOfferForm {
     amount: number;
     rate: number;
+    lenderUserName: string;
 }
-export interface OpinionsForm {
+export interface OpinionForm {
     author: string;
     opinionText: string;
     opinionRating: number;

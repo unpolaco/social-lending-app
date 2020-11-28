@@ -4,6 +4,7 @@ import {useGetAllAuctions} from '../../../../hooks/api/auction/useGetAllAuctions
 import {useSaveNewOffer} from '../../../../hooks/api/offer/useSaveNewOffer';
 import {Table} from '../../../shared/Table/Table';
 import {PageWrapper, Title} from './Invest.styles';
+import {NewOfferForm} from '../../../../api/api.types';
 
 export const Invest: React.FC = () => {
     const {isFetchingGet, isErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -20,7 +21,7 @@ export const Invest: React.FC = () => {
         alert('Error');
     }
 
-    async function handleSaveNewOffer(newOfferData: any) {
+    async function handleSaveNewOffer(newOfferData: NewOfferForm) {
         newOfferData.lenderUserName = 'Samwise_Gamgee';
         await fetchNewOffer(newOfferData);
         fetchAllAuctions();

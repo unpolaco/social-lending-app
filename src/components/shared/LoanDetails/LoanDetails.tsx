@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, CircularProgress, Snackbar} from '@material-ui/core/';
 import {useGetMakeLoanRepayment} from '../../../hooks/api/loan/useGetMakeLoanRepayment';
 import {ScheduleWrapper, RepaymentWrapper, Text, TextLight, LoanDetailWrapper, Title} from './LoanDetails.styles';
-import {Alert} from '../Alert/Alert';
+import {Alert} from '../Alert/AlertSnackbar';
 import {LoanDetailsProps} from './LoanDetails.types';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 

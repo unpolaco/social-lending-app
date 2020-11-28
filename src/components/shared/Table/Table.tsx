@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {Table as MaterialTable, TableBody, TableCell, TableContainer, TablePagination, TableRow, Paper} from '@material-ui/core';
-import {Auction, Loan, Offer} from '../../../helpers/types';
+import {Table as MaterialTable, TableBody, TableContainer, TablePagination, TableRow, Paper} from '@material-ui/core';
+import {AuctionDto, LoanDto, OfferDto} from '../../../../src/api/api.types';
 import {Order, TableProps} from './Table.types';
 import {getComparator, stableSort} from './Table.helpers';
 import {TableHeadAllAuctions} from '../TableHead/TableHeadAllAuctions';
@@ -20,11 +20,10 @@ export const Table: React.FC<TableProps> = ({
 }) => {
     const rowsPerPage = 10;
     const [order, setOrder] = useState<Order>('asc');
-    const [orderBy, setOrderBy] = useState<keyof Auction | keyof Loan | keyof Offer>('status');
+    const [orderBy, setOrderBy] = useState<keyof AuctionDto | keyof LoanDto | keyof OfferDto>('status');
     const [page, setPage] = useState(0);
 
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
-    const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Auction | keyof Loan | keyof Offer) => {
+    const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof AuctionDto | keyof LoanDto | keyof OfferDto) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
@@ -65,11 +64,6 @@ export const Table: React.FC<TableProps> = ({
                                     fetchUserOffers={fetchUserOffers}
                                 />
                             ))}
-                        {emptyRows > 0 && (
-                            <TableRow style={{height: 53 * emptyRows}}>
-                                <TableCell colSpan={6} />
-                            </TableRow>
-                        )}
                         <TableRow>
                             <TablePagination
                                 rowsPerPageOptions={[]}
