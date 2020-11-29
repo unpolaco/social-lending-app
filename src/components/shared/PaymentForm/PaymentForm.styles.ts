@@ -8,6 +8,7 @@ export const FormWrapper = styled.div`
     width: 300px;
     justify-content: space-between;
     padding: 20px;
+    margin: 15px;
     border: 1px solid ${paletteColors.palette.form.border};
     border-radius: 5px;
     background-color: ${paletteColors.palette.form.background};

@@ -1,8 +1,10 @@
 import React from 'react';
-import {Box, Button, Typography} from '@material-ui/core/';
+import {Box, Typography} from '@material-ui/core/';
+import {StyledButton} from './EditOffer.styles';
 import {useDeleteUserOffer} from '../../../hooks/api/offer/useDeleteUserOffer';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
     const {
@@ -21,7 +23,7 @@ export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
         fetchUserOffers(userName);
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorDelete) {
         alertDetails = prepareAlertDetails(setIsErrorDelete, 'error', 'Your offer was not deleted');
     } else if (isResponseDelete) {
@@ -33,9 +35,9 @@ export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
             {row.status === 'ARCHIVED' ? (
                 <Typography>This offer is archived</Typography>
             ) : (
-                <Button variant="outlined" onClick={handleDeleteOffer} disabled={isFetchingDelete}>
+                <StyledButton variant="outlined" onClick={handleDeleteOffer} disabled={isFetchingDelete}>
                     Delete
-                </Button>
+                </StyledButton>
             )}
             {alertDetails.alertType && (
                 <AlertSnackBar

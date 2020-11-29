@@ -1,14 +1,14 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core';
-import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text} from './AuctionCreateForm.styles';
+import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text, TextWrapper, TextBold} from './AuctionCreateForm.styles';
 import {initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
-import {AuctionCreateFormValues} from './AuctionCreateForm.types';
+import {AuctionCreateFormValues, AuctionCreateFormProps} from './AuctionCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
 import {RateReview} from '@material-ui/icons';
 
-export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
+export const AuctionCreateForm: React.FC<AuctionCreateFormProps> = ({handleSaveNewAuction}) => {
     function handleSubmit(values: AuctionCreateFormValues) {
         handleSaveNewAuction(values);
     }
@@ -33,8 +33,14 @@ export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormWrapper>
-                                            <Text>Total amount to pay: {loanAmount || '0'} zł</Text>
-                                            <Text>Repayment amount: {loanRepayment || '0'} zł</Text>
+                                            <TextWrapper>
+                                                <Text>Total amount to pay: </Text>
+                                                <TextBold>{loanAmount || '0'} zł</TextBold>
+                                            </TextWrapper>
+                                            <TextWrapper>
+                                                <Text>Repayment amount: </Text>
+                                                <TextBold>{loanRepayment || '0'} zł</TextBold>
+                                            </TextWrapper>
                                             <TextField
                                                 autoFocus
                                                 name="amount"

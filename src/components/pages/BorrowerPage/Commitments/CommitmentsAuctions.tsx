@@ -8,6 +8,7 @@ import {useSaveNewAuction} from '../../../../hooks/api/auction/useSaveNewAuction
 import {PageWrapper, Title} from './Commitments.styles';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const CommitmentsAuctions: React.FC = () => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchUserAuctions, userAuctionsList} = useGetUserAuctions();
@@ -23,7 +24,7 @@ export const CommitmentsAuctions: React.FC = () => {
         fetchUserAuctions('Bilbo_Baggins');
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorGet) {
         alertDetails = prepareAlertDetails(setIsErrorGet);
     } else if (isErrorSave) {
@@ -36,13 +37,8 @@ export const CommitmentsAuctions: React.FC = () => {
         <PageWrapper>
             <AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />
             <Title>Your Auctions</Title>
-            {isFetchingGet || isFetchingSave ? (
-                <CircularProgress />
-            ) : (
-                userAuctionsList && (
-                    <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />
-                )
-            )}
+            {(isFetchingGet || isFetchingSave) && <CircularProgress />}
+            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

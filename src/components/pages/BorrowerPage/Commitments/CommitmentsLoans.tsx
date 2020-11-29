@@ -5,6 +5,7 @@ import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Commitments.styles';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const CommitmentsLoans: React.FC = () => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchUserLoans, userLoansList} = useGetUserLoans();
@@ -13,16 +14,13 @@ export const CommitmentsLoans: React.FC = () => {
         fetchUserLoans('Bilbo_Baggins');
     }, [fetchUserLoans]);
 
-    let alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
+    let alertDetails: AlertTypeProps = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <PageWrapper>
             <Title>Your Loans</Title>
-            {isFetchingGet ? (
-                <CircularProgress />
-            ) : (
-                userLoansList && <Table rows={userLoansList} currentPage="borrowerUserLoans" fetchUserLoans={fetchUserLoans} />
-            )}
+            {isFetchingGet && <CircularProgress />}
+            {userLoansList && <Table rows={userLoansList} currentPage="borrowerUserLoans" fetchUserLoans={fetchUserLoans} />}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

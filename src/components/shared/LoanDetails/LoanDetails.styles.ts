@@ -39,5 +39,5 @@ export const LoanDetailWrapper = styled.div`
     align-items: center;
     border-radius: 5px;
     border: 1px solid ${palette.form.border};
-    margin: 20px;
+    margin: 20px 0;
 `;

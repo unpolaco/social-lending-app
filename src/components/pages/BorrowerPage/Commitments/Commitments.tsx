@@ -8,8 +8,10 @@ import {CommitmentsLoans} from './CommitmentsLoans';
 export const Commitments: React.FC = () => {
     const auctionsPath = ROUTES.BORROWER_COMMITMENTS_AUCTIONS;
     const loansPath = ROUTES.BORROWER_COMMITMENTS_LOANS;
-    const activeRoute = useLocation().pathname;
-
+    let activeRoute = useLocation().pathname;
+    if (activeRoute === ROUTES.BORROWER_COMMITMENTS) {
+        activeRoute = ROUTES.BORROWER_COMMITMENTS_AUCTIONS;
+    }
     return (
         <>
             <Typography align="center" variant="h6">

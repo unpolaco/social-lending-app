@@ -5,6 +5,7 @@ import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Portfolio.styles';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const PortfolioInvestments: React.FC = () => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchUserInvestments, userInvestmentsList} = useGetUserInvestments();
@@ -13,16 +14,13 @@ export const PortfolioInvestments: React.FC = () => {
         fetchUserInvestments('Samwise_Gamgee');
     }, [fetchUserInvestments]);
 
-    let alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
+    let alertDetails: AlertTypeProps = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <PageWrapper>
             <Title>Your Investments</Title>
-            {isFetchingGet ? (
-                <CircularProgress />
-            ) : (
-                userInvestmentsList && <Table rows={userInvestmentsList} currentPage="lenderUserInvestments" />
-            )}
+            {isFetchingGet && <CircularProgress />}
+            {userInvestmentsList && <Table rows={userInvestmentsList} currentPage="lenderUserInvestments" />}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

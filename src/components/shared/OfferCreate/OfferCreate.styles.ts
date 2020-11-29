@@ -6,6 +6,16 @@ export const Text = styled.p`
     font-weight: 400;
     font-size: 15px;
 `;
+export const TextBold = styled.p`
+    font-weight: 500;
+    font-size: 16px;
+`;
+export const TextWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+`;
 export const CreateOfferWrapper = styled.div`
     border-radius: 5px;
     padding: 8px;
@@ -27,8 +37,7 @@ export const FieldWrapper = styled.div`
     flex: 1;
     padding: 0 15px;
 `;
-export const FieldTitleTypography = styled.p`
-    font-size: 17px;
-    font-weight: 500;
-    margin-bottom: 15px;
+export const FieldWrapperSlider = styled.div`
+    flex: 1;
+    padding: 30px 15px;
 `;

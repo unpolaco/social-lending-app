@@ -49,6 +49,7 @@ export interface InvestmentDto {
 export interface AccountDto {
     accountBalance: number;
     email: string;
+    address: string;
     hasLinkedBankAccount: boolean;
     name: string;
     phoneNumber: string;
