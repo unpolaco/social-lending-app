@@ -12,7 +12,7 @@ export const usePaymentOnUserAccount = () => {
             await postPaymentOnUserAccount(paymentDetails);
             setIsResponsePaymentOnUserAccount(true);
         } catch (error) {
-            setIsErrorPaymentOnUserAccount(error.message);
+            setIsErrorPaymentOnUserAccount(error.response.data.message.slice(2, -2));
         } finally {
             setIsFetchingPaymentOnUserAccount(false);
         }

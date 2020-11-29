@@ -18,7 +18,7 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
 
     let alertDetails: AlertTypeProps = {};
     if (isErrorPaid) {
-        alertDetails = prepareAlertDetails(setIsErrorPaid, 'error', isErrorPaid);
+        alertDetails = prepareAlertDetails(setIsErrorPaid, 'error', isErrorPaid.toString());
     } else if (isPaid) {
         alertDetails = prepareAlertDetails(setIsPaid, 'success', 'Your repayment was paid');
     }

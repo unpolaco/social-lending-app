@@ -12,7 +12,7 @@ export const useGetMakeLoanRepayment = () => {
             await getMakeLoanRepayment(loanId);
             setIsPaid(true);
         } catch (error) {
-            setIsErrorPaid(error.message);
+            setIsErrorPaid(error.response.data.message.slice(2, -2));
         } finally {
             setIsFetchingGet(false);
         }

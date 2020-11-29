@@ -12,7 +12,7 @@ export const usePaymentOnPlatformAccount = () => {
             await postPaymentOnPlatformAccount(paymentDetails);
             setIsResponsePaymentOnPlatform(true);
         } catch (error) {
-            setIsErrorPaymentOnPlatform(error.message);
+            setIsErrorPaymentOnPlatform(error.response.data.message.slice(2, -2));
         } finally {
             setIsFetchingPaymentOnPlatform(false);
         }
