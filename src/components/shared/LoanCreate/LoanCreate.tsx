@@ -50,7 +50,11 @@ export const LoanCreate: React.FC<any> = ({row, fetchUserAuctions}) => {
                     <Button variant="outlined" onClick={handleCreateLoan} disabled={disabled}>
                         Make loan
                     </Button>
-                    {loanDetails && <LoanConfirm loanDetails={loanDetails} />}
+                    {isFetchingCreateLoan || isFetchingDelete ? (
+                        <CircularProgress />
+                    ) : (
+                        loanDetails && <LoanConfirm loanDetails={loanDetails} />
+                    )}
                 </>
             )}
             {alertDetails.alertType && (

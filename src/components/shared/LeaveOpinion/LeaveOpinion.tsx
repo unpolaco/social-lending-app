@@ -9,7 +9,14 @@ import {LeaveOpinionProps} from './LeaveOpinion.types';
 import {prepareAlertDetails} from './../../shared/Alert/Alert.helpers';
 
 export const LeaveOpinion: React.FC<LeaveOpinionProps> = ({row, currentInvestmentOpinion, handleGetPublicProfile}) => {
-    const {isErrorLeaveOpinion, fetchLeaveOpinion, setIsErrorLeaveOpinion, isResponse, setIsResponse} = useLeaveOpinion();
+    const {
+        isFetchingLeaveOpinion,
+        isErrorLeaveOpinion,
+        fetchLeaveOpinion,
+        setIsErrorLeaveOpinion,
+        isResponse,
+        setIsResponse,
+    } = useLeaveOpinion();
     const author = row.lenderName;
     const investmentId = row.investmentId;
     const initialValues = currentInvestmentOpinion
@@ -37,35 +44,39 @@ export const LeaveOpinion: React.FC<LeaveOpinionProps> = ({row, currentInvestmen
     return (
         <div>
             <Text>Leave your opinion about transaction</Text>
-            <Formik initialValues={initialValues} onSubmit={handleLeaveOpinion}>
-                {({handleSubmit, values, handleChange}) => {
-                    return (
-                        <Form onSubmit={handleSubmit}>
-                            <Text>Rate user</Text>
-                            <Rating
-                                name="opinionRating"
-                                size="small"
-                                precision={0.5}
-                                value={+values.opinionRating}
-                                onChange={handleChange}
-                            />
-                            <TextField
-                                name="opinionText"
-                                type="textarea"
-                                multiline
-                                rows={4}
-                                variant="outlined"
-                                label={'Leave your opinion'}
-                                value={values.opinionText}
-                                onChange={handleChange}
-                            />
-                            <Button type="submit" variant="outlined">
-                                Submit
-                            </Button>
-                        </Form>
-                    );
-                }}
-            </Formik>
+            {isFetchingLeaveOpinion ? (
+                <CircularProgress />
+            ) : (
+                <Formik initialValues={initialValues} onSubmit={handleLeaveOpinion}>
+                    {({handleSubmit, values, handleChange}) => {
+                        return (
+                            <Form onSubmit={handleSubmit}>
+                                <Text>Rate user</Text>
+                                <Rating
+                                    name="opinionRating"
+                                    size="small"
+                                    precision={0.5}
+                                    value={+values.opinionRating}
+                                    onChange={handleChange}
+                                />
+                                <TextField
+                                    name="opinionText"
+                                    type="textarea"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    label={'Leave your opinion'}
+                                    value={values.opinionText}
+                                    onChange={handleChange}
+                                />
+                                <Button type="submit" variant="outlined">
+                                    Submit
+                                </Button>
+                            </Form>
+                        );
+                    }}
+                </Formik>
+            )}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

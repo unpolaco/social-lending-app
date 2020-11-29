@@ -10,7 +10,6 @@ import {prepareAlertDetails} from '../Alert/Alert.helpers';
 
 export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, accountDetails}) => {
     const {
-        isFetchingPaymentOnPlatform,
         isErrorPaymentOnPlatform,
         fetchPaymentOnPlatformAccount,
         isResponsePaymentOnPlatform,
@@ -18,7 +17,6 @@ export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, ac
         setIsResponsePaymentOnPlatform,
     } = usePaymentOnPlatformAccount();
     const {
-        isFetchingPaymentOnUserAccount,
         isErrorPaymentOnUserAccount,
         fetchPaymentOnUserAccount,
         isResponsePaymentOnUserAccount,

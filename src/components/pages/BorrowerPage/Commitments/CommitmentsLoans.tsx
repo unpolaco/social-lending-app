@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useGetUserLoans} from '../../../../hooks/api/loan/useGetUserLoans';
 import {Table} from '../../../shared/Table/Table';
-// import {CircularProgress} from '@material-ui/core/';
+import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Commitments.styles';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
@@ -18,7 +18,11 @@ export const CommitmentsLoans: React.FC = () => {
     return (
         <PageWrapper>
             <Title>Your Loans</Title>
-            {userLoansList && <Table rows={userLoansList} currentPage="borrowerUserLoans" fetchUserLoans={fetchUserLoans} />}
+            {isFetchingGet ? (
+                <CircularProgress />
+            ) : (
+                userLoansList && <Table rows={userLoansList} currentPage="borrowerUserLoans" fetchUserLoans={fetchUserLoans} />
+            )}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

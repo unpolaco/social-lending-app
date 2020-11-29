@@ -2,7 +2,7 @@ import React from 'react';
 import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography, Text} from './OfferCreate.styles';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
-import {OfferCreateValidator} from './OfferCreate.helpers';
+import {OfferCreateValidator, generateProfitAmountDisplay} from './OfferCreate.helpers';
 import {OfferCreateProps, OfferCreateValidatorProps} from './OfferCreate.types';
 
 export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer}) => {
@@ -27,9 +27,7 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
                         <Typography>Create an offer for this auction</Typography>
                         <Formik initialValues={{amount: amount, rate: rate}} validate={OfferCreateValidator} onSubmit={handleSubmit}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
-                                const profitAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
-                                const profitAmountDisplay =
-                                    !Number.isNaN(Number(profitAmount)) && isValid ? ` ${profitAmount} zł` : ' 0 zł';
+                                const profitAmountDisplay = generateProfitAmountDisplay(values, isValid);
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormikWrapper>

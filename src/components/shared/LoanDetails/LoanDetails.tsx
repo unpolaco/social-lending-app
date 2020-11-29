@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from '@material-ui/core/';
+import {Button, CircularProgress} from '@material-ui/core/';
 import {useGetMakeLoanRepayment} from '../../../hooks/api/loan/useGetMakeLoanRepayment';
 import {ScheduleWrapper, RepaymentWrapper, Text, TextLight, LoanDetailWrapper, Title} from './LoanDetails.styles';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
@@ -44,19 +44,23 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
                         <TextLight>amount</TextLight>
                         <TextLight>status</TextLight>
                     </ScheduleWrapper>
-                    {row.schedule.map((repayment: any) => (
-                        <ScheduleWrapper key={repayment.date} color={repayment.status}>
-                            <RepaymentWrapper>
-                                <Text>{repayment.date}</Text>
-                            </RepaymentWrapper>
-                            <RepaymentWrapper>
-                                <Text>{repayment.value} zł</Text>
-                            </RepaymentWrapper>
-                            <RepaymentWrapper>
-                                <Text>{repayment.status}</Text>
-                            </RepaymentWrapper>
-                        </ScheduleWrapper>
-                    ))}
+                    {isFetchingGet ? (
+                        <CircularProgress />
+                    ) : (
+                        row.schedule.map((repayment: any) => (
+                            <ScheduleWrapper key={repayment.date} color={repayment.status}>
+                                <RepaymentWrapper>
+                                    <Text>{repayment.date}</Text>
+                                </RepaymentWrapper>
+                                <RepaymentWrapper>
+                                    <Text>{repayment.value} zł</Text>
+                                </RepaymentWrapper>
+                                <RepaymentWrapper>
+                                    <Text>{repayment.status}</Text>
+                                </RepaymentWrapper>
+                            </ScheduleWrapper>
+                        ))
+                    )}
                 </>
             )}
             {alertDetails.alertType && (

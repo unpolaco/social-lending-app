@@ -8,7 +8,7 @@ import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
 
 export const Account: React.FC = () => {
-    const {isErrorGet, setIsErrorGet, fetchAccountDetails, accountDetails} = useGetAccountPrivateProfile();
+    const {isErrorGet, isFetchingGet, setIsErrorGet, fetchAccountDetails, accountDetails} = useGetAccountPrivateProfile();
 
     useEffect(() => {
         fetchAccountDetails('Samwise_Gamgee');
@@ -20,7 +20,7 @@ export const Account: React.FC = () => {
         <>
             <Title>LENDER ACCOUNT Page</Title>
             <PageWrapper>
-                {accountDetails && <PrivateProfile accountDetails={accountDetails} />}
+                {isFetchingGet ? <CircularProgress /> : accountDetails && <PrivateProfile accountDetails={accountDetails} />}
                 <PaymentCard currentPage="lender" fetchAccountDetails={fetchAccountDetails} accountDetails={accountDetails} />
                 {alertDetails.alertType && (
                     <AlertSnackBar

@@ -36,7 +36,13 @@ export const CommitmentsAuctions: React.FC = () => {
         <PageWrapper>
             <AuctionCreateForm handleSaveNewAuction={handleSaveNewAuction} />
             <Title>Your Auctions</Title>
-            {userAuctionsList && <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />}
+            {isFetchingGet || isFetchingSave ? (
+                <CircularProgress />
+            ) : (
+                userAuctionsList && (
+                    <Table rows={userAuctionsList} currentPage="borrowerUserAuctions" fetchUserAuctions={fetchUserAuctions} />
+                )
+            )}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

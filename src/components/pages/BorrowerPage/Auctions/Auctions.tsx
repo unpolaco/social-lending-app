@@ -18,7 +18,7 @@ export const Auctions: React.FC = () => {
     return (
         <PageWrapper>
             <Title>List of all actual auctions:</Title>
-            {auctionsList && <Table rows={auctionsList} currentPage="borrowerAllAuctions" />}
+            {isFetchingGet ? <CircularProgress /> : auctionsList && <Table rows={auctionsList} currentPage="borrowerAllAuctions" />}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}
