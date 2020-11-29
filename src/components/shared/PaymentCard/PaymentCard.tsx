@@ -1,5 +1,4 @@
 import React from 'react';
-import {CircularProgress, Snackbar} from '@material-ui/core';
 import {PaymentFormOnUserAccount} from '../PaymentForm/PaymentFormOnUserAccount';
 import {PaymentFormOnPlatformAccount} from '../PaymentForm/PaymentFormOnPlatformAccount';
 import {StyledCard, TextBold} from './PaymentCard.styles';

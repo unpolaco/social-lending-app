@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Button, CircularProgress, Typography} from '@material-ui/core/';
+import {Box, Button, Typography} from '@material-ui/core/';
 import {useDeleteUserOffer} from '../../../hooks/api/offer/useDeleteUserOffer';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
