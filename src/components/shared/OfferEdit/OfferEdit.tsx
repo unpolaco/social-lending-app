@@ -3,6 +3,7 @@ import {Box, Button, Typography} from '@material-ui/core/';
 import {useDeleteUserOffer} from '../../../hooks/api/offer/useDeleteUserOffer';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
     const {
@@ -21,7 +22,7 @@ export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
         fetchUserOffers(userName);
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorDelete) {
         alertDetails = prepareAlertDetails(setIsErrorDelete, 'error', 'Your offer was not deleted');
     } else if (isResponseDelete) {

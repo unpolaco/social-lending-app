@@ -7,6 +7,7 @@ import {Form, Formik} from 'formik';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {LeaveOpinionProps} from './LeaveOpinion.types';
 import {prepareAlertDetails} from './../../shared/Alert/Alert.helpers';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const LeaveOpinion: React.FC<LeaveOpinionProps> = ({row, currentInvestmentOpinion, handleGetPublicProfile}) => {
     const {
@@ -34,7 +35,7 @@ export const LeaveOpinion: React.FC<LeaveOpinionProps> = ({row, currentInvestmen
         handleGetPublicProfile();
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorLeaveOpinion) {
         alertDetails = prepareAlertDetails(setIsErrorLeaveOpinion, 'error', 'Your opinion can not be submitted');
     } else if (isResponse) {

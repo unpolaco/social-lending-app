@@ -4,11 +4,11 @@ import {Button, Typography, TextField, Slider, InputAdornment, Accordion, Accord
 import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text} from './AuctionCreateForm.styles';
 import {initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
-import {AuctionCreateFormValues} from './AuctionCreateForm.types';
+import {AuctionCreateFormValues, AuctionCreateFormProps} from './AuctionCreateForm.types';
 import AddIcon from '@material-ui/icons/Add';
 import {RateReview} from '@material-ui/icons';
 
-export const AuctionCreateForm: React.FC<any> = ({handleSaveNewAuction}) => {
+export const AuctionCreateForm: React.FC<AuctionCreateFormProps> = ({handleSaveNewAuction}) => {
     function handleSubmit(values: AuctionCreateFormValues) {
         handleSaveNewAuction(values);
     }

@@ -4,3 +4,6 @@ export interface AuctionCreateFormValues {
     rate?: number | undefined;
     loanDuration?: number;
 }
+export interface AuctionCreateFormProps {
+    handleSaveNewAuction: (values: AuctionCreateFormValues) => void;
+}

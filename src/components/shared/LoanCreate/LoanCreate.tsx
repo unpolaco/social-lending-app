@@ -5,6 +5,7 @@ import {useDeleteAuction} from '../../../hooks/api/auction/useDeleteAuction';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const LoanCreate: React.FC<any> = ({row, fetchUserAuctions}) => {
     const {isFetchingCreateLoan, isErrorCreateLoan, setIsErrorCreateLoan, fetchCreateLoan, loanDetails} = useGetCreateLoan();
@@ -20,15 +21,16 @@ export const LoanCreate: React.FC<any> = ({row, fetchUserAuctions}) => {
     const auctionId: number = row.id;
     const userName = row.borrower;
 
-    function handleCreateLoan() {
-        fetchCreateLoan(auctionId);
+    async function handleCreateLoan() {
+        await fetchCreateLoan(auctionId);
+        fetchUserAuctions(userName);
     }
     async function handleDeleteAuction() {
         await fetchDeleteAuction(auctionId);
         fetchUserAuctions(userName);
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorCreateLoan) {
         alertDetails = prepareAlertDetails(setIsErrorCreateLoan, 'error', 'Your loan was not created');
     } else if (isErrorDelete) {
@@ -53,7 +55,9 @@ export const LoanCreate: React.FC<any> = ({row, fetchUserAuctions}) => {
                     {isFetchingCreateLoan || isFetchingDelete ? (
                         <CircularProgress />
                     ) : (
-                        loanDetails && <LoanConfirm loanDetails={loanDetails} />
+                        loanDetails?.status === 'UNCONFIRMED' && (
+                            <LoanConfirm loanDetails={loanDetails} fetchUserAuctions={fetchUserAuctions} />
+                        )
                     )}
                 </>
             )}

@@ -5,6 +5,7 @@ import {useGetAllAuctions} from '../../../../hooks/api/auction/useGetAllAuctions
 import {PageWrapper, Title} from './Auctions.styles';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const Auctions: React.FC = () => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -13,7 +14,7 @@ export const Auctions: React.FC = () => {
         fetchAllAuctions();
     }, [fetchAllAuctions]);
 
-    let alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
+    let alertDetails: AlertTypeProps = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <PageWrapper>

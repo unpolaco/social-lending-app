@@ -6,6 +6,7 @@ import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {LoanDetailsProps} from './LoanDetails.types';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, page}) => {
     const {isFetchingGet, isErrorPaid, fetchMakeLoanRepayment, setIsPaid, setIsErrorPaid, isPaid} = useGetMakeLoanRepayment();
@@ -15,7 +16,7 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
         fetchUserLoans('Bilbo_Baggins');
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorPaid) {
         alertDetails = prepareAlertDetails(setIsErrorPaid, 'error', isErrorPaid);
     } else if (isPaid) {
@@ -27,7 +28,7 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
             {row.status === 'UNCONFIRMED' && page === 'borrowerUserLoans' && (
                 <>
                     <Title>Confirm your loan</Title>
-                    <LoanConfirm loanDetails={row} />
+                    <LoanConfirm loanDetails={row} fetchUserLoans={fetchUserLoans} page={page} />
                 </>
             )}
             {row.status === 'UNCONFIRMED' && page === 'lenderUserInvestments' && <Title>Your investment is unconfirmed</Title>}
@@ -47,7 +48,7 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
                     {isFetchingGet ? (
                         <CircularProgress />
                     ) : (
-                        row.schedule.map((repayment: any) => (
+                        row.schedule.map(repayment => (
                             <ScheduleWrapper key={repayment.date} color={repayment.status}>
                                 <RepaymentWrapper>
                                     <Text>{repayment.date}</Text>

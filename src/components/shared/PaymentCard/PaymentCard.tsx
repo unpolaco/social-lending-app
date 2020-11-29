@@ -6,6 +6,7 @@ import {usePaymentOnPlatformAccount} from '../../../hooks/api/payment/usePayment
 import {usePaymentOnUserAccount} from '../../../hooks/api/payment/usePaymentOnUserAccount';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, accountDetails}) => {
     const {
@@ -23,7 +24,7 @@ export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, ac
         setIsResponsePaymentOnUserAccount,
     } = usePaymentOnUserAccount();
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorPaymentOnPlatform) {
         alertDetails = prepareAlertDetails(setIsErrorPaymentOnPlatform, 'error', isErrorPaymentOnPlatform);
     } else if (isResponsePaymentOnPlatform) {

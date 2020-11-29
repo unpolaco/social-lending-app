@@ -6,6 +6,7 @@ import {PaymentCard} from '../../../shared/PaymentCard/PaymentCard';
 import {PrivateProfile} from '../../../shared/PrivateProfile/PrivateProfile';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const Account: React.FC = () => {
     const {isErrorGet, isFetchingGet, setIsErrorGet, fetchAccountDetails, accountDetails} = useGetAccountPrivateProfile();
@@ -14,7 +15,7 @@ export const Account: React.FC = () => {
         fetchAccountDetails('Samwise_Gamgee');
     }, [fetchAccountDetails]);
 
-    let alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
+    let alertDetails: AlertTypeProps = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <>

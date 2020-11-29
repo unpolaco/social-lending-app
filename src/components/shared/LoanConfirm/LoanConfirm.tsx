@@ -8,8 +8,9 @@ import {LoanOffers} from '../LoanOffers/LoanOffers';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
 import {useDeleteLoan} from '../../../hooks/api/loan/useDeleteLoan';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
-export const LoanConfirm: React.FC<any> = ({loanDetails}) => {
+export const LoanConfirm: React.FC<any> = ({loanDetails, fetchUserAuctions, fetchUserLoans, page}) => {
     const history = useHistory();
     const {
         isFetchingConfirmCreateLoan,
@@ -20,16 +21,19 @@ export const LoanConfirm: React.FC<any> = ({loanDetails}) => {
         setIsResponseConfirmCreateLoan,
     } = useGetConfirmCreateLoan();
     const {isFetchingDelete, isErrorDelete, setIsErrorDelete, isResponseDelete, setIsResponseDelete, fetchDeleteLoan} = useDeleteLoan();
+    const currentBorrower = loanDetails.borrowerUserName;
 
-    function handleConfirmCreateLoan() {
-        fetchConfirmCreateLoan(loanDetails?.id);
+    async function handleConfirmCreateLoan() {
+        await fetchConfirmCreateLoan(loanDetails?.id);
+        page === 'borrowerUserLoans' ? fetchUserLoans(currentBorrower) : fetchUserAuctions(currentBorrower);
         history.push(ROUTES.BORROWER_COMMITMENTS_LOANS);
     }
-    function handleDeleteLoan() {
-        fetchDeleteLoan(loanDetails?.id);
+    async function handleDeleteLoan() {
+        await fetchDeleteLoan(loanDetails?.id);
+        page === 'borrowerUserLoans' ? fetchUserLoans(currentBorrower) : fetchUserAuctions(currentBorrower);
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorConfirmCreateLoan) {
         alertDetails = prepareAlertDetails(setIsErrorConfirmCreateLoan);
     } else if (isResponseConfirmCreateLoan) {

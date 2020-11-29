@@ -5,6 +5,7 @@ import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Portfolio.styles';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const PortfolioOffers: React.FC = () => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchUserOffers, userOffersList} = useGetUserOffers();
@@ -13,7 +14,7 @@ export const PortfolioOffers: React.FC = () => {
         fetchUserOffers('Samwise_Gamgee');
     }, [fetchUserOffers]);
 
-    let alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
+    let alertDetails: AlertTypeProps = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <PageWrapper>

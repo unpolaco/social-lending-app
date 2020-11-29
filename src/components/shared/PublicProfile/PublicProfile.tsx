@@ -8,6 +8,7 @@ import {LeaveOpinion} from '../LeaveOpinion/LeaveOpinion';
 import {PublicProfileProps} from './PublicProfile.types';
 import {prepareAlertDetails} from '../Alert/Alert.helpers';
 import {AlertSnackBar} from '../Alert/AlertSnackbar';
+import {AlertTypeProps} from '../Alert/Alert.types';
 
 export const PublicProfile: React.FC<PublicProfileProps> = ({row, page}) => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchAccountPublicProfile, publicProfile} = useGetAccountPublicProfile();
@@ -19,7 +20,7 @@ export const PublicProfile: React.FC<PublicProfileProps> = ({row, page}) => {
     function handleGetPublicProfile() {
         fetchAccountPublicProfile(userName);
     }
-    const alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
+    const alertDetails: AlertTypeProps = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <div>

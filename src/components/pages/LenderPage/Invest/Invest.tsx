@@ -7,6 +7,7 @@ import {PageWrapper, Title} from './Invest.styles';
 import {NewOfferForm} from '../../../../api/api.types';
 import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
+import {AlertTypeProps} from '../../../shared/Alert/Alert.types';
 
 export const Invest: React.FC = () => {
     const {isFetchingGet, isErrorGet, setIsErrorGet, fetchAllAuctions, auctionsList} = useGetAllAuctions();
@@ -22,7 +23,7 @@ export const Invest: React.FC = () => {
         fetchAllAuctions();
     }
 
-    let alertDetails: any = {};
+    let alertDetails: AlertTypeProps = {};
     if (isErrorGet) {
         alertDetails = prepareAlertDetails(setIsErrorGet);
     } else if (isErrorSave) {
