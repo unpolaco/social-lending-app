@@ -29,6 +29,7 @@ export const PaymentFormOnPlatformAccount: React.FC<PaymentFormProps> = ({
                                     type="number"
                                     label={'Enter amount *'}
                                     value={values.amount ?? ''}
+                                    data-testid="amountPaymentOnPlatformAccount"
                                     id="amountPaymentOnPlatformAccount"
                                     InputProps={{endAdornment: <InputAdornment position="end">zł</InputAdornment>}}
                                     onChange={handleChange}

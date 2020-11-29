@@ -35,7 +35,7 @@ export const LoanConfirm: React.FC<any> = ({loanDetails, fetchUserAuctions, fetc
 
     let alertDetails: AlertTypeProps = {};
     if (isErrorConfirmCreateLoan) {
-        alertDetails = prepareAlertDetails(setIsErrorConfirmCreateLoan);
+        alertDetails = prepareAlertDetails(setIsErrorConfirmCreateLoan, 'error', 'Loan could not be confirmed. Loan was not created.');
     } else if (isResponseConfirmCreateLoan) {
         alertDetails = prepareAlertDetails(setIsResponseConfirmCreateLoan, 'success', 'Your offer was saved');
     } else if (isErrorDelete) {

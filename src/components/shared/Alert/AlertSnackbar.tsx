@@ -9,7 +9,7 @@ export const Alert = (props: AlertProps) => {
 
 export const AlertSnackBar: React.FC<AlertTypeProps> = ({handleCloseAlert, alertType, alertText}) => {
     return (
-        <Snackbar open={true} autoHideDuration={3000} onClose={() => handleCloseAlert!(false)} onClick={() => handleCloseAlert!(false)}>
+        <Snackbar open={true} autoHideDuration={6000} onClose={() => handleCloseAlert!(false)} onClick={() => handleCloseAlert!(false)}>
             <Alert severity={alertType}>{alertText}</Alert>
         </Snackbar>
     );
