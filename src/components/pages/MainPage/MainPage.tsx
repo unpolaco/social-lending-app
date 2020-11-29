@@ -15,7 +15,7 @@ export const MainPage: React.FC = () => {
                     <Button component={NavLink} to={ROUTES.BORROWER} variant="outlined" color="secondary" data-testid="enterAsBorrowerBtn">
                         Enter as Borrower
                     </Button>
-                    <Button component={NavLink} to={ROUTES.LENDER} variant="outlined" color="secondary">
+                    <Button component={NavLink} to={ROUTES.LENDER} variant="outlined" color="secondary" data-testid="enterAsLenderBtn">
                         Enter as Lender
                     </Button>
                 </WelcomeBox>

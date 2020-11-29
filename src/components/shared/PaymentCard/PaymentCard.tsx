@@ -40,7 +40,7 @@ export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, ac
             <Title>Your platform bank account </Title>
             <Wrapper>
                 <Text>Your platform account balance: </Text>
-                <TextBold>{accountDetails?.accountBalance} zł</TextBold>
+                <TextBold data-testid="lenderAccountAmount">{accountDetails?.accountBalance} zł</TextBold>
             </Wrapper>
             <PaymentFormOnPlatformAccount
                 currentPage={currentPage}

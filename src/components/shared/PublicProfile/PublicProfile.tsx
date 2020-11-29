@@ -48,12 +48,16 @@ export const PublicProfile: React.FC<PublicProfileProps> = ({row, page}) => {
                                     <TextOpinion>{opinion.opinionText}</TextOpinion>
                                 </StyledOpinionCard>
                             ))}
-                            {page === 'lenderUserInvestments' && (
-                                <LeaveOpinion
-                                    row={row}
-                                    currentInvestmentOpinion={currentInvestmentOpinion}
-                                    handleGetPublicProfile={handleGetPublicProfile}
-                                />
+                            {isFetchingGet ? (
+                                <CircularProgress />
+                            ) : (
+                                page === 'lenderUserInvestments' && (
+                                    <LeaveOpinion
+                                        row={row}
+                                        currentInvestmentOpinion={currentInvestmentOpinion}
+                                        handleGetPublicProfile={handleGetPublicProfile}
+                                    />
+                                )
                             )}
                         </StyledCard>
                     </>

@@ -18,7 +18,7 @@ export const Lender: React.FC = () => {
                     <Button component={NavLink} to={ROUTES.LENDER_PORTFOLIO}>
                         Portfolio
                     </Button>
-                    <Button component={NavLink} to={ROUTES.LENDER_ACCOUNT}>
+                    <Button component={NavLink} to={ROUTES.LENDER_ACCOUNT} data-testid="lenderAccountPageBtn">
                         My account
                     </Button>
                 </ButtonGroup>
