@@ -1,7 +1,7 @@
-import {Offer} from '../../../helpers/types';
+import {OfferDto} from '../../../../src/api/api.types';
 
 export interface OfferCreateProps {
-    row: Offer;
+    row: OfferDto;
     handleSaveNewOffer: any;
 }
 

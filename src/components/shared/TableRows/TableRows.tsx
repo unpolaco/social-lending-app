@@ -22,7 +22,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
     };
     return (
         <>
-            <StyledTableRowHover role="checkbox" tabIndex={-1} key={row.id} onClick={() => handleClickCollapse(row.id)}>
+            <StyledTableRowHover role="checkbox" tabIndex={-1} onClick={() => handleClickCollapse(row.id)}>
                 {(() => {
                     switch (currentPage) {
                         case 'borrowerAllAuctions':
@@ -69,7 +69,7 @@ export const TableRows: React.FC<any> = ({row, currentPage, handleSaveNewOffer, 
                                 case 'lenderAllAuctions':
                                     return (
                                         <>
-                                            <PublicProfile row={row} />
+                                            <PublicProfile row={row} page="lenderAllAuctions" />
                                             <OffersDisplay row={row} />
                                             <OfferCreate row={row} handleSaveNewOffer={handleSaveNewOffer} />
                                         </>

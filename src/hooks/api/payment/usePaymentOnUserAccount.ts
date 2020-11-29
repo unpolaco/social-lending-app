@@ -3,16 +3,16 @@ import {postPaymentOnUserAccount} from '../../../api/fetchPayment';
 
 export const usePaymentOnUserAccount = () => {
     const [isFetchingPaymentOnUserAccount, setIsFetchingPaymentOnUserAccount] = useState<boolean>(false);
-    const [isErrorPaymentOnUserAccount, setIsErrorPaymentOnUserAccount] = useState<boolean>(false);
-    const [responsePaymentOnUserAccount, setResponsePaymentOnUserAccount] = useState<any>();
+    const [isErrorPaymentOnUserAccount, setIsErrorPaymentOnUserAccount] = useState<boolean | string>(false);
+    const [isResponsePaymentOnUserAccount, setIsResponsePaymentOnUserAccount] = useState<boolean>();
 
     const fetchPaymentOnUserAccount = useCallback(async paymentDetails => {
         setIsFetchingPaymentOnUserAccount(true);
         try {
-            const response: any = await postPaymentOnUserAccount(paymentDetails);
-            setResponsePaymentOnUserAccount(response);
-        } catch {
-            setIsErrorPaymentOnUserAccount(true);
+            await postPaymentOnUserAccount(paymentDetails);
+            setIsResponsePaymentOnUserAccount(true);
+        } catch (error) {
+            setIsErrorPaymentOnUserAccount(error.message);
         } finally {
             setIsFetchingPaymentOnUserAccount(false);
         }
@@ -21,9 +21,9 @@ export const usePaymentOnUserAccount = () => {
     return {
         isFetchingPaymentOnUserAccount,
         isErrorPaymentOnUserAccount,
-        responsePaymentOnUserAccount,
+        isResponsePaymentOnUserAccount,
         fetchPaymentOnUserAccount,
         setIsErrorPaymentOnUserAccount,
-        setResponsePaymentOnUserAccount,
+        setIsResponsePaymentOnUserAccount,
     };
 };

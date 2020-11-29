@@ -1,10 +1,11 @@
 import React from 'react';
 import {HiddenSpan, TextHead, TextHeadCell} from './TableHead.styles';
 import {TableHead, TableRow, TableSortLabel} from '@material-ui/core';
+import {InvestmentDto} from '../../../../src/api/api.types';
 import {headCellsInvestments} from './TableHead.constants';
 
 export const TableHeadUserInvestments: React.FC<any> = ({order, orderBy, onRequestSort}) => {
-    const createSortHandler = (property: any) => (event: React.MouseEvent<unknown>) => {
+    const createSortHandler = (property: keyof InvestmentDto) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };
     return (

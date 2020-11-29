@@ -4,13 +4,13 @@ import {deleteUserOffer} from '../../../api/fetchOffer';
 export const useDeleteUserOffer = () => {
     const [isFetchingDelete, setIsFetchingDelete] = useState<boolean>(false);
     const [isErrorDelete, setIsErrorDelete] = useState<boolean>(false);
-    const [response, setResponse] = useState<any>();
+    const [isResponseDelete, setIsResponseDelete] = useState<boolean>(false);
 
     const fetchDeleteUserOffer = useCallback(async (offerId: number) => {
         setIsFetchingDelete(true);
         try {
-            const response = await deleteUserOffer(offerId);
-            setResponse(response.data);
+            await deleteUserOffer(offerId);
+            setIsResponseDelete(true);
         } catch {
             setIsErrorDelete(true);
         } finally {
@@ -21,7 +21,9 @@ export const useDeleteUserOffer = () => {
     return {
         isFetchingDelete,
         isErrorDelete,
-        response,
+        setIsErrorDelete,
+        isResponseDelete,
+        setIsResponseDelete,
         fetchDeleteUserOffer,
     };
 };

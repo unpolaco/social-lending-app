@@ -1,6 +1,6 @@
-import {Loan} from '../../../helpers/types';
+import {LoanDto} from '../../../../src/api/api.types';
 
 export interface LoanCreateProps {
-    row: Loan;
+    row: LoanDto;
     fetchUserAuctions: any;
 }

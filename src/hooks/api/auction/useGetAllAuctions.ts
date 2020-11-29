@@ -22,6 +22,7 @@ export const useGetAllAuctions = () => {
     return {
         isFetchingGet,
         isErrorGet,
+        setIsErrorGet,
         auctionsList,
         fetchAllAuctions,
     };

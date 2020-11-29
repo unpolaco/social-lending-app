@@ -2,11 +2,11 @@ import React from 'react';
 import {HiddenSpan, TextHead, TextHeadCell} from './TableHead.styles';
 import {TableHead, TableRow, TableSortLabel} from '@material-ui/core';
 import {LoanTableProps} from './TableHead.types';
-import {Loan} from '../../../helpers/types';
+import {LoanDto} from '../../../../src/api/api.types';
 import {headCellsLoans} from './TableHead.constants';
 
 export const TableHeadUserLoans: React.FC<LoanTableProps> = ({order, orderBy, onRequestSort}) => {
-    const createSortHandler = (property: keyof Loan) => (event: React.MouseEvent<unknown>) => {
+    const createSortHandler = (property: keyof LoanDto) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
     };
     return (

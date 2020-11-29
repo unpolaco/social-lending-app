@@ -1,6 +1,6 @@
-import {Loan} from '../../../helpers/types';
+import {LoanDto} from '../../../../src/api/api.types';
 
 export interface TableRowsBorrowerUserLoansProps {
-    row: Loan;
+    row: LoanDto;
     clickedCollapsed: number | null;
 }

@@ -1,7 +1,7 @@
 import {axios} from './axios';
 import {apiAccountDetails, apiAccountPublicProfile} from '../helpers/constants-api';
 
-export const getAccountDetails = (userName: string) => {
+export const getAccountPrivateProfile = (userName: string) => {
     return axios.get(`${apiAccountDetails}/${userName}`);
 };
 

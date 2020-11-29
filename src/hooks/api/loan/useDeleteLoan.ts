@@ -1,15 +1,15 @@
 import {useCallback, useState} from 'react';
-import {deleteAuction} from '../../../api/fetchAuction';
+import {deleteLoan} from '../../../api/fetchLoan';
 
-export const useDeleteAuction = () => {
+export const useDeleteLoan = () => {
     const [isFetchingDelete, setIsFetchingDelete] = useState<boolean>(false);
     const [isErrorDelete, setIsErrorDelete] = useState<boolean>(false);
     const [isResponseDelete, setIsResponseDelete] = useState<boolean>(false);
 
-    const fetchDeleteAuction = useCallback(async auctionId => {
+    const fetchDeleteLoan = useCallback(async (loanId: number) => {
         setIsFetchingDelete(true);
         try {
-            await deleteAuction(auctionId);
+            await deleteLoan(loanId);
             setIsResponseDelete(true);
         } catch {
             setIsErrorDelete(true);
@@ -21,9 +21,9 @@ export const useDeleteAuction = () => {
     return {
         isFetchingDelete,
         isErrorDelete,
-        isResponseDelete,
         setIsErrorDelete,
+        isResponseDelete,
         setIsResponseDelete,
-        fetchDeleteAuction,
+        fetchDeleteLoan,
     };
 };

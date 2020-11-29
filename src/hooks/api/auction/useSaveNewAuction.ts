@@ -1,17 +1,16 @@
 import {useCallback, useState} from 'react';
 import {saveNewAuction} from '../../../api/fetchAuction';
-import {NewAuctionDto} from '../../../api/api.types';
 
 export const useSaveNewAuction = () => {
     const [isFetchingSave, setIsFetchingSave] = useState<boolean>(false);
     const [isErrorSave, setIsErrorSave] = useState<boolean>(false);
-    const [response, setResponse] = useState<NewAuctionDto>();
+    const [isSaveResponse, setIsSaveResponse] = useState<boolean>();
 
     const fetchNewAuction = useCallback(async newAuctionData => {
         setIsFetchingSave(true);
         try {
-            const response: any = await saveNewAuction(newAuctionData);
-            setResponse(response);
+            await saveNewAuction(newAuctionData);
+            setIsSaveResponse(true);
         } catch {
             setIsErrorSave(true);
         } finally {
@@ -22,7 +21,9 @@ export const useSaveNewAuction = () => {
     return {
         isFetchingSave,
         isErrorSave,
-        response,
+        setIsErrorSave,
+        setIsSaveResponse,
+        isSaveResponse,
         fetchNewAuction,
     };
 };

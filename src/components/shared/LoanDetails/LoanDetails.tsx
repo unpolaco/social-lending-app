@@ -1,28 +1,26 @@
 import React from 'react';
-import {Button, CircularProgress, Snackbar} from '@material-ui/core/';
+import {Button, CircularProgress} from '@material-ui/core/';
 import {useGetMakeLoanRepayment} from '../../../hooks/api/loan/useGetMakeLoanRepayment';
 import {ScheduleWrapper, RepaymentWrapper, Text, TextLight, LoanDetailWrapper, Title} from './LoanDetails.styles';
-import {Alert} from '../Alert/Alert';
+import {AlertSnackBar} from '../Alert/AlertSnackbar';
 import {LoanDetailsProps} from './LoanDetails.types';
 import {LoanConfirm} from '../LoanConfirm/LoanConfirm';
+import {prepareAlertDetails} from '../Alert/Alert.helpers';
 
 export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, page}) => {
-    const {isFetchingGet, isErrorGet, fetchMakeLoanRepayment, setIsPaid, setIsErrorGet, isPaid} = useGetMakeLoanRepayment();
+    const {isFetchingGet, isErrorPaid, fetchMakeLoanRepayment, setIsPaid, setIsErrorPaid, isPaid} = useGetMakeLoanRepayment();
 
     async function handleMakeRepayment() {
         await fetchMakeLoanRepayment(row.id);
         fetchUserLoans('Bilbo_Baggins');
     }
 
-    if (isFetchingGet) {
-        return <CircularProgress />;
+    let alertDetails: any = {};
+    if (isErrorPaid) {
+        alertDetails = prepareAlertDetails(setIsErrorPaid, 'error', isErrorPaid);
+    } else if (isPaid) {
+        alertDetails = prepareAlertDetails(setIsPaid, 'success', 'Your repayment was paid');
     }
-    const handleCloseErrorAlert = () => {
-        setIsErrorGet(false);
-    };
-    const handleCloseSuccessAlert = () => {
-        setIsPaid(false);
-    };
 
     return (
         <LoanDetailWrapper>
@@ -46,26 +44,31 @@ export const LoanDetails: React.FC<LoanDetailsProps> = ({row, fetchUserLoans, pa
                         <TextLight>amount</TextLight>
                         <TextLight>status</TextLight>
                     </ScheduleWrapper>
-                    {row.schedule.map((repayment: any) => (
-                        <ScheduleWrapper key={repayment.date} color={repayment.status}>
-                            <RepaymentWrapper>
-                                <Text>{repayment.date}</Text>
-                            </RepaymentWrapper>
-                            <RepaymentWrapper>
-                                <Text>{repayment.value} zł</Text>
-                            </RepaymentWrapper>
-                            <RepaymentWrapper>
-                                <Text>{repayment.status}</Text>
-                            </RepaymentWrapper>
-                        </ScheduleWrapper>
-                    ))}
-                    <Snackbar open={isPaid} autoHideDuration={3000} onClose={handleCloseSuccessAlert} onClick={handleCloseSuccessAlert}>
-                        <Alert severity="success">'Your payment was successful!'</Alert>
-                    </Snackbar>
-                    <Snackbar open={isErrorGet} autoHideDuration={3000} onClose={handleCloseErrorAlert} onClick={handleCloseErrorAlert}>
-                        <Alert severity="error">'Error payment. Please try again.'</Alert>
-                    </Snackbar>
+                    {isFetchingGet ? (
+                        <CircularProgress />
+                    ) : (
+                        row.schedule.map((repayment: any) => (
+                            <ScheduleWrapper key={repayment.date} color={repayment.status}>
+                                <RepaymentWrapper>
+                                    <Text>{repayment.date}</Text>
+                                </RepaymentWrapper>
+                                <RepaymentWrapper>
+                                    <Text>{repayment.value} zł</Text>
+                                </RepaymentWrapper>
+                                <RepaymentWrapper>
+                                    <Text>{repayment.status}</Text>
+                                </RepaymentWrapper>
+                            </ScheduleWrapper>
+                        ))
+                    )}
                 </>
+            )}
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                ></AlertSnackBar>
             )}
         </LoanDetailWrapper>
     );

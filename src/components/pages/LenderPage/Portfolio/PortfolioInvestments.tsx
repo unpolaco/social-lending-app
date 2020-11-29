@@ -3,25 +3,33 @@ import {useGetUserInvestments} from '../../../../hooks/api/investment/useGetUser
 import {Table} from '../../../shared/Table/Table';
 import {CircularProgress} from '@material-ui/core/';
 import {PageWrapper, Title} from './Portfolio.styles';
+import {prepareAlertDetails} from '../../../shared/Alert/Alert.helpers';
+import {AlertSnackBar} from '../../../shared/Alert/AlertSnackbar';
 
 export const PortfolioInvestments: React.FC = () => {
-    const {isFetchingGet, isErrorGet, fetchUserInvestments, userInvestmentsList} = useGetUserInvestments();
+    const {isFetchingGet, isErrorGet, setIsErrorGet, fetchUserInvestments, userInvestmentsList} = useGetUserInvestments();
 
     useEffect(() => {
         fetchUserInvestments('Samwise_Gamgee');
     }, [fetchUserInvestments]);
 
-    if (isFetchingGet) {
-        return <CircularProgress />;
-    }
-    if (isErrorGet) {
-        alert('Error');
-    }
+    let alertDetails = isErrorGet && prepareAlertDetails(setIsErrorGet);
 
     return (
         <PageWrapper>
             <Title>Your Investments</Title>
-            {userInvestmentsList && <Table rows={userInvestmentsList} currentPage="lenderUserInvestments" />}
+            {isFetchingGet ? (
+                <CircularProgress />
+            ) : (
+                userInvestmentsList && <Table rows={userInvestmentsList} currentPage="lenderUserInvestments" />
+            )}
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                />
+            )}
         </PageWrapper>
     );
 };

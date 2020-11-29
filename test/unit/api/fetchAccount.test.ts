@@ -1,18 +1,18 @@
 import {mocked} from 'ts-jest/utils';
-import {getAccountDetails, getAccountPublicProfile} from '../../../src/api/fetchAccount';
+import {getAccountPrivateProfile, getAccountPublicProfile} from '../../../src/api/fetchAccount';
 import {axios} from '../../../src/api/axios';
 import {apiAccountDetails, apiAccountPublicProfile} from '../../../src/helpers/constants-api';
 
 jest.mock('../../../src/api/axios');
 
-describe('getAccountDetails', () => {
+describe('getAccountPrivateProfile', () => {
     beforeEach(() => {
         mocked(axios.get).mockResolvedValue('getMock');
     });
 
     it('calls request for user account details and passes response', async () => {
         mocked(axios.get).mockResolvedValue({data: 'getDataMock'});
-        const request = await getAccountDetails('Test_User');
+        const request = await getAccountPrivateProfile('Test_User');
         expect(request.data).toEqual('getDataMock');
         expect(axios.get).toHaveBeenCalledWith(`${apiAccountDetails}/Test_User`);
     });

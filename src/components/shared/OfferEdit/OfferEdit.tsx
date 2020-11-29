@@ -1,22 +1,31 @@
 import React from 'react';
-import {Box, Button, CircularProgress, Typography} from '@material-ui/core/';
+import {Box, Button, Typography} from '@material-ui/core/';
 import {useDeleteUserOffer} from '../../../hooks/api/offer/useDeleteUserOffer';
+import {AlertSnackBar} from '../Alert/AlertSnackbar';
+import {prepareAlertDetails} from '../Alert/Alert.helpers';
 
 export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
-    const {isFetchingDelete, isErrorDelete, fetchDeleteUserOffer} = useDeleteUserOffer();
+    const {
+        isFetchingDelete,
+        isErrorDelete,
+        setIsErrorDelete,
+        isResponseDelete,
+        setIsResponseDelete,
+        fetchDeleteUserOffer,
+    } = useDeleteUserOffer();
     const offerId: number = row.offerId;
     const userName: string = row.lenderUserName;
-
-    if (isFetchingDelete) {
-        return <CircularProgress />;
-    }
-    if (isErrorDelete) {
-        alert('Error');
-    }
 
     async function handleDeleteOffer() {
         await fetchDeleteUserOffer(offerId);
         fetchUserOffers(userName);
+    }
+
+    let alertDetails: any = {};
+    if (isErrorDelete) {
+        alertDetails = prepareAlertDetails(setIsErrorDelete, 'error', 'Your offer was not deleted');
+    } else if (isResponseDelete) {
+        alertDetails = prepareAlertDetails(setIsResponseDelete, 'success', 'Your offer was deleted');
     }
 
     return (
@@ -27,6 +36,13 @@ export const OfferEdit: React.FC<any> = ({row, fetchUserOffers}) => {
                 <Button variant="outlined" onClick={handleDeleteOffer} disabled={isFetchingDelete}>
                     Delete
                 </Button>
+            )}
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                ></AlertSnackBar>
             )}
         </Box>
     );

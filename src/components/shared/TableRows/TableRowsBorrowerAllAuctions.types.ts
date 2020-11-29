@@ -1,6 +1,6 @@
-import {Auction} from '../../../helpers/types';
+import {AuctionDto} from '../../../../src/api/api.types';
 
 export interface TableRowsBorrowerAllAuctionsProps {
-    row: Auction;
+    row: AuctionDto;
     clickedCollapsed: number | null;
 }

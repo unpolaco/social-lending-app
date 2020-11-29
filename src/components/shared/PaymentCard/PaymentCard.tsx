@@ -1,56 +1,38 @@
-import React, {useEffect} from 'react';
-import {CircularProgress, Snackbar} from '@material-ui/core';
+import React from 'react';
 import {PaymentFormOnUserAccount} from '../PaymentForm/PaymentFormOnUserAccount';
 import {PaymentFormOnPlatformAccount} from '../PaymentForm/PaymentFormOnPlatformAccount';
 import {StyledCard, TextBold} from './PaymentCard.styles';
 import {usePaymentOnPlatformAccount} from '../../../hooks/api/payment/usePaymentOnPlatformAccount';
 import {usePaymentOnUserAccount} from '../../../hooks/api/payment/usePaymentOnUserAccount';
-import {Alert} from '../Alert/Alert';
-import {useGetAccountDetails} from '../../../hooks/api/account/useGetAccountDetails';
+import {AlertSnackBar} from '../Alert/AlertSnackbar';
+import {prepareAlertDetails} from '../Alert/Alert.helpers';
 
-export const PaymentCard: React.FC<any> = ({currentPage}) => {
-    const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';
+export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, accountDetails}) => {
     const {
-        isFetchingPaymentOnPlatform,
         isErrorPaymentOnPlatform,
         fetchPaymentOnPlatformAccount,
-        responsePaymentOnPlatform,
+        isResponsePaymentOnPlatform,
         setIsErrorPaymentOnPlatform,
-        setResponsePaymentOnPlatform,
+        setIsResponsePaymentOnPlatform,
     } = usePaymentOnPlatformAccount();
     const {
-        isFetchingPaymentOnUserAccount,
         isErrorPaymentOnUserAccount,
         fetchPaymentOnUserAccount,
-        responsePaymentOnUserAccount,
+        isResponsePaymentOnUserAccount,
         setIsErrorPaymentOnUserAccount,
-        setResponsePaymentOnUserAccount,
+        setIsResponsePaymentOnUserAccount,
     } = usePaymentOnUserAccount();
 
-    const {isFetchingGet, isErrorGet, fetchAccountDetails, accountDetails} = useGetAccountDetails();
-
-    useEffect(() => {
-        fetchAccountDetails(userName);
-    }, [fetchAccountDetails, userName]);
-
-    if (isFetchingGet) {
-        return <CircularProgress />;
+    let alertDetails: any = {};
+    if (isErrorPaymentOnPlatform) {
+        alertDetails = prepareAlertDetails(setIsErrorPaymentOnPlatform, 'error', isErrorPaymentOnPlatform);
+    } else if (isResponsePaymentOnPlatform) {
+        alertDetails = prepareAlertDetails(setIsResponsePaymentOnPlatform, 'success', 'Transaction was successful');
+    } else if (isErrorPaymentOnUserAccount) {
+        alertDetails = prepareAlertDetails(setIsErrorPaymentOnUserAccount, 'error', isErrorPaymentOnUserAccount);
+    } else if (isResponsePaymentOnUserAccount) {
+        alertDetails = prepareAlertDetails(setIsResponsePaymentOnUserAccount, 'success', 'Transaction was successful');
     }
-    if (isErrorGet) {
-        alert('Error');
-    }
-
-    if (isFetchingPaymentOnPlatform || isFetchingPaymentOnUserAccount) {
-        return <CircularProgress />;
-    }
-    const handleCloseErrorAlert = () => {
-        setIsErrorPaymentOnUserAccount(false);
-        setIsErrorPaymentOnPlatform(false);
-    };
-    const handleCloseSuccessAlert = () => {
-        setResponsePaymentOnPlatform(false);
-        setResponsePaymentOnUserAccount(false);
-    };
 
     return (
         <StyledCard>
@@ -65,22 +47,13 @@ export const PaymentCard: React.FC<any> = ({currentPage}) => {
                 fetchAccountDetails={fetchAccountDetails}
                 fetchPaymentOnUserAccount={fetchPaymentOnUserAccount}
             />
-            <Snackbar
-                open={responsePaymentOnUserAccount || responsePaymentOnPlatform}
-                autoHideDuration={3000}
-                onClose={handleCloseSuccessAlert}
-                onClick={handleCloseSuccessAlert}
-            >
-                <Alert severity="success">'Your payment was successfull!'</Alert>
-            </Snackbar>
-            <Snackbar
-                open={isErrorPaymentOnPlatform || isErrorPaymentOnUserAccount}
-                autoHideDuration={3000}
-                onClose={handleCloseErrorAlert}
-                onClick={handleCloseErrorAlert}
-            >
-                <Alert severity="error">'Error payment. Please try again.'</Alert>
-            </Snackbar>
+            {alertDetails.alertType && (
+                <AlertSnackBar
+                    alertType={alertDetails.alertType}
+                    alertText={alertDetails.alertText}
+                    handleCloseAlert={alertDetails.handleCloseAlert}
+                ></AlertSnackBar>
+            )}
         </StyledCard>
     );
 };

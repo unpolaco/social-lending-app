@@ -1,12 +1,10 @@
 export interface OfferDto {
     amount: number;
-    borrowerName: string;
     lenderUserName: string;
-    borrowerRating: number;
     offerId: number;
     loanDuration: number;
     rate: number;
-    risk: number;
+    id: number;
     status: string;
 }
 export interface AuctionDto {
@@ -17,19 +15,7 @@ export interface AuctionDto {
     loanDuration: number;
     offers: OfferDto[];
     rate: number;
-    risk: number;
     status: string;
-}
-export interface NewAuctionDto {
-    amount: number;
-    borrower: string;
-    loanDuration: number;
-    rate: number;
-    auctionId: number;
-}
-export interface NewOfferDto {
-    amount: number;
-    rate: number;
 }
 export interface ScheduleDto {
     date: string;
@@ -46,7 +32,6 @@ export interface LoanDto {
     loanDuration: number;
     rate: number;
     id: number;
-    risk: number;
     status: string;
 }
 export interface InvestmentDto {
@@ -59,7 +44,6 @@ export interface InvestmentDto {
     schedule: ScheduleDto[];
     loanDuration: number;
     rate: number;
-    risk: number;
     status: string;
 }
 export interface AccountDto {
@@ -76,20 +60,27 @@ export interface PublicAccountDto {
     name: string;
     surname: string;
     totalRating: number;
-    opinions: OpinionsDto[];
+    opinions: OpinionForm[];
 }
-export interface OpinionsDto {
+export interface NewAuctionForm {
+    amount: number;
+    borrower: string;
+    loanDuration: number;
+    rate: number;
+    auctionId: number;
+}
+export interface NewOfferForm {
+    amount: number;
+    rate: number;
+    lenderUserName: string;
+}
+export interface OpinionForm {
     author: string;
     opinionText: string;
     opinionRating: number;
     investmentId: number;
 }
-export interface PaymentDto {
+export interface PaymentForm {
     amount: number;
     userName: string;
 }
-// export interface PaymentForm {
-//     amount: number;
-//     userName: string;
-// }
-//

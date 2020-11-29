@@ -3,16 +3,16 @@ import {postPaymentOnPlatformAccount} from '../../../api/fetchPayment';
 
 export const usePaymentOnPlatformAccount = () => {
     const [isFetchingPaymentOnPlatform, setIsFetchingPaymentOnPlatform] = useState<boolean>(false);
-    const [isErrorPaymentOnPlatform, setIsErrorPaymentOnPlatform] = useState<boolean>(false);
-    const [responsePaymentOnPlatform, setResponsePaymentOnPlatform] = useState<any>();
+    const [isErrorPaymentOnPlatform, setIsErrorPaymentOnPlatform] = useState<boolean | string>(false);
+    const [isResponsePaymentOnPlatform, setIsResponsePaymentOnPlatform] = useState<boolean>(false);
 
     const fetchPaymentOnPlatformAccount = useCallback(async paymentDetails => {
         setIsFetchingPaymentOnPlatform(true);
         try {
-            const response = await postPaymentOnPlatformAccount(paymentDetails);
-            setResponsePaymentOnPlatform(response);
-        } catch {
-            setIsErrorPaymentOnPlatform(true);
+            await postPaymentOnPlatformAccount(paymentDetails);
+            setIsResponsePaymentOnPlatform(true);
+        } catch (error) {
+            setIsErrorPaymentOnPlatform(error.message);
         } finally {
             setIsFetchingPaymentOnPlatform(false);
         }
@@ -21,9 +21,9 @@ export const usePaymentOnPlatformAccount = () => {
     return {
         isFetchingPaymentOnPlatform,
         isErrorPaymentOnPlatform,
-        responsePaymentOnPlatform,
+        isResponsePaymentOnPlatform,
         fetchPaymentOnPlatformAccount,
         setIsErrorPaymentOnPlatform,
-        setResponsePaymentOnPlatform,
+        setIsResponsePaymentOnPlatform,
     };
 };

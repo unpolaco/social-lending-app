@@ -1,39 +1,39 @@
-import {Auction, Loan, Offer, Investment} from '../../../helpers/types';
+import {AuctionDto, LoanDto, OfferDto, InvestmentDto} from '../../../../src/api/api.types';
 import {Order} from '../Table/Table.types';
 
 export interface AuctionTableProps {
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Auction) => void;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof AuctionDto) => void;
     order: Order;
     orderBy: string;
 }
 export interface LoanTableProps {
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Loan) => void;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof LoanDto) => void;
     order: Order;
     orderBy: string;
 }
 export interface OfferTableProps {
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Offer) => void;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof OfferDto) => void;
     order: Order;
     orderBy: string;
 }
 export interface InvestmentTableProps {
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Investment) => void;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof InvestmentDto) => void;
     order: Order;
     orderBy: string;
 }
 export interface HeadCellsAuctions {
-    id: keyof Auction;
+    id: keyof AuctionDto;
     label: string;
 }
 export interface HeadCellsLoans {
-    id: keyof Loan;
+    id: keyof LoanDto;
     label: string;
 }
 export interface HeadCellsOffers {
-    id: keyof Offer;
+    id: keyof OfferDto;
     label: string;
 }
 export interface HeadCellsInvestments {
-    id: keyof Investment;
+    id: keyof InvestmentDto;
     label: string;
 }

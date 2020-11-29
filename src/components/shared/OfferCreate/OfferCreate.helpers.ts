@@ -15,3 +15,8 @@ export const OfferCreateValidator = (values: OfferCreateValidatorProps) => {
     }
     return errors;
 };
+
+export const generateProfitAmountDisplay = (values: OfferCreateValidatorProps, isValid: boolean): string => {
+    const profitAmount: number = +(values.amount! + values.amount! * (values.rate! / 100)).toFixed(2);
+    return !Number.isNaN(Number(profitAmount)) && isValid ? ` ${profitAmount} zł` : ' 0 zł';
+};

@@ -1,10 +1,10 @@
 import React from 'react';
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
 import {OfferCreate} from '../../../../src/components/shared/OfferCreate/OfferCreate';
-import {Offer} from '../../../../src/helpers/types';
+import {OfferDto} from '../../../../src/api/api.types';
 import userEvent from '@testing-library/user-event';
-describe('Formik in OfferCreate component', () => {
-    const row: Offer = {
+describe('OfferCreate', () => {
+    const row: OfferDto = {
         amount: 100,
         offerId: 0,
         rate: 5,

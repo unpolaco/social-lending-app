@@ -3,7 +3,7 @@ import {getMakeLoanRepayment} from '../../../api/fetchLoan';
 
 export const useGetMakeLoanRepayment = () => {
     const [isFetchingGet, setIsFetchingGet] = useState<boolean>(false);
-    const [isErrorGet, setIsErrorGet] = useState<boolean>(false);
+    const [isErrorPaid, setIsErrorPaid] = useState<boolean | string>(false);
     const [isPaid, setIsPaid] = useState<boolean>();
 
     const fetchMakeLoanRepayment = useCallback(async (loanId: number) => {
@@ -11,8 +11,8 @@ export const useGetMakeLoanRepayment = () => {
         try {
             await getMakeLoanRepayment(loanId);
             setIsPaid(true);
-        } catch {
-            setIsErrorGet(true);
+        } catch (error) {
+            setIsErrorPaid(error.message);
         } finally {
             setIsFetchingGet(false);
         }
@@ -20,10 +20,10 @@ export const useGetMakeLoanRepayment = () => {
 
     return {
         isFetchingGet,
-        isErrorGet,
+        isErrorPaid,
         fetchMakeLoanRepayment,
         isPaid,
-        setIsErrorGet,
+        setIsErrorPaid,
         setIsPaid,
     };
 };
