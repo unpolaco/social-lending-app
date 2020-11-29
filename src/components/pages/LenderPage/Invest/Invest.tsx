@@ -35,11 +35,8 @@ export const Invest: React.FC = () => {
     return (
         <PageWrapper>
             <Title>List of all actual auctions:</Title>
-            {isFetchingGet || isFetchingSave ? (
-                <CircularProgress />
-            ) : (
-                auctionsList && <Table rows={auctionsList} currentPage="lenderAllAuctions" handleSaveNewOffer={handleSaveNewOffer} />
-            )}
+            {(isFetchingGet || isFetchingSave) && <CircularProgress />}
+            {auctionsList && <Table rows={auctionsList} currentPage="lenderAllAuctions" handleSaveNewOffer={handleSaveNewOffer} />}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}

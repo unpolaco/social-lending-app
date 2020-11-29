@@ -34,7 +34,6 @@ export const PaymentCard: React.FC<any> = ({currentPage, fetchAccountDetails, ac
     } else if (isResponsePaymentOnUserAccount) {
         alertDetails = prepareAlertDetails(setIsResponsePaymentOnUserAccount, 'success', 'Transaction was successful');
     }
-    console.log(isErrorPaymentOnPlatform);
 
     return (
         <StyledCard>

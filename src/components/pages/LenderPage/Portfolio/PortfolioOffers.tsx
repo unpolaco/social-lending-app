@@ -19,11 +19,8 @@ export const PortfolioOffers: React.FC = () => {
     return (
         <PageWrapper>
             <Title>Your Offers</Title>
-            {isFetchingGet ? (
-                <CircularProgress />
-            ) : (
-                userOffersList && <Table rows={userOffersList} currentPage="lenderUserOffers" fetchUserOffers={fetchUserOffers} />
-            )}
+            {isFetchingGet && <CircularProgress />}
+            {userOffersList && <Table rows={userOffersList} currentPage="lenderUserOffers" fetchUserOffers={fetchUserOffers} />}
             {alertDetails.alertType && (
                 <AlertSnackBar
                     alertType={alertDetails.alertType}
