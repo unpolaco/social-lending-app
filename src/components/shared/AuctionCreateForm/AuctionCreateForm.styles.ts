@@ -18,7 +18,7 @@ export const AccordionWrapper = styled.div`
 export const FormWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    height: 300px;
+    height: 330px;
     width: 300px;
     justify-content: space-between;
     padding: 20px;
@@ -29,4 +29,14 @@ export const FormWrapper = styled.div`
 export const Text = styled.p`
     font-weight: 400;
     font-size: 15px;
+`;
+export const TextBold = styled.p`
+    font-weight: 500;
+    font-size: 16px;
+`;
+export const TextWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
 `;

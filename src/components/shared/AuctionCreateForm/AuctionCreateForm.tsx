@@ -1,7 +1,7 @@
 import React from 'react';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment, Accordion, AccordionSummary, AccordionDetails} from '@material-ui/core';
-import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text} from './AuctionCreateForm.styles';
+import {CreateAuctionCardWrapper, FormWrapper, AccordionWrapper, Text, TextWrapper, TextBold} from './AuctionCreateForm.styles';
 import {initialValues, marks} from './AuctionCreateForm.constants';
 import {AuctionCreateFormValidator} from './AuctionCreateForm.helpers';
 import {AuctionCreateFormValues, AuctionCreateFormProps} from './AuctionCreateForm.types';
@@ -33,8 +33,14 @@ export const AuctionCreateForm: React.FC<AuctionCreateFormProps> = ({handleSaveN
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormWrapper>
-                                            <Text>Total amount to pay: {loanAmount || '0'} zł</Text>
-                                            <Text>Repayment amount: {loanRepayment || '0'} zł</Text>
+                                            <TextWrapper>
+                                                <Text>Total amount to pay: </Text>
+                                                <TextBold>{loanAmount || '0'} zł</TextBold>
+                                            </TextWrapper>
+                                            <TextWrapper>
+                                                <Text>Repayment amount: </Text>
+                                                <TextBold>{loanRepayment || '0'} zł</TextBold>
+                                            </TextWrapper>
                                             <TextField
                                                 autoFocus
                                                 name="amount"

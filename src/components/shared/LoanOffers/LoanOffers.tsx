@@ -1,8 +1,9 @@
 import React from 'react';
 import {Typography, Box} from '@material-ui/core/';
 import {OffersWrapper, StyledBox, Text} from './LoanOffers.styles';
+import {LoanOffersProps} from './LoanOffers.types';
 
-export const LoanOffers: React.FC<any> = ({row}) => {
+export const LoanOffers: React.FC<LoanOffersProps> = ({row}) => {
     return (
         <Box>
             <Typography>Best offers</Typography>

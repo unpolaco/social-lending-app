@@ -8,7 +8,10 @@ import {PortfolioInvestments} from './PortfolioInvestments';
 export const Portfolio: React.FC = () => {
     const offersPath = ROUTES.LENDER_PORTFOLIO_USEROFFERS;
     const investmentsPath = ROUTES.LENDER_PORTFOLIO_USERINVESTMENTS;
-    const activeRoute = useLocation().pathname;
+    let activeRoute = useLocation().pathname;
+    if (activeRoute === ROUTES.LENDER_PORTFOLIO) {
+        activeRoute = ROUTES.LENDER_PORTFOLIO_USEROFFERS;
+    }
 
     return (
         <>

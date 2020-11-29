@@ -1,5 +1,5 @@
 import React from 'react';
-import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldTitleTypography, Text} from './OfferCreate.styles';
+import {CreateOfferWrapper, FormikWrapper, FieldWrapper, FieldWrapperSlider, Text, TextWrapper, TextBold} from './OfferCreate.styles';
 import {Formik, Form} from 'formik';
 import {Button, Typography, TextField, Slider, InputAdornment} from '@material-ui/core';
 import {OfferCreateValidator, generateProfitAmountDisplay} from './OfferCreate.helpers';
@@ -31,9 +31,19 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
                                 return (
                                     <Form onSubmit={handleSubmit}>
                                         <FormikWrapper>
-                                            <Text>Your profit will be: {profitAmountDisplay}</Text>
+                                            <TextWrapper>
+                                                <Text>Your offer amount is </Text>
+                                                <TextBold>{values.amount}zł</TextBold>
+                                            </TextWrapper>
+                                            <TextWrapper>
+                                                <Text>Your profit will be </Text>
+                                                <TextBold>{profitAmountDisplay}</TextBold>
+                                            </TextWrapper>
+                                            <TextWrapper>
+                                                <Text>Your rate offer is </Text>
+                                                <TextBold>{values.rate}%</TextBold>
+                                            </TextWrapper>
                                             <FieldWrapper>
-                                                <FieldTitleTypography>Your rate offer is {values.rate}%</FieldTitleTypography>
                                                 <TextField
                                                     name="rate"
                                                     type="number"
@@ -48,8 +58,7 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
                                                     helperText={touched.rate && errors.rate}
                                                 />
                                             </FieldWrapper>
-                                            <FieldWrapper>
-                                                <FieldTitleTypography>Your offer amount is {values.amount}zł</FieldTitleTypography>
+                                            <FieldWrapperSlider>
                                                 <Slider
                                                     name="amount"
                                                     data-testid="amountOfferCreate"
@@ -60,10 +69,8 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
                                                     value={values.amount}
                                                     onChange={(e, value) => setFieldValue('amount', value)}
                                                 />
-                                                <FieldTitleTypography>
-                                                    Do you know that your offer amount could be divided?
-                                                </FieldTitleTypography>
-                                            </FieldWrapper>
+                                                <Text>Your offer amount could be divided</Text>
+                                            </FieldWrapperSlider>
                                             <Button type="submit" data-testid="buttonOfferCreate" disabled={!isValid} variant="outlined">
                                                 Create offer
                                             </Button>
