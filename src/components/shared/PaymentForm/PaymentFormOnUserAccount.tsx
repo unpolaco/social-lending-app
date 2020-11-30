@@ -6,7 +6,7 @@ import {PaymentFormProps} from './PaymentForm.types';
 import {PaymentFormValidator} from './PaymentForm.helpers';
 
 export const PaymentFormOnUserAccount: React.FC<PaymentFormProps> = ({currentPage, fetchPaymentOnUserAccount, fetchAccountDetails}) => {
-    async function handleSubmit(values: any) {
+    async function handleSubmitForm(values: any) {
         const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';
         const paymentDetails = {amount: values.amount, userName: userName};
         await fetchPaymentOnUserAccount(paymentDetails);
@@ -14,7 +14,7 @@ export const PaymentFormOnUserAccount: React.FC<PaymentFormProps> = ({currentPag
     }
     return (
         <>
-            <Formik initialValues={{amount: undefined}} validate={PaymentFormValidator} onSubmit={handleSubmit}>
+            <Formik initialValues={{amount: undefined}} validate={PaymentFormValidator} onSubmit={handleSubmitForm}>
                 {({handleSubmit, values, handleChange, handleBlur, errors, touched, isValid}) => {
                     return (
                         <Form onSubmit={handleSubmit}>

@@ -10,7 +10,7 @@ export const PaymentFormOnPlatformAccount: React.FC<PaymentFormProps> = ({
     fetchPaymentOnPlatformAccount,
     fetchAccountDetails,
 }) => {
-    async function handleSubmit(values: any) {
+    async function handleSubmitForm(values: any) {
         const userName = currentPage === 'lender' ? 'Samwise_Gamgee' : 'Bilbo_Baggins';
         const paymentDetails = {amount: values.amount, userName: userName};
         await fetchPaymentOnPlatformAccount(paymentDetails);
@@ -18,7 +18,7 @@ export const PaymentFormOnPlatformAccount: React.FC<PaymentFormProps> = ({
     }
     return (
         <>
-            <Formik initialValues={{amount: undefined}} validate={PaymentFormValidator} onSubmit={handleSubmit}>
+            <Formik initialValues={{amount: undefined}} validate={PaymentFormValidator} onSubmit={handleSubmitForm}>
                 {({handleSubmit, values, handleChange, handleBlur, errors, touched, isValid}) => {
                     return (
                         <Form onSubmit={handleSubmit}>
