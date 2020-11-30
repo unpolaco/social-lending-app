@@ -4,28 +4,28 @@
 
 #### 2. [Usage](#Usage)
 
-#### 2.1 [Users](#Users)
+#### 2.1. [Users](#Users)
 
-#### 2.2 [Loan Creation](#Loan-Creation)
+#### 2.2. [Loan Creation](#Loan-Creation)
 
-#### 2.3 [Offer Selection](#Offer-Selection)
+#### 2.3. [Offer Selection](#Offer-Selection)
 
-#### 2.4 [Banking API/Payments](#Banking-API/Payments)
+#### 2.4. [Banking API/Payments](#Banking-API/Payments)
 
 #### 3. [Live Demo](#Live-Demo)
 
 #### 4.
 
-# 1 About
+# 1 About<a name="About"></a>
 
 Application was created as part of **[FintechChallange](https://www.fintechchallenge.pl/)** organized by **[HL Tech](https://www.facebook.com/HLTechCentre/)** company and was based on the predefined environment.
 The main idea was to create a "social-lending" platform, which would connect two types of users: lender and borrower. It would allow granting loans to natural persons without the participation of a bank.
 
-# 2 Usage
+# 2 Usage<a name="Usage"></a>
 
 On the home page the user is choosing, if he wants to enter the application as a lender or borrower. At the moment after this choice the user goes to the borrower/lender account, but in the future there will be a registration/login feature added in this place. Thanks to this division application is clear and more intuitive for the user.
 
-### 2.1 Users
+### 2.1 Users<a name="Users"></a>
 
 ##### Borrower
 
@@ -46,7 +46,7 @@ As a lender user has access to the following functionalities:
 -   My Investments - Browsing user's investments. After folding out the investment user can see the schedule of certain loan installments with visual indication of paid ones. There is also a link to the public borrower's profile, where he can check basic information about the borrower, his ranking and comments added by other lenders. Users can also add a comment and rate the borrower (see [Ranking](#ranking)).
 -   My Account - User data preview and account managing on the platform, incl. making deposits and withdrawals to the account (see [Banking API](#banking-api))
 
-### 2.2 Loan Creation
+### 2.2 Loan Creation<a name="Loan-Creation"></a>
 
 Process of creating a loan/investments is illustrated by diagram below:
 ![Screenshot](LinkToRoutingSchema)
@@ -56,7 +56,7 @@ When the sum of the bids is equal to, or greater than the defined amount in the 
 Borrowers can find this loan in the `My Loans` tab and lenders can see it in `My Investments` tab. After the loan is approved, it becomes `ACTIVE`. Both in investments and loans, there appears a repayment schedule for loan installments. By clicking the `Pay Repayment` button, the borrower repays the last unpaid installment (see [Banking API](#banking-api)).
 After the loan is fully repaid, it changes its status to `PAID`, and the investments of the lender changes its status to `COMPLETED`.
 
-### 2.3 Offer Selection
+### 2.3 Offer Selection<a name="Offer-Selection"></a>
 
 Offers submitted by lenders are automatically selected in the process of creating a loan. First, offers with the most favorable rating (the lowest one) are being selected. If the offer's sum is higher than the final loan, the amount of the last offer is being divided.
 The loan rate is calculated based on the average rate of all selected offers. The rate of the offers does not change, only the amount of the offer may be reduced when the loan is created. The rate determined when creating the auction is only the borrower's "wish" installment and is not taken into account when creating a loan - it is only intended to inform lenders about the rate proposed by the borrower.
