@@ -10,7 +10,7 @@
 
 #### 2.3. [Offer Selection](#Offer-Selection)
 
-#### 2.4. [Banking API/Payments](#Banking-API/Payments)
+#### 2.4. [Banking API/Payments](#Payments)
 
 #### 3. [Live Demo](#Live-Demo)
 
@@ -49,7 +49,7 @@ As a borrower user has access to the following functionalities:
 -   My Auctions - Creating new auctions and editing existing ones
 -   My Loans - Managing created loans, inlc. repayment of the loan installment, confirmation of creation the predefined loan (see [Loan Creation](#Loan-Creation))
 -   My Account - User data preview and account managing on the platform, incl.  
-    making deposits and withdrawals to the account (see [Banking API/Payments](#Banking-API/Payments))
+    making deposits and withdrawals to the account (see [Banking API/Payments](#Payments))
 
 ##### Lender
 
@@ -58,7 +58,7 @@ As a lender user has access to the following functionalities:
 -   Investments - Browsing the list of all auctions with offers added to them, possibility to make an offer to the selected auction
 -   My offers - Browsing offers created by users to the auctions and possibility to remove active offers (only for the auctions that are still open and were not converted to loan yet)
 -   My Investments - Browsing user's investments. After folding out the investment user can see the schedule of certain loan installments with visual indication of paid ones. There is also a link to the public borrower's profile, where he can check basic information about the borrower, his ranking and comments added by other lenders. Users can also add a comment and rate the borrower.
--   My Account - User data preview and account managing on the platform, incl. making deposits and withdrawals to the account (see [Banking API/Payments](#Banking-API/Payments))
+-   My Account - User data preview and account managing on the platform, incl. making deposits and withdrawals to the account (see [Banking API/Payments](#Payments))
 
 ### 2.2 Loan Creation<a name="Loan-Creation"></a>
 
@@ -68,7 +68,7 @@ Process of creating a loan/investments is illustrated by diagram below:
 
 Borrower creates an auction. For the auctions with `ACTIVE` or `ACTIVE COMPLETE` status, the lender may submit his offer. The amount of the bid cannot exceed the amount defined in the auction.
 When the sum of the bids is equal to, or greater than the defined amount in the auction, the auction status changes to `ACTIVE COMPLETE`. Bids can still be submitted to this auction, but the borrower can close the auction by creating an initial loan with the status `UNCONFIRMED`. The best offers are automatically selected at this point (see [ Offer Selection](#Offer-Selection)).
-Borrowers can find this loan in the `My Loans` tab and lenders can see it in `My Investments` tab. After the loan is approved, it becomes `ACTIVE`. Both in investments and loans, there appears a repayment schedule for loan installments. By clicking the `Pay Repayment` button, the borrower repays the last unpaid installment (see [Banking API/Payments](#Banking-API/Payments)).
+Borrowers can find this loan in the `My Loans` tab and lenders can see it in `My Investments` tab. After the loan is approved, it becomes `ACTIVE`. Both in investments and loans, there appears a repayment schedule for loan installments. By clicking the `Pay Repayment` button, the borrower repays the last unpaid installment (see [Banking API/Payments](#Payments)).
 After the loan is fully repaid, it changes its status to `PAID`, and the investments of the lender changes its status to `COMPLETED`.
 
 ### 2.3 Offer Selection<a name="Offer-Selection"></a>
@@ -134,7 +134,7 @@ In the project directory, you can run:
 
 ###### `npm start` or `yarn start`
 
-It runs the app in the development mode.\
+It runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
