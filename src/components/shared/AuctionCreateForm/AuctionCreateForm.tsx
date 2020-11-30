@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 import {RateReview} from '@material-ui/icons';
 
 export const AuctionCreateForm: React.FC<AuctionCreateFormProps> = ({handleSaveNewAuction}) => {
-    function handleSubmit(values: AuctionCreateFormValues) {
+    function handleSubmitForm(values: AuctionCreateFormValues) {
         handleSaveNewAuction(values);
     }
     return (
@@ -22,7 +22,7 @@ export const AuctionCreateForm: React.FC<AuctionCreateFormProps> = ({handleSaveN
             <AccordionDetails>
                 <AccordionWrapper>
                     <CreateAuctionCardWrapper>
-                        <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmit}>
+                        <Formik initialValues={initialValues} validate={AuctionCreateFormValidator} onSubmit={handleSubmitForm}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
                                 const amount = values.amount! || 0;
                                 const rate = values.rate! || 0;

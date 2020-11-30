@@ -12,7 +12,7 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
         {value: amount, label: `${amount} zł`},
     ];
 
-    function handleSubmit(values: OfferCreateValidatorProps) {
+    function handleSubmitForm(values: OfferCreateValidatorProps) {
         values.auctionId = id;
         handleSaveNewOffer(values);
     }
@@ -25,7 +25,7 @@ export const OfferCreate: React.FC<OfferCreateProps> = ({row, handleSaveNewOffer
                 ) : (
                     <>
                         <Typography>Create an offer for this auction</Typography>
-                        <Formik initialValues={{amount: amount, rate: rate}} validate={OfferCreateValidator} onSubmit={handleSubmit}>
+                        <Formik initialValues={{amount: amount, rate: rate}} validate={OfferCreateValidator} onSubmit={handleSubmitForm}>
                             {({handleSubmit, values, handleChange, handleBlur, errors, touched, setFieldValue, isValid}) => {
                                 const profitAmountDisplay = generateProfitAmountDisplay(values, isValid);
                                 return (
