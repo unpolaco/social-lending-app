@@ -63,7 +63,8 @@ As a lender user has access to the following functionalities:
 ### 2.2 Loan Creation<a name="Loan-Creation"></a>
 
 Process of creating a loan/investments is illustrated by diagram below:
-![Screenshot](/)
+<br/>
+![Screenshot](assets/readme/loans.jpg)
 
 Borrower creates an auction. For the auctions with `ACTIVE` or `ACTIVE COMPLETE` status, the lender may submit his offer. The amount of the bid cannot exceed the amount defined in the auction.
 When the sum of the bids is equal to, or greater than the defined amount in the auction, the auction status changes to `ACTIVE COMPLETE`. Bids can still be submitted to this auction, but the borrower can close the auction by creating an initial loan with the status `UNCONFIRMED`. The best offers are automatically selected at this point (see [ Offer Selection](#Offer-Selection)).
@@ -175,6 +176,7 @@ Files in the repository are ordered in the following folders:
 
 Routing is made with react-router-dom library.
 The diagram below is presenting routing schema:
+<br/>
 ![Screenshot](assets/readme/routes.jpg)
 
 ### 4.4 Dependencies<a name="Dependencies"></a>
